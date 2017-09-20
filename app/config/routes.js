@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -11,7 +11,7 @@ import Session from '../screens/Session';
 import Profile from '../screens/Profile';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
-const ICON_SIZE = 30;
+const ICON_SIZE = 25;
 const ICON_COLOR = 'white';
 const TAB_BACKGROUND_COLOR = 'black';
 
@@ -20,6 +20,7 @@ const ConnectionStack = StackNavigator(
     Connections: {
       screen: Connections,
       navigationOptions: {
+        headerTitle: 'Connections',
         header: () => null,
       },
     },
@@ -38,6 +39,7 @@ const ConnectionStack = StackNavigator(
   },
   {
     mode: 'modal',
+    cardStyle: { paddingTop: StatusBar.currentHeight },
     headerMode: 'screen',
   }
 );
@@ -91,6 +93,8 @@ const Navigator = TabNavigator(
       indicatorStyle: {
         backgroundColor: ICON_COLOR,
       },
+      showLabel: false,
+      upperCaseLabel: false,
     },
     animationEnabled: true,
     initialRouteName: 'Home',
