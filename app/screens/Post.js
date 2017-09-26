@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
+import { FullPost } from '../components/Post';
 
-class Home extends React.Component {
+class Post extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
   };
@@ -16,12 +17,7 @@ class Home extends React.Component {
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
-          <Text
-            style={{ color: 'white', fontSize: 50, fontWeight: '600' }}
-            onPress={() => this.props.navigation.navigate('Post')}
-          >
-            Welcome!
-          </Text>
+          <FullPost />
         </KeyboardAvoidingView>
       </Container>
     );
@@ -34,4 +30,4 @@ class Home extends React.Component {
 
 // export default connect(mapStateToProps)(connectAlert(Home));
 
-export default Home;
+export default Post;

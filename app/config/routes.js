@@ -9,6 +9,7 @@ import Login from '../screens/Login';
 import Messaging from '../screens/Messaging';
 import Session from '../screens/Session';
 import Profile from '../screens/Profile';
+import Post from '../screens/Post';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
@@ -44,10 +45,39 @@ const ConnectionStack = StackNavigator(
   }
 );
 
-const Navigator = TabNavigator(
+const HomeStack = StackNavigator(
   {
     Home: {
       screen: Home,
+      navigationOptions: {
+        headerTitle: 'Home',
+        header: () => null,
+      },
+    },
+    // Messaging: {
+    //   screen: Messaging,
+    //   navigationOptions: {
+    //     headerTitle: 'Messaging',
+    //   },
+    // },
+    Post: {
+      screen: Post,
+      navigationOptions: {
+        headerTitle: 'Post',
+      },
+    },
+  },
+  {
+    mode: 'modal',
+    cardStyle: { paddingTop: StatusBar.currentHeight },
+    headerMode: 'screen',
+  }
+);
+
+const Navigator = TabNavigator(
+  {
+    Home: {
+      screen: HomeStack,
       navigationOptions: {
         tabBarIcon: () => (
           <Ionicons
