@@ -31,6 +31,12 @@ const styles = EStyleSheet.create({
     paddingLeft: 10,
     paddingTop: 5,
   },
+  smallAuthor: {
+    flexDirection: 'row',
+    paddingRight: 40,
+    paddingTop: 5,
+    justifyContent: 'space-between',
+  },
   icon: {
     width: 50,
     height: 50,

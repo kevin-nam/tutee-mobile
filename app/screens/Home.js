@@ -56,10 +56,26 @@ class Home extends React.Component {
             {welcomeMessage(this.state.welcomeMessage)}
           </Text>
           <Text
-            style={{ color: 'white', fontSize: 50, fontWeight: '600' }}
+            style={{
+              color: 'white',
+              fontSize: 50,
+              fontWeight: '600',
+              textDecorationLine: 'underline',
+            }}
             onPress={() => this.props.navigation.navigate('Post')}
           >
             Post
+          </Text>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 50,
+              fontWeight: '600',
+              textDecorationLine: 'underline',
+            }}
+            onPress={() => this.props.navigation.navigate('smallPost')}
+          >
+            SmallPost
           </Text>
         </KeyboardAvoidingView>
       </Container>
