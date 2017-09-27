@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
-import { FullPost } from '../components/Post';
+import { SmallPost } from '../components/Post';
 
-class Post extends React.Component {
+class smallPost extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
   };
@@ -18,10 +18,9 @@ class Post extends React.Component {
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
-            <FullPost
-              title="I am looking for someone to tutor/touch me"
+            <SmallPost
+              title="Looking for a tutor to touch me"
               userImage={null}
-              userName="I have a really long name and penzor"
               content={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum praeponunt, ut sit aliqua rerum selectio, naturam videntur sequi; Praeteritis, inquit, gaudeo. Ait enim se, si uratur, Quam hoc suave! dicturum. Quis istud possit, inquit, negare? Vitiosum est enim in dividendo partem in genere numerare.
 
 Si verbum sequimur, primum longius verbum praepositum quam bonum. Duo Reges: constructio interrete. Aliter enim nosmet ipsos nosse non possumus. Ego vero isti, inquam, permitto. Quae si potest singula consolando levare, universa quo modo sustinebit? Non est igitur summum malum dolor.
@@ -30,7 +29,6 @@ Nam de summo mox, ut dixi, videbimus et ad id explicandum disputationem omnem co
 
 Non enim quaero quid verum, sed quid cuique dicendum sit. Quis, quaeso, illum negat et bonum virum et comem et humanum fuisse? Quid censes in Latino fore? Ego quoque, inquit, didicerim libentius si quid attuleris, quam te reprehenderim. Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Non igitur bene. Polycratem Samium felicem appellabant. Mihi enim erit isdem istis fortasse iam utendum.`}
               date="a date"
-              tagString="#tutee #demo #mtl #5stars #best #cool #math #mcgill #MATH263"
             />
           </ScrollView>
         </KeyboardAvoidingView>
@@ -45,4 +43,4 @@ Non enim quaero quid verum, sed quid cuique dicendum sit. Quis, quaeso, illum ne
 
 // export default connect(mapStateToProps)(connectAlert(Home));
 
-export default Post;
+export default smallPost;
