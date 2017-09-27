@@ -17,7 +17,7 @@ class Post extends React.Component {
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
-          <FullPost />
+          <FullPost title="Demo" userImage={null} userName="Demo Tutor" />
         </KeyboardAvoidingView>
       </Container>
     );

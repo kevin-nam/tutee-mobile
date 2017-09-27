@@ -16,11 +16,14 @@ class Home extends React.Component {
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
+          <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+            Welcome!
+          </Text>
           <Text
             style={{ color: 'white', fontSize: 50, fontWeight: '600' }}
             onPress={() => this.props.navigation.navigate('Post')}
           >
-            Welcome!
+            Post
           </Text>
         </KeyboardAvoidingView>
       </Container>

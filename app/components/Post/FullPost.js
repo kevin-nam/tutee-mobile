@@ -4,21 +4,30 @@ import { View, Text, Button, Image } from 'react-native';
 
 import styles from './styles';
 
-const FullPost = ({ backGround }) => {
-  const containerStyles = [styles.container];
+const FullPost = ({ title, userImage, userName }) => {
+  if (!userImage) {
+    userImage = require('./images/Placeholder.png');
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Title</Text>
-        <Image />
-        <Text />
+        <Text style={styles.title}>{title}</Text>
+        <View style={styles.author}>
+          <Image
+            resizeMode="cover"
+            style={styles.icon}
+            source={userImage}
+            borderRadius={40}
+          />
+          <Text style={styles.user}>{userName}</Text>
+        </View>
       </View>
       <Text />
       <Text />
       <Button
         color="green"
-        title="Dummy"
+        title="Request"
         onPress={() => {
           alert('click!');
         }}
@@ -27,6 +36,10 @@ const FullPost = ({ backGround }) => {
   );
 };
 
-FullPost.propTypes = {};
+FullPost.propTypes = {
+  title: PropTypes.string,
+  userImage: PropTypes.element,
+  userName: PropTypes.string,
+};
 
 export default FullPost;

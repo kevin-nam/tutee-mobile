@@ -5,10 +5,9 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const styles = EStyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: 'white',
     width: 0.9 * SCREEN_WIDTH,
     marginVertical: 20,
@@ -19,10 +18,23 @@ const styles = EStyleSheet.create({
     fontSize: 30,
   },
   header: {
-    flex: 1,
     backgroundColor: '#A8DBA8',
     width: 0.9 * SCREEN_WIDTH,
-    height: 15,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+  },
+  author: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 40,
+    height: 40,
+  },
+  user: {
+    paddingHorizontal: 10,
+    fontWeight: '600',
+    fontSize: 20,
   },
 });
 
