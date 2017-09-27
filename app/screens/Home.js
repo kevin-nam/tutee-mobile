@@ -6,6 +6,7 @@ import { AsyncStorage } from 'react-native';
 
 import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
+import { HomeSearchBar } from '../components/SearchBar';
 
 class Home extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class Home extends React.Component {
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
+        <HomeSearchBar />
         <KeyboardAvoidingView behavior="padding">
           <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
             {welcomeMessage(this.state.welcomeMessage)}
