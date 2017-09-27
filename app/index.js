@@ -1,13 +1,49 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-// import { Provider } from 'react-redux';
+import { createRootNavigator } from './config/routes';
+import { AsyncStorage } from 'react-native';
 
-import Navigator from './config/routes';
-// import { AlertProvider } from './components/Alert';
-// import store from './config/store';
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-EStyleSheet.build({
-  // outline: 1,
-});
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false
+    };
+  }
 
-export default () => <Navigator onNavigationStateChange={null} />;
+  checkIfLoggedIn = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@MySuperStore:TOKEN_KEY');
+      this.setState({checkedSignIn: true});
+      if (value !== null) {
+        console.log(value);
+        this.setState({signedIn: true});
+      }
+    } catch (error) {
+      console.log('Not logged in.');
+    }
+  };
+
+  // Runs before render
+  componentWillMount() {
+    //AsyncStorage.clear();
+    this.checkIfLoggedIn();
+  }
+
+  // Render the appropriate screen
+  render() {
+    EStyleSheet.build({
+      // outline: 1,
+    });
+    const { checkedSignIn, signedIn } = this.state;
+
+    if (!checkedSignIn) {
+      return null;
+    }
+
+    const Layout = createRootNavigator(signedIn);
+    return <Layout />
+  }
+}

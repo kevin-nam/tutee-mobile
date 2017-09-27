@@ -134,4 +134,27 @@ const Navigator = TabNavigator(
   }
 );
 
-export default Navigator;
+export const createRootNavigator = (isSignedIn = false) => {
+  return StackNavigator(
+    {
+      Login: {
+        screen: Login,
+        navigationOption: {
+          title: 'Tutee Login',
+          header: () => null,
+        },
+      },
+      Home: {
+        screen: Navigator,
+        navigationOption: {
+          header: () => null,
+        },
+      },
+    },
+    {
+      headerMode: 'none',
+      mode: 'modal',
+      initialRouteName: isSignedIn ? 'Home' : 'Login',
+    }
+  );
+};
