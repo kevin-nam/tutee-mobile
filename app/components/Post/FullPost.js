@@ -38,7 +38,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
       </View>
       <View style={styles.tagSection}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Text>{tagString}</Text>
+          <Text style={styles.tags}>{tagString}</Text>
         </ScrollView>
       </View>
     </View>

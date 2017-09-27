@@ -72,13 +72,16 @@ const styles = EStyleSheet.create({
   },
   date: {
     fontWeight: '300',
+    color: '$disabled',
   },
   tagSection: {
     width: 0.9 * SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
-  tags: {},
+  tags: {
+    color: '$disabled',
+  },
 });
 
 export default styles;
