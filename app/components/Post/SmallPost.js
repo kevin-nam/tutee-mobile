@@ -11,19 +11,19 @@ const SmallPost = ({ title, userImage, content, date }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{title}</Text>
-        <View style={styles.smallAuthor}>
-          <Image
-            resizeMode="cover"
-            style={styles.icon}
-            source={userImage}
-            borderRadius={50}
-          />
-          <Text numberOfLines={3}>
-            <Text ellipsizeMode="tail">{content}</Text>
-          </Text>
-        </View>
+      <View style={styles.smallHeader}>
+        <Image
+          resizeMode="cover"
+          style={styles.icon}
+          source={userImage}
+          borderRadius={50}
+        />
+        <Text style={styles.smallTitle}>{title}</Text>
+      </View>
+      <View style={styles.body}>
+        <Text numberOfLines={3} ellipsizeMode="tail">
+          {content}
+        </Text>
       </View>
       <View style={styles.footer}>
         <Text style={styles.date}>{date}</Text>

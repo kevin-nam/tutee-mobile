@@ -19,7 +19,7 @@ class smallPost extends React.Component {
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
             <SmallPost
-              title="Demo of a small Post"
+              title="Looking for a tutor to touch me"
               userImage={null}
               content={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum praeponunt, ut sit aliqua rerum selectio, naturam videntur sequi; Praeteritis, inquit, gaudeo. Ait enim se, si uratur, Quam hoc suave! dicturum. Quis istud possit, inquit, negare? Vitiosum est enim in dividendo partem in genere numerare.
 
