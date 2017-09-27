@@ -3,23 +3,29 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { createRootNavigator } from './config/routes';
 import { AsyncStorage } from 'react-native';
 
+EStyleSheet.build({
+  $disabled: '#777777',
+
+  // outline: 1,
+});
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       signedIn: false,
-      checkedSignIn: false
+      checkedSignIn: false,
     };
   }
 
   checkIfLoggedIn = async () => {
     try {
       const value = await AsyncStorage.getItem('@MySuperStore:TOKEN_KEY');
-      this.setState({checkedSignIn: true});
+      this.setState({ checkedSignIn: true });
       if (value !== null) {
         console.log(value);
-        this.setState({signedIn: true});
+        this.setState({ signedIn: true });
       }
     } catch (error) {
       console.log('Not logged in.');
@@ -28,7 +34,7 @@ export default class App extends React.Component {
 
   // Runs before render
   componentWillMount() {
-    //AsyncStorage.clear();
+    // AsyncStorage.clear();
     this.checkIfLoggedIn();
   }
 
@@ -44,6 +50,6 @@ export default class App extends React.Component {
     }
 
     const Layout = createRootNavigator(signedIn);
-    return <Layout />
+    return <Layout />;
   }
 }
