@@ -12,11 +12,19 @@ const USER_ID_KEY = 'USER_ID_KEY';
 const USER_PHOTO_KEY = 'USER_PHOTO_KEY';
 
 class Login extends React.Component {
+
   static propTypes = {
     navigation: PropTypes.object,
   };
 
-  logIn = async () => {
+  constructor(props) {
+    super(props);
+  }
+
+  logIn = async (props) => {
+
+    console.log(props);
+
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'Home' })],
@@ -50,19 +58,39 @@ class Login extends React.Component {
             '@MySuperStore:' + USER_PHOTO_KEY,
             data.picture.data.url
           );
+
+          const user = {
+            uid: data.id,
+            username: data.name,
+            profile_picture: data.picture.data.url,
+            email: data.email,
+            bio: ''
+          };
+
+          const headers = new Headers({
+            "Content-Type": "application/json",
+          });
+
+          fetch('http://138.197.159.56:3232/user/createUser', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: headers
+          }).then(function(response) {
+            if (response.ok) {
+              console.log('Successfully registered');
+              // Move to homepage
+              props.navigation.dispatch(resetAction);
+            } else {
+              console.log('Error when creating user');
+            }
+          });
         });
-
-      // Move to home page
-      this.props.navigation.dispatch(resetAction);
-
-      // TODO: Saving user to firebase database
-      // TODO: Logic when failing authentication
     }
   };
 
   handlePressFacebookLogin = () => {
     console.log('pressed fb login button');
-    this.logIn();
+    this.logIn(this.props);
   };
 
   render() {
