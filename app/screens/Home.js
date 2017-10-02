@@ -6,15 +6,15 @@ import { AsyncStorage } from 'react-native';
 
 import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
+import { HomeSearchBar } from '../components/SearchBar';
 
 class Home extends React.Component {
-
   constructor(props) {
     super(props);
     this.setWelcomeMessage = this.setWelcomeMessage.bind(this);
     this.state = {
-      welcomeMessage: "Welcome!"
-    }
+      welcomeMessage: 'Welcome!',
+    };
   }
 
   // Runs before render
@@ -30,9 +30,9 @@ class Home extends React.Component {
     try {
       AsyncStorage.getItem('@MySuperStore:USER_NAME_KEY').then((name) => {
         if (name !== null) {
-          this.setState({welcomeMessage: 'Welcome ' + name + '!'});
+          this.setState({ welcomeMessage: 'Welcome ' + name + '!' });
         } else {
-          //this.setState({welcomeMessage: 'Error getting your name !'});
+          // this.setState({welcomeMessage: 'Error getting your name !'});
         }
       });
     } catch (error) {
@@ -41,20 +41,44 @@ class Home extends React.Component {
   };
 
   render() {
-
-    var welcomeMessage = function(t) {
+    let welcomeMessage = function(t) {
       return (
         <Text style={{ color: 'white', fontSize: 24, fontWeight: '600' }}>
           {t}
         </Text>
-      )
+      );
     };
 
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
+        <HomeSearchBar />
         <KeyboardAvoidingView behavior="padding">
-          {welcomeMessage(this.state.welcomeMessage)}
+          <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+            {welcomeMessage(this.state.welcomeMessage)}
+          </Text>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 50,
+              fontWeight: '600',
+              textDecorationLine: 'underline',
+            }}
+            onPress={() => this.props.navigation.navigate('Post')}
+          >
+            Post
+          </Text>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 50,
+              fontWeight: '600',
+              textDecorationLine: 'underline',
+            }}
+            onPress={() => this.props.navigation.navigate('smallPost')}
+          >
+            SmallPost
+          </Text>
         </KeyboardAvoidingView>
       </Container>
     );

@@ -1,4 +1,5 @@
-import Post from './Post';
+import FullPost from './FullPost';
 import styles from './styles';
+import SmallPost from './SmallPost';
 
-export { Post, styles };
+export { FullPost, SmallPost, styles };

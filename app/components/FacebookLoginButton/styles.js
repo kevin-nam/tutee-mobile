@@ -5,22 +5,22 @@ export default EStyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     paddingHorizontal: 30,
-    backgroundColor: "#3B5699"
+    backgroundColor: '#3B5699',
   },
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   icon: {
-    backgroundColor: "white",
-    color: "#3B5699",
-    marginRight: 20
+    backgroundColor: 'white',
+    color: '#3B5699',
+    marginRight: 20,
   },
   text: {
     paddingVertical: 20,
     paddingLeft: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 20,
-    color: 'white'
+    color: 'white',
   },
 });
