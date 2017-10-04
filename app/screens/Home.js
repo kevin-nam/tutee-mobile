@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, Text, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { AsyncStorage } from 'react-native';
 
@@ -40,6 +40,10 @@ class Home extends React.Component {
     }
   };
 
+  handlePressSearch = () => {
+    console.log('Submitted search');
+  };
+
   render() {
     let welcomeMessage = function(t) {
       return (
@@ -52,7 +56,10 @@ class Home extends React.Component {
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
-        <HomeSearchBar />
+        <HomeSearchBar
+          onSubmit={() => this.props.navigation.navigate('smallPost')}
+          // onSubmitEditing={this.handlePressSearch} // this.props.naviation.navigate('smallPost')
+        />
         <KeyboardAvoidingView behavior="padding">
           <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
             {welcomeMessage(this.state.welcomeMessage)}
