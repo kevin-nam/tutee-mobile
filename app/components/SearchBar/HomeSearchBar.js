@@ -5,7 +5,7 @@ import { SearchBar } from 'react-native-elements';
 
 import styles from './styles';
 
-const HomeSearchBar = ({ onSubmit }) => {
+const HomeSearchBar = ({ onSubmit, onText }) => {
   return (
     <View style={styles.container}>
       <SearchBar
@@ -14,6 +14,7 @@ const HomeSearchBar = ({ onSubmit }) => {
         placeholder="Search..."
         returnKeyType="search"
         onSubmitEditing={onSubmit}
+        onChangeText={(text) => onText(text)}
       />
     </View>
   );
@@ -21,6 +22,7 @@ const HomeSearchBar = ({ onSubmit }) => {
 
 HomeSearchBar.propTypes = {
   onSubmit: PropTypes.func,
+  onText: PropTypes.func,
 };
 
 export default HomeSearchBar;
