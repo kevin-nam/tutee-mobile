@@ -23,6 +23,7 @@ const ConnectionStack = StackNavigator(
       screen: Connections,
       navigationOptions: {
         headerTitle: 'Connections',
+        title: 'Connections',
         header: () => null,
       },
     },

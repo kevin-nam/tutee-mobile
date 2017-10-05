@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
+import { KeyboardAvoidingView, Text } from 'react-native';
 // import { connect } from 'react-redux';
 
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
+import { Header, List, ListItem, Icon } from 'react-native-elements';
 
 class Connections extends React.Component {
   static propTypes = {
@@ -14,7 +15,15 @@ class Connections extends React.Component {
   render() {
     return (
       <Container backgroundColor={'#9E768F'}>
-        <StatusBar barStyle="light-content" />
+        <Header
+          statusBarProps={{
+            barStyle: 'light-content',
+            backgroundColor: 'black',
+            translucent: true,
+          }}
+          centerComponent={{ text: 'Connections' }}
+          leftComponent={<Icon name="fiber-new" color="black" />}
+        />
         <KeyboardAvoidingView behavior="padding">
           <Text
             style={{
