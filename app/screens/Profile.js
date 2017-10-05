@@ -15,8 +15,9 @@ class Profile extends React.Component {
         username: '',
         profile_picture: '',
         rating: 0,
-        bio: ''
+        bio: '',
       },
+      uid: ''
     };
   }
 
@@ -34,29 +35,36 @@ class Profile extends React.Component {
       method: 'GET'
     }).then((response) => {
       if (response.ok) {
-        console.log('success');
+        console.log('Successfully got profile for ' + uid);
         return response.json();
       } else {
-        console.log('Error when creating user');
+        console.log('Error when getting profile data for ' + uid);
       }
     }).then((data) => {
-      //console.log(data);
       this.setState({user: data});
-      console.log(data);
+      this.setState({uid: uid});
+      console.log('Got user profile data', data);
     });
   };
 
   render() {
     const user = this.state.user;
-    return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content"/>
-        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'column', backgroundColor: 'white'}}>
-          <ProfileHeader user={user} />
-          <ProfileBody user={user} />
-        </View>
-      </Container>
-    );
+    const uid = this.state.uid;
+
+    // Need to check if uid and user are ok
+    if (uid && user) {
+      return (
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content"/>
+          <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'column', backgroundColor: 'white'}}>
+            <ProfileHeader user={user}/>
+            <ProfileBody user={user} uid={uid}/>
+          </View>
+        </Container>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

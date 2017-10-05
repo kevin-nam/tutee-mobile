@@ -43,14 +43,13 @@ class Login extends React.Component {
       )
         .then(function(response) {
           if (response.ok) {
-            console.log(JSON.stringify(response));
             return response.json();
           } else {
-            console.log('Error when fetching');
+            console.log('Error when fetching facebook data' );
           }
         })
         .then(function(data) {
-          console.log(data);
+          console.log('Got facebook data', data);
           AsyncStorage.setItem('@MySuperStore:' + TOKEN_KEY, token);
           AsyncStorage.setItem('@MySuperStore:' + USER_NAME_KEY, data.name);
           AsyncStorage.setItem('@MySuperStore:' + USER_ID_KEY, data.id);
@@ -81,7 +80,7 @@ class Login extends React.Component {
               // Move to homepage
               props.navigation.dispatch(resetAction);
             } else {
-              console.log('Error when creating user');
+              console.log('Error when creating user', user);
             }
           });
         });
