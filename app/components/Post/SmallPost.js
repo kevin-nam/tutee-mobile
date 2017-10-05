@@ -12,7 +12,7 @@ const SmallPost = ({ title, userImage, content, date, onPress }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.smallHeader}>
+      <View style={styles.smallHeader} onPress={() => onPress}>
         <Image
           resizeMode="cover"
           style={styles.icon}

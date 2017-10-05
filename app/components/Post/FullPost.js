@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, Button, Image, ScrollView } from 'react-native';
+import moment from 'moment';
 
 import styles from './styles';
 
@@ -27,7 +28,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
         <Text>{content}</Text>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.date}>{moment(date).format('MMMM D, YYYY')}</Text>
         <Button
           color="green"
           title="Request"
