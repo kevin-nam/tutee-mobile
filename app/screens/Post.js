@@ -23,6 +23,7 @@ class Post extends React.Component {
         bio: '',
       },
       post: {
+        pid: '',
         uid: '',
         title: '',
         description: '',
@@ -38,21 +39,22 @@ class Post extends React.Component {
   }
 
   getFullPostData = async () => {
-    await fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
+    const uid = await this.props.navigation.state.params.post.uid;
+    fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
       method: 'GET',
     })
       .then((response) => {
         if (response.ok) {
-          console.log('success');
+          console.log('Successfully got profile for ' + uid);
           return response.json();
         } else {
-          console.log('Error when creating user');
+          console.log('Error when getting profile data for ' + uid);
         }
       })
       .then((data) => {
-        // console.log(data);
         this.setState({ user: data });
-        console.log(data);
+        this.setState({ post: this.props.navigation.state.params.post });
+        console.log('Got user profile data', data);
       });
   };
 

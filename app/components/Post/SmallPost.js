@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
 import moment from 'moment';
 
 import styles from './styles';
@@ -12,15 +12,17 @@ const SmallPost = ({ title, userImage, content, date, onPress }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.smallHeader} onPress={() => onPress}>
-        <Image
-          resizeMode="cover"
-          style={styles.icon}
-          source={userImage}
-          borderRadius={50}
-        />
-        <Text style={styles.smallTitle}>{title}</Text>
-      </View>
+      <TouchableHighlight onPress={onPress}>
+        <View style={styles.smallHeader}>
+          <Image
+            resizeMode="cover"
+            style={styles.icon}
+            source={userImage}
+            borderRadius={50}
+          />
+          <Text style={styles.smallTitle}>{title}</Text>
+        </View>
+      </TouchableHighlight>
       <View style={styles.body}>
         <Text numberOfLines={3} ellipsizeMode="tail" style={styles.content}>
           {content}

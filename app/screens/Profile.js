@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { Container } from '../components/Container';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { ProfileBody } from '../components/ProfileBody';

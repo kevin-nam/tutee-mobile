@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text, TextInput } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { AsyncStorage } from 'react-native';
 
@@ -46,7 +46,7 @@ class Home extends React.Component {
     console.log('Submitted search');
   };
 
-  tempFunc = () => {
+  tempFunc = async () => {
     const uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
     await this.setState({ tempuid: uid });
   };

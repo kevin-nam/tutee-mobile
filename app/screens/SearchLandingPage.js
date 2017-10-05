@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { List } from 'react-native-elements';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import { connectAlert } from '../components/Alert';
+// import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { SmallPost } from '../components/Post';
 
@@ -30,7 +30,7 @@ class SearchLandingPage extends React.Component {
       'Content-Type': 'application/json',
     });
 
-    fetch('http://138.197.159.56:3232/post/get/list', {
+    await fetch('http://138.197.159.56:3232/post/get/list', {
       method: 'POST',
       body: JSON.stringify({
         pidList: ['-KfI8LzfiSnFjRWCgJt7', '-KfI8NEFcuvq1AnPfCUU'],

@@ -62,16 +62,16 @@ const HomeStack = StackNavigator(
     //     headerTitle: 'Messaging',
     //   },
     // },
-    Post: {
-      screen: Post,
-      navigationOptions: {
-        headerTitle: 'Post',
-      },
-    },
     SearchLandingPage: {
       screen: SearchLandingPage,
       navigationOptions: {
         headerTitle: 'SearchLandingPage',
+      },
+    },
+    Post: {
+      screen: Post,
+      navigationOptions: {
+        headerTitle: 'Post',
       },
     },
   },
