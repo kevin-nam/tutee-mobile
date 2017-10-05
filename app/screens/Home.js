@@ -57,7 +57,7 @@ class Home extends React.Component {
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <HomeSearchBar
-          onSubmit={() => this.props.navigation.navigate('smallPost')}
+          onSubmit={() => this.props.navigation.navigate('SearchLandingPage')}
           // onSubmitEditing={this.handlePressSearch} // this.props.naviation.navigate('smallPost')
         />
         <KeyboardAvoidingView behavior="padding">
@@ -82,7 +82,7 @@ class Home extends React.Component {
               fontWeight: '600',
               textDecorationLine: 'underline',
             }}
-            onPress={() => this.props.navigation.navigate('smallPost')}
+            onPress={() => this.props.navigation.navigate('SearchLandingPage')}
           >
             SmallPost
           </Text>

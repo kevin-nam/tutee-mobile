@@ -61,7 +61,10 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  content: {},
+  content: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
   footer: {
     width: 0.9 * SCREEN_WIDTH,
     paddingHorizontal: 10,
