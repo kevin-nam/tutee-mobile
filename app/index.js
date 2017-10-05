@@ -24,7 +24,7 @@ export default class App extends React.Component {
       const value = await AsyncStorage.getItem('@MySuperStore:TOKEN_KEY');
       this.setState({ checkedSignIn: true });
       if (value !== null) {
-        console.log(value);
+        console.log('got token', value);
         this.setState({ signedIn: true });
       }
     } catch (error) {
