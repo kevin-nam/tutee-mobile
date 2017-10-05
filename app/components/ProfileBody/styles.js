@@ -46,9 +46,13 @@ export default EStyleSheet.create({
     alignSelf: 'stretch',
   },
   postsView: {
+    marginTop: 15,
+    marginLeft: 15,
+    marginRight: 15,
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'blue'
+    backgroundColor: 'white',
+    flexDirection: 'column'
   },
   sessionsView: {
     flex: 1,
@@ -58,5 +62,10 @@ export default EStyleSheet.create({
   bioText: {
     fontSize: 24,
     color: 'darkgrey'
+  },
+  postText: {
+    fontSize: 24,
+    color: 'darkgrey',
+    marginBottom: 5
   }
 });

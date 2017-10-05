@@ -9,9 +9,30 @@ class ProfileBody extends React.Component {
     super(props);
     this.state = {
       type :'bio',
-      content : this.showBio()
+      content : this.showBio(),
+      postLists : []
     };
   }
+
+  componentWillMount() {
+    this.getUserPostData();
+  }
+
+  getUserPostData = async () => {
+    console.log('getting User Post data for ' + this.props.uid);
+    fetch('http://138.197.159.56:3232/post/get/list/user/' + this.props.uid, {
+      method: 'GET'
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log('Error when getting user post data', this.props.uid);
+      }
+    }).then((data) => {
+      console.log('User Post Data', data);
+      this.setState({postLists : data});
+    });
+  };
 
   handlePress = (type) => {
     console.log('pressed ' + type);
@@ -34,7 +55,16 @@ class ProfileBody extends React.Component {
   };
 
   showPosts = () => {
-    return <View style={styles.postsView}><Text>POSTS</Text></View>
+    console.log(this.state.postLists);
+    const posts = this.state.postLists.map((post) => {
+      return ([
+        <Text style={styles.postText}>{post.title}</Text>,
+        <Text style={styles.postText}>{post.description}</Text>,
+        <Text style={styles.postText}>{post.date}</Text>,
+        <Text style={styles.postText}>{post.tagString}</Text>
+      ]);
+    });
+    return <View style={styles.postsView}>{posts}</View>
   };
 
   showSessions = () => {
