@@ -12,7 +12,6 @@ const USER_ID_KEY = 'USER_ID_KEY';
 const USER_PHOTO_KEY = 'USER_PHOTO_KEY';
 
 class Login extends React.Component {
-
   static propTypes = {
     navigation: PropTypes.object,
   };
@@ -22,7 +21,6 @@ class Login extends React.Component {
   }
 
   logIn = async (props) => {
-
     console.log(props);
 
     const resetAction = NavigationActions.reset({
@@ -63,17 +61,17 @@ class Login extends React.Component {
             username: data.name,
             profile_picture: data.picture.data.url,
             email: data.email,
-            bio: ''
+            bio: '',
           };
 
           const headers = new Headers({
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           });
 
           fetch('http://138.197.159.56:3232/user/createUser', {
             method: 'POST',
             body: JSON.stringify(user),
-            headers: headers
+            headers: headers,
           }).then(function(response) {
             if (response.ok) {
               console.log('Successfully registered');

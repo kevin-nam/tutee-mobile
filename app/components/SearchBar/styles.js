@@ -13,6 +13,9 @@ const styles = EStyleSheet.create({
       paddingTop: 20,
     },
   },
+  listStyle: {
+    marginVertical: 10,
+  },
 });
 
 export default styles;
