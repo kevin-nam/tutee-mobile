@@ -18,6 +18,7 @@ class SearchLandingPage extends React.Component {
 
     this.state = {
       searchedList: [],
+      navigation: this.props.navigation,
     };
   }
 
@@ -54,6 +55,7 @@ class SearchLandingPage extends React.Component {
   };
 
   render() {
+    const navigation = this.state.navigation;
     let postList = this.state.searchedList.map(function(post, index) {
       return (
         <SmallPost
@@ -62,7 +64,7 @@ class SearchLandingPage extends React.Component {
           userImage={null}
           content={post.description}
           date={post.date}
-          onPress={() => this.props.navigation.navigate('Post', { post: post })}
+          onPress={() => navigation.navigate('Post', { post: post })}
         />
       );
     });

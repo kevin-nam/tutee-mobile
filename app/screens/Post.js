@@ -35,6 +35,7 @@ class Post extends React.Component {
   }
 
   componentWillMount() {
+    console.log(this.props);
     this.getFullPostData();
   }
 
@@ -66,8 +67,8 @@ class Post extends React.Component {
           <ScrollView showsVerticalScrollIndicator={false}>
             <FullPost
               title={this.props.navigation.state.params.post.title}
-              userImage={this.props.state.user.profile_picture}
-              userName={this.props.state.user.username}
+              userImage={this.state.user.profile_picture}
+              userName={this.state.user.username}
               content={this.props.navigation.state.params.post.description}
               date={this.props.navigation.state.params.post.date}
               tagString={this.props.navigation.state.params.post.tagString}
