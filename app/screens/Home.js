@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
-import { connect } from 'react-redux';
 import { AsyncStorage } from 'react-native';
-
-import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { HomeSearchBar } from '../components/SearchBar';
+import store from '../store/store';
 
 class Home extends React.Component {
   constructor(props) {
@@ -28,13 +26,8 @@ class Home extends React.Component {
 
   setWelcomeMessage = async () => {
     try {
-      AsyncStorage.getItem('@MySuperStore:USER_NAME_KEY').then((name) => {
-        if (name !== null) {
-          this.setState({ welcomeMessage: 'Welcome ' + name + '!' });
-        } else {
-          // this.setState({welcomeMessage: 'Error getting your name !'});
-        }
-      });
+      const name = store.getState().user.username;
+      this.setState({ welcomeMessage: 'Welcome ' + name + '!' });
     } catch (error) {
       console.log('Something went wrong when getting user name.');
     }

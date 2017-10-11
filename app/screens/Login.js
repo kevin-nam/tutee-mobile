@@ -5,6 +5,9 @@ import { Container } from '../components/Container';
 import { FacebookLoginButton } from '../components/FacebookLoginButton';
 import { NavigationActions } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
+import store from '../store/store';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actions';
 
 const TOKEN_KEY = 'TOKEN_KEY';
 const USER_NAME_KEY = 'USER_NAME_KEY';
@@ -22,8 +25,6 @@ class Login extends React.Component {
   }
 
   logIn = async (props) => {
-
-    console.log(props);
 
     const resetAction = NavigationActions.reset({
       index: 0,
@@ -49,7 +50,13 @@ class Login extends React.Component {
           }
         })
         .then(function(data) {
-          console.log('Got facebook data', data);
+
+          // Get redux actions and set user
+          const actions = bindActionCreators(actionCreators, store.dispatch);
+          actions.setUsername(data.name);
+          actions.setUid(data.id);
+
+          // TODO: Remove this and use redux instead
           AsyncStorage.setItem('@MySuperStore:' + TOKEN_KEY, token);
           AsyncStorage.setItem('@MySuperStore:' + USER_NAME_KEY, data.name);
           AsyncStorage.setItem('@MySuperStore:' + USER_ID_KEY, data.id);
