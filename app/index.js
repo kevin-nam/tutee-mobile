@@ -2,6 +2,11 @@ import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createRootNavigator } from './config/routes';
 import { AsyncStorage } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './store/store';
+
+import { bindActionCreators } from 'redux';
+import * as actionCreators from './actions/actions';
 
 EStyleSheet.build({
   $disabled: '#777777',
@@ -25,6 +30,16 @@ export default class App extends React.Component {
       this.setState({ checkedSignIn: true });
       if (value !== null) {
         console.log('got token', value);
+        const username = await AsyncStorage.getItem(
+          '@MySuperStore:USER_NAME_KEY'
+        );
+        const uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
+
+        // Get redux actions and set user
+        const actions = bindActionCreators(actionCreators, store.dispatch);
+        actions.setUsername(await username);
+        actions.setUid(await uid);
+
         this.setState({ signedIn: true });
       }
     } catch (error) {
@@ -50,6 +65,10 @@ export default class App extends React.Component {
     }
 
     const Layout = createRootNavigator(signedIn);
-    return <Layout />;
+    return (
+      <Provider store={store}>
+        <Layout />
+      </Provider>
+    );
   }
 }
