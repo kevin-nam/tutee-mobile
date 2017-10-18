@@ -13,6 +13,7 @@ class Home extends React.Component {
     this.state = {
       welcomeMessage: 'Welcome!',
       tempuid: '',
+      searchedTags: '',
     };
   }
 
@@ -35,8 +36,21 @@ class Home extends React.Component {
     }
   };
 
-  handlePressSearch = () => {
-    console.log('Submitted search');
+  handlePressSearch = (value) => {
+    if (this.state.searchedTags.length != 0) {
+      console.log('Submitted search');
+
+      this.props.navigation.navigate('SearchLandingPage', {
+        tagList: this.state.searchedTags,
+      });
+    } else {
+      alert('Please enter search tags!');
+    }
+  };
+
+  handleTextChange = (text) => {
+    // console.log(text);
+    this.setState({ searchedTags: text });
   };
 
   tempFunc = async () => {
@@ -57,8 +71,8 @@ class Home extends React.Component {
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <HomeSearchBar
-          onSubmit={() => this.props.navigation.navigate('SearchLandingPage')}
-          // onSubmitEditing={this.handlePressSearch} // this.props.naviation.navigate('smallPost')
+          onSubmit={this.handlePressSearch}
+          onText={this.handleTextChange}
         />
         <KeyboardAvoidingView behavior="padding">
           <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
