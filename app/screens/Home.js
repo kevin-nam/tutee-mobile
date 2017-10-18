@@ -78,17 +78,6 @@ class Home extends React.Component {
           <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
             {welcomeMessage(this.state.welcomeMessage)}
           </Text>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 50,
-              fontWeight: '600',
-              textDecorationLine: 'underline',
-            }}
-            onPress={() => this.props.navigation.navigate('SearchLandingPage')}
-          >
-            SmallPost
-          </Text>
           <Button
             color="blue"
             title="Create Post"
@@ -97,6 +86,7 @@ class Home extends React.Component {
                 uid: this.state.tempuid,
                 edit: false,
               })}
+            style={{ fontSize: 14, fontWeight: '500' }}
           />
         </KeyboardAvoidingView>
       </Container>

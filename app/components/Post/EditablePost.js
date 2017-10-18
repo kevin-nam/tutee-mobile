@@ -17,6 +17,7 @@ class EditablePost extends React.Component {
       titleText: '',
       descriptionText: '',
       tagText: '',
+      navigation: this.props.navigation,
     };
   }
 
@@ -30,9 +31,9 @@ class EditablePost extends React.Component {
         body: JSON.stringify({
           pid: this.props.pid,
           uid: this.props.uid,
-          title: this.props.title,
-          description: this.props.content,
-          tagString: this.props.tagString,
+          title: this.state.titleText,
+          description: this.state.descriptionText,
+          tagString: this.state.tagText,
           type: 'tutor',
         }),
         headers: headers,
@@ -46,8 +47,8 @@ class EditablePost extends React.Component {
           }
         })
         .then((data) => {
-          // TODO
-          console.log(data);
+          this.props.navigation.navigate('Post', { post: data });
+          // console.log(data);
         });
     } else {
       fetch('http://138.197.159.56:3232/post/create/', {
@@ -71,14 +72,15 @@ class EditablePost extends React.Component {
           }
         })
         .then((data) => {
-          // TODO
-          console.log(data);
+          this.props.navigation.navigate('Post', { post: data.post });
+          // console.log(data);
         });
     }
     // this.props.navigation.navigate('Post', {});
   };
 
   render() {
+    const navigation = this.state.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -91,6 +93,7 @@ class EditablePost extends React.Component {
             onChangeText={(text) => {
               this.setState({ titleText: text });
             }}
+            value={this.props.title}
           />
         </View>
         <View style={styles.body}>
@@ -105,6 +108,7 @@ class EditablePost extends React.Component {
             onChangeText={(text) => {
               this.setState({ descriptionText: text });
             }}
+            value={this.props.content}
           />
         </View>
         <View style={styles.tagSection}>
@@ -117,6 +121,7 @@ class EditablePost extends React.Component {
             onChangeText={(text) => {
               this.setState({ tagText: text });
             }}
+            value={this.props.tagString}
           />
         </View>
         <View style={styles.footer}>
@@ -124,7 +129,7 @@ class EditablePost extends React.Component {
             color="red"
             title="Cancel"
             onPress={() => {
-              this.props.navigation.goBack(null);
+              navigation.goBack(null);
             }}
           />
           <Button color="green" title="Save" onPress={() => this.savePost()} />

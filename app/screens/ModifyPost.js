@@ -26,6 +26,7 @@ class ModifyPost extends React.Component {
         date: '',
       },
       edit: false,
+      navigation: this.props.navigation,
     };
   }
 
@@ -43,6 +44,7 @@ class ModifyPost extends React.Component {
   }
 
   render() {
+    const navigation = this.state.navigation;
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
@@ -55,6 +57,7 @@ class ModifyPost extends React.Component {
               edit={this.state.edit}
               uid={this.state.post.uid}
               pid={this.state.post.pid}
+              navigation={navigation}
             />
           </ScrollView>
         </KeyboardAvoidingView>

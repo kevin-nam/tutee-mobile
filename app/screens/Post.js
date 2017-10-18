@@ -33,12 +33,7 @@ class Post extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.navigation.state.params.edit) {
-      this.getEditablePostData();
-    } else {
-      this.getFullPostData();
-      console.log('image', this.state.user.profile_picture);
-    }
+    this.getFullPostData();
   }
 
   getFullPostData = async () => {
