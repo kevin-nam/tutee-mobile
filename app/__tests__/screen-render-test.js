@@ -19,11 +19,6 @@ it('renders Connections without crashing', () => {
   expect(rendered).toBeTruthy();
 });
 
-it('renders Profile without crashing', () => {
-  const rendered = renderer.create(<Profile />).toJSON();
-  expect(rendered).toBeTruthy();
-});
-
 it('renders Session without crashing', () => {
   const rendered = renderer.create(<Session />).toJSON();
   expect(rendered).toBeTruthy();
