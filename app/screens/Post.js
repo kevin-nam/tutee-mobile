@@ -19,8 +19,6 @@ class Post extends React.Component {
       user: {
         username: '',
         profile_picture: '',
-        rating: 0,
-        bio: '',
       },
       post: {
         pid: '',
@@ -35,8 +33,12 @@ class Post extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
-    this.getFullPostData();
+    if (this.props.navigation.state.params.edit) {
+      this.getEditablePostData();
+    } else {
+      this.getFullPostData();
+      console.log('image', this.state.user.profile_picture);
+    }
   }
 
   getFullPostData = async () => {
@@ -66,12 +68,12 @@ class Post extends React.Component {
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
             <FullPost
-              title={this.props.navigation.state.params.post.title}
+              title={this.state.post.title}
               userImage={this.state.user.profile_picture}
               userName={this.state.user.username}
-              content={this.props.navigation.state.params.post.description}
-              date={this.props.navigation.state.params.post.date}
-              tagString={this.props.navigation.state.params.post.tagString}
+              content={this.state.post.description}
+              date={this.state.post.date}
+              tagString={this.state.post.tagString}
             />
           </ScrollView>
         </KeyboardAvoidingView>

@@ -1,37 +1,63 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, ScrollView } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 // import { connect } from 'react-redux';
 
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
-// import { FullPost } from '../components/Post';
+import { EditablePost } from '../components/Post';
 
 class ModifyPost extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      post: {
+        pid: '',
+        uid: '',
+        title: '',
+        description: '',
+        tagString: '',
+        type: '',
+        date: '',
+      },
+      edit: false,
+    };
+  }
+
+  componentWillMount() {
+    if (this.props.navigation.state.params.edit) {
+      this.setState({ edit: this.props.navigation.state.params.edit });
+      this.setState({ post: this.props.navigation.state.params.post });
+    } else {
+      this.setState({
+        post: {
+          uid: this.props.navigation.state.params.uid,
+        },
+      });
+    }
+  }
+
   render() {
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <FullPost
-            title="I am looking for someone to tutor/touch me"
-            userImage={null}
-            userName="I have a really long name and penzor"
-            content={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum praeponunt, ut sit aliqua rerum selectio, naturam videntur sequi; Praeteritis, inquit, gaudeo. Ait enim se, si uratur, Quam hoc suave! dicturum. Quis istud possit, inquit, negare? Vitiosum est enim in dividendo partem in genere numerare.
-
-Si verbum sequimur, primum longius verbum praepositum quam bonum. Duo Reges: constructio interrete. Aliter enim nosmet ipsos nosse non possumus. Ego vero isti, inquam, permitto. Quae si potest singula consolando levare, universa quo modo sustinebit? Non est igitur summum malum dolor.
-
-Nam de summo mox, ut dixi, videbimus et ad id explicandum disputationem omnem conferemus. Nos commodius agimus. Tollitur beneficium, tollitur gratia, quae sunt vincla concordiae. Sed quanta sit alias, nunc tantum possitne esse tanta. Qua tu etiam inprudens utebare non numquam. Nam memini etiam quae nolo, oblivisci non possum quae volo.
-
-Non enim quaero quid verum, sed quid cuique dicendum sit. Quis, quaeso, illum negat et bonum virum et comem et humanum fuisse? Quid censes in Latino fore? Ego quoque, inquit, didicerim libentius si quid attuleris, quam te reprehenderim. Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Non igitur bene. Polycratem Samium felicem appellabant. Mihi enim erit isdem istis fortasse iam utendum.`}
-            date="a date"
-            tagString="#tutee #demo #mtl #5stars #best #cool #math #mcgill #MATH263"
-          />
-        </ScrollView>
+        <KeyboardAvoidingView behavior="padding">
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <EditablePost
+              title={this.state.post.title}
+              content={this.state.post.description}
+              tagString={this.state.post.tagString}
+              edit={this.state.edit}
+              uid={this.state.post.uid}
+              pid={this.state.post.pid}
+            />
+          </ScrollView>
+        </KeyboardAvoidingView>
       </Container>
     );
   }

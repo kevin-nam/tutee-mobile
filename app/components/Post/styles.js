@@ -58,12 +58,15 @@ const styles = EStyleSheet.create({
   body: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    justifyContent: 'flex-start',
+    flex: 1,
     alignItems: 'flex-start',
+    width: 0.9 * SCREEN_WIDTH,
   },
   content: {
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    textAlign: 'right',
+  },
+  titleInput: {
+    flex: 1,
   },
   footer: {
     width: 0.9 * SCREEN_WIDTH,

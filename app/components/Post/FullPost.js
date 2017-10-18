@@ -6,10 +6,7 @@ import moment from 'moment';
 import styles from './styles';
 
 const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
-  if (!userImage) {
-    userImage = require('./images/Placeholder.png');
-  }
-
+  const image = require('./images/Placeholder.png');
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -18,7 +15,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
           <Image
             resizeMode="cover"
             style={styles.icon}
-            source={userImage}
+            source={image}
             borderRadius={50}
           />
           <Text style={styles.user}>{userName}</Text>
@@ -48,7 +45,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
 
 FullPost.propTypes = {
   title: PropTypes.string,
-  userImage: PropTypes.element,
+  userImage: PropTypes.string,
   userName: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,

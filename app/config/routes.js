@@ -10,6 +10,7 @@ import Messaging from '../screens/Messaging';
 import Session from '../screens/Session';
 import Profile from '../screens/Profile';
 import Post from '../screens/Post';
+import ModifyPost from '../screens/ModifyPost';
 import SearchLandingPage from '../screens/SearchLandingPage';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
@@ -72,6 +73,12 @@ const HomeStack = StackNavigator(
       screen: Post,
       navigationOptions: {
         headerTitle: 'Post',
+      },
+    },
+    ModifyPost: {
+      screen: ModifyPost,
+      navigationOptions: {
+        headerTitle: 'ModifyPost',
       },
     },
   },

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, Text, Button } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { Container } from '../components/Container';
 import { HomeSearchBar } from '../components/SearchBar';
@@ -75,6 +75,15 @@ class Home extends React.Component {
           >
             SmallPost
           </Text>
+          <Button
+            color="blue"
+            title="Create Post"
+            onPress={() =>
+              this.props.navigation.navigate('ModifyPost', {
+                uid: this.state.tempuid,
+                edit: false,
+              })}
+          />
         </KeyboardAvoidingView>
       </Container>
     );
