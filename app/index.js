@@ -53,7 +53,7 @@ export default class App extends React.Component {
     const { checkedSignIn, signedIn } = this.state;
 
     if (!checkedSignIn) {
-      return null;
+      return "empty";
     }
 
     const Layout = createRootNavigator(signedIn);

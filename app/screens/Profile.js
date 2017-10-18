@@ -63,7 +63,7 @@ class Profile extends React.Component {
         </Container>
       );
     } else {
-      return null;
+      return "empty";
     }
   }
 }
