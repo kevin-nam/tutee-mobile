@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
+} from 'react-native';
 import { List } from 'react-native-elements';
 // import { connect } from 'react-redux';
 
@@ -17,7 +22,8 @@ class SearchLandingPage extends React.Component {
     super(props);
 
     this.state = {
-      searchedList: [],
+      tagString: '',
+      postList: [],
       navigation: this.props.navigation,
     };
   }
@@ -27,14 +33,21 @@ class SearchLandingPage extends React.Component {
   }
 
   getPostListData = async () => {
+    console.log(
+      'Getting this on the search landing page: ' +
+        this.props.navigation.state.params.tagList
+    );
+    // this.setState({ tagString: this.props.navigation.state.params.tagList });
+    // console.log('the tagstring: ' + this.state.tagString);
+
     const headers = new Headers({
       'Content-Type': 'application/json',
     });
 
-    await fetch('http://138.197.159.56:3232/post/get/list', {
+    await fetch('http://138.197.159.56:3232/search/tags', {
       method: 'POST',
       body: JSON.stringify({
-        pidList: ['-KfI8LzfiSnFjRWCgJt7', '-KfI8NEFcuvq1AnPfCUU'],
+        tagString: this.props.navigation.state.params.tagList,
       }),
       // JSON.stringify(this.props.navigation.state.postList),
       headers: headers,
@@ -44,30 +57,33 @@ class SearchLandingPage extends React.Component {
           console.log('success');
           return response.json();
         } else {
-          console.log('Error when creating user');
+          console.log('Error searching for posts.');
         }
       })
       .then((data) => {
         // console.log(data);
-        this.setState({ searchedList: data });
+        this.setState({ postList: data });
         console.log(data);
       });
   };
 
   render() {
     const navigation = this.state.navigation;
-    let postList = this.state.searchedList.map(function(post, index) {
-      return (
-        <SmallPost
-          key={index}
-          title={post.title}
-          userImage={null}
-          content={post.description}
-          date={post.date}
-          onPress={() => navigation.navigate('Post', { post: post })}
-        />
-      );
-    });
+    let posts = <Text>No posts found</Text>;
+    if (this.state.postList && this.state.postList.length > 0) {
+      posts = this.state.postList.map(function(post, index) {
+        return (
+          <SmallPost
+            key={index}
+            title={post.title}
+            userImage={null}
+            content={post.description}
+            date={post.date}
+            onPress={() => navigation.navigate('Post', { post: post })}
+          />
+        );
+      });
+    }
 
     return (
       <Container backgroundColor="#9E768F">
@@ -83,7 +99,7 @@ class SearchLandingPage extends React.Component {
                 marginVertical: 5,
               }}
             >
-              {postList}
+              {posts}
             </List>
           </ScrollView>
         </KeyboardAvoidingView>

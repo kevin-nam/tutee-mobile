@@ -44,14 +44,19 @@ class Home extends React.Component {
   };
 
   handlePressSearch = (value) => {
-    console.log('Submitted search');
-    this.props.navigation.navigate('SearchLandingPage', {
-      tagList: this.state.searchedTags,
-    });
+    if (this.state.searchedTags.length != 0) {
+      console.log('Submitted search');
+
+      this.props.navigation.navigate('SearchLandingPage', {
+        tagList: this.state.searchedTags,
+      });
+    } else {
+      alert('Please enter search tags!');
+    }
   };
 
   handleTextChange = (text) => {
-    console.log(text);
+    // console.log(text);
     this.setState({ searchedTags: text });
   };
 
