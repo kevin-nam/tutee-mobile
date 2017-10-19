@@ -5,9 +5,9 @@ import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
-import { FullPost } from '../components/Post';
+import { EditablePost } from '../components/Post';
 
-class Post extends React.Component {
+class ModifyPost extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
   };
@@ -16,10 +16,6 @@ class Post extends React.Component {
     super(props);
 
     this.state = {
-      user: {
-        username: '',
-        profile_picture: '',
-      },
       post: {
         pid: '',
         uid: '',
@@ -29,46 +25,39 @@ class Post extends React.Component {
         type: '',
         date: '',
       },
+      edit: false,
+      navigation: this.props.navigation,
     };
   }
 
   componentWillMount() {
-    this.getFullPostData();
+    if (this.props.navigation.state.params.edit) {
+      this.setState({ edit: this.props.navigation.state.params.edit });
+      this.setState({ post: this.props.navigation.state.params.post });
+    } else {
+      this.setState({
+        post: {
+          uid: this.props.navigation.state.params.uid,
+        },
+      });
+    }
   }
 
-  getFullPostData = async () => {
-    const uid = await this.props.navigation.state.params.post.uid;
-    fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
-      method: 'GET',
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log('Successfully got profile for ' + uid);
-          return response.json();
-        } else {
-          console.log('Error when getting profile data for ' + uid);
-        }
-      })
-      .then((data) => {
-        this.setState({ user: data });
-        this.setState({ post: this.props.navigation.state.params.post });
-        console.log('Got user profile data', data);
-      });
-  };
-
   render() {
+    const navigation = this.state.navigation;
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
-            <FullPost
+            <EditablePost
               title={this.state.post.title}
-              userImage={this.state.user.profile_picture}
-              userName={this.state.user.username}
               content={this.state.post.description}
-              date={this.state.post.date}
               tagString={this.state.post.tagString}
+              edit={this.state.edit}
+              uid={this.state.post.uid}
+              pid={this.state.post.pid}
+              navigation={navigation}
             />
           </ScrollView>
         </KeyboardAvoidingView>
@@ -83,4 +72,4 @@ class Post extends React.Component {
 
 // export default connect(mapStateToProps)(connectAlert(Home));
 
-export default Post;
+export default ModifyPost;

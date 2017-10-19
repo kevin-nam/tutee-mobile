@@ -21,9 +21,23 @@ const styles = EStyleSheet.create({
     paddingBottom: 10,
     paddingTop: 5,
   },
+  smallHeader: {
+    flexDirection: 'row',
+    width: 0.9 * SCREEN_WIDTH,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    alignItems: 'flex-start',
+    backgroundColor: '#A8DBA8',
+  },
   title: {
     fontWeight: '800',
-    fontSize: 35,
+    fontSize: 25,
+  },
+  smallTitle: {
+    paddingHorizontal: 10,
+    fontWeight: '600',
+    fontSize: 20,
+    flex: 1,
   },
   author: {
     flexDirection: 'row',
@@ -31,27 +45,29 @@ const styles = EStyleSheet.create({
     paddingLeft: 10,
     paddingTop: 5,
   },
-  smallAuthor: {
-    flexDirection: 'row',
-    paddingRight: 40,
-    paddingTop: 5,
-    justifyContent: 'space-between',
-  },
   icon: {
     width: 50,
     height: 50,
   },
   user: {
     paddingHorizontal: 10,
-    fontWeight: '600',
+    fontWeight: '400',
     fontSize: 20,
+    flex: 1,
   },
   body: {
-    padding: 20,
-    justifyContent: 'flex-start',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    flex: 1,
     alignItems: 'flex-start',
+    width: 0.9 * SCREEN_WIDTH,
   },
-  content: {},
+  content: {
+    textAlign: 'right',
+  },
+  titleInput: {
+    flex: 1,
+  },
   footer: {
     width: 0.9 * SCREEN_WIDTH,
     paddingHorizontal: 10,
@@ -62,13 +78,16 @@ const styles = EStyleSheet.create({
   },
   date: {
     fontWeight: '300',
+    color: '$disabled',
   },
   tagSection: {
     width: 0.9 * SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
-  tags: {},
+  tags: {
+    color: '$disabled',
+  },
 });
 
 export default styles;

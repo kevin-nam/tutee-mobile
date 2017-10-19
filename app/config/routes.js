@@ -10,7 +10,8 @@ import Messaging from '../screens/Messaging';
 import Session from '../screens/Session';
 import Profile from '../screens/Profile';
 import Post from '../screens/Post';
-import smallPost from '../screens/smallPost';
+import ModifyPost from '../screens/ModifyPost';
+import SearchLandingPage from '../screens/SearchLandingPage';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
@@ -23,6 +24,7 @@ const ConnectionStack = StackNavigator(
       screen: Connections,
       navigationOptions: {
         headerTitle: 'Connections',
+        title: 'Connections',
         header: () => null,
       },
     },
@@ -61,16 +63,22 @@ const HomeStack = StackNavigator(
     //     headerTitle: 'Messaging',
     //   },
     // },
+    SearchLandingPage: {
+      screen: SearchLandingPage,
+      navigationOptions: {
+        headerTitle: 'SearchLandingPage',
+      },
+    },
     Post: {
       screen: Post,
       navigationOptions: {
         headerTitle: 'Post',
       },
     },
-    smallPost: {
-      screen: smallPost,
+    ModifyPost: {
+      screen: ModifyPost,
       navigationOptions: {
-        headerTitle: 'smallPost',
+        headerTitle: 'ModifyPost',
       },
     },
   },

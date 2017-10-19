@@ -8,23 +8,31 @@ import store from './store/store';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actions';
 
+EStyleSheet.build({
+  $disabled: '#777777',
+
+  // outline: 1,
+});
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       signedIn: false,
-      checkedSignIn: false
+      checkedSignIn: false,
     };
   }
 
   checkIfLoggedIn = async () => {
     try {
       const value = await AsyncStorage.getItem('@MySuperStore:TOKEN_KEY');
-      this.setState({checkedSignIn: true});
+      this.setState({ checkedSignIn: true });
       if (value !== null) {
         console.log('got token', value);
-        const username = await AsyncStorage.getItem('@MySuperStore:USER_NAME_KEY');
+        const username = await AsyncStorage.getItem(
+          '@MySuperStore:USER_NAME_KEY'
+        );
         const uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
 
         // Get redux actions and set user
@@ -32,7 +40,7 @@ export default class App extends React.Component {
         actions.setUsername(await username);
         actions.setUid(await uid);
 
-        this.setState({signedIn: true});
+        this.setState({ signedIn: true });
       }
     } catch (error) {
       console.log('Not logged in.');
@@ -41,7 +49,7 @@ export default class App extends React.Component {
 
   // Runs before render
   componentWillMount() {
-    //AsyncStorage.clear();
+    // AsyncStorage.clear();
     this.checkIfLoggedIn();
   }
 
@@ -61,6 +69,6 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Layout />
       </Provider>
-    )
+    );
   }
 }

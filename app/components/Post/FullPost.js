@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, Button, Image, ScrollView } from 'react-native';
+import moment from 'moment';
 
 import styles from './styles';
 
 const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
-  if (!userImage) {
-    userImage = require('./images/Placeholder.png');
-  }
-
+  const image = require('./images/Placeholder.png');
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -17,7 +15,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
           <Image
             resizeMode="cover"
             style={styles.icon}
-            source={userImage}
+            source={image}
             borderRadius={50}
           />
           <Text style={styles.user}>{userName}</Text>
@@ -27,7 +25,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
         <Text>{content}</Text>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.date}>{moment(date).format('MMMM D, YYYY')}</Text>
         <Button
           color="green"
           title="Request"
@@ -38,7 +36,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
       </View>
       <View style={styles.tagSection}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Text>{tagString}</Text>
+          <Text style={styles.tags}>{tagString}</Text>
         </ScrollView>
       </View>
     </View>
@@ -47,7 +45,7 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
 
 FullPost.propTypes = {
   title: PropTypes.string,
-  userImage: PropTypes.element,
+  userImage: PropTypes.string,
   userName: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,

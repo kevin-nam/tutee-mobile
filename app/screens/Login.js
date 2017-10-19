@@ -15,7 +15,6 @@ const USER_ID_KEY = 'USER_ID_KEY';
 const USER_PHOTO_KEY = 'USER_PHOTO_KEY';
 
 class Login extends React.Component {
-
   static propTypes = {
     navigation: PropTypes.object,
   };
@@ -25,7 +24,6 @@ class Login extends React.Component {
   }
 
   logIn = async (props) => {
-
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'Home' })],
@@ -46,11 +44,10 @@ class Login extends React.Component {
           if (response.ok) {
             return response.json();
           } else {
-            console.log('Error when fetching facebook data' );
+            console.log('Error when fetching facebook data');
           }
         })
         .then(function(data) {
-
           // Get redux actions and set user
           const actions = bindActionCreators(actionCreators, store.dispatch);
           actions.setUsername(data.name);
@@ -70,17 +67,17 @@ class Login extends React.Component {
             username: data.name,
             profile_picture: data.picture.data.url,
             email: data.email,
-            bio: ''
+            bio: '',
           };
 
           const headers = new Headers({
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           });
 
           fetch('http://138.197.159.56:3232/user/createUser', {
             method: 'POST',
             body: JSON.stringify(user),
-            headers: headers
+            headers: headers,
           }).then(function(response) {
             if (response.ok) {
               console.log('Successfully registered');
