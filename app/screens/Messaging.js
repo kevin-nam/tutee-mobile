@@ -78,6 +78,7 @@ class Messaging extends React.Component {
     });
   };
 
+  // TODO: send actual user name rather than uid
   render() {
     const messages = this.state.messages;
     const username = this.state.toUid;

@@ -13,6 +13,7 @@ class RequestCard extends React.Component {
     };
   }
 
+  // TODO: refresh connections page when accepting (currently new connections not shown after approval)
   onPressAccept = () => {
     console.log('accept');
 
