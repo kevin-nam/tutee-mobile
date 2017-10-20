@@ -16,6 +16,7 @@ class Post extends React.Component {
     super(props);
 
     this.state = {
+      loading: true,
       user: {
         username: '',
         profile_picture: '',
@@ -32,10 +33,6 @@ class Post extends React.Component {
     };
   }
 
-  componentWillMount() {
-    this.getFullPostData();
-  }
-
   getFullPostData = async () => {
     const uid = await this.props.navigation.state.params.post.uid;
     fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
@@ -50,30 +47,46 @@ class Post extends React.Component {
         }
       })
       .then((data) => {
-        this.setState({ user: data });
-        this.setState({ post: this.props.navigation.state.params.post });
+        this.setState({
+          user: data,
+          post: this.props.navigation.state.params.post,
+          loading: false
+        });
         console.log('Got user profile data', data);
+        console.log('got state post', this.state);
       });
   };
 
+  componentDidMount() {
+    this.getFullPostData();
+  }
+
   render() {
-    return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content" />
-        <KeyboardAvoidingView behavior="padding">
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <FullPost
-              title={this.state.post.title}
-              userImage={this.state.user.profile_picture}
-              userName={this.state.user.username}
-              content={this.state.post.description}
-              date={this.state.post.date}
-              tagString={this.state.post.tagString}
-            />
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </Container>
-    );
+    const post = this.state.post;
+    const user = this.state.user;
+
+    if (!this.state.loading) {
+      return (
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content"/>
+          <KeyboardAvoidingView behavior="padding">
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <FullPost
+                uid={post.uid}
+                title={post.title}
+                userImage={user.profile_picture}
+                userName={user.username}
+                content={post.description}
+                date={post.date}
+                tagString={post.tagString}
+              />
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </Container>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

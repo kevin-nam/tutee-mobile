@@ -88,6 +88,20 @@ const styles = EStyleSheet.create({
   tags: {
     color: '$disabled',
   },
+  requestButton: {
+    height: 60,
+    marginRight: 8,
+  },
+  requestMessageText: {
+    color: 'blue',
+    fontSize: 18,
+  },
+  hideButton: {
+    opacity: 0,
+    height: 0,
+    width: 0,
+    display: 'none',
+  },
 });
 
 export default styles;

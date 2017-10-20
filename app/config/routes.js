@@ -12,6 +12,7 @@ import Profile from '../screens/Profile';
 import Post from '../screens/Post';
 import ModifyPost from '../screens/ModifyPost';
 import SearchLandingPage from '../screens/SearchLandingPage';
+import PendingRequests from '../screens/PendingRequests';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
@@ -32,6 +33,12 @@ const ConnectionStack = StackNavigator(
       screen: Messaging,
       navigationOptions: {
         headerTitle: 'Messaging',
+      },
+    },
+    PendingRequests: {
+      screen: PendingRequests,
+      navigationOptions: {
+        headerTitle: 'Pending Requests',
       },
     },
     Session: {
