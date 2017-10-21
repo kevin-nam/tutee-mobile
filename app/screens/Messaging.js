@@ -14,32 +14,38 @@ class Messaging extends React.Component {
     super(props);
 
     this.state = {
+      loading: true,
       messages: [],
-      dbh: firebaseDbh
+      dbh: firebaseDbh,
+      fromUid: this.props.navigation.state.params.fromUid,
+      toUid: this.props.navigation.state.params.toUid,
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    console.log('fromUid: ' + this.state.fromUid + ", toUid: " + this.state.toUid);
+
     // connect to a Firebase table
-    // TODO: change use uid of users
-    var dbref = this.state.dbh.ref('/messages/fromMe-tutee/messages');
+    const uidRef = this.state.fromUid + '-' + this.state.toUid;
+    const dbref = this.state.dbh.ref('/messages/' + uidRef + '/messages');
 
     // save database reference for later
     this.setState({dbulref: dbref});
 
     // listen for new messages
-    // TODO: verify sent by me
     dbref.on('child_added', (e) => {
+      console.log('hellohellohello');
+      this.setState({loading: false});
       if (e) {
         const msg = (
           <MessageBubble key={this.state.messages.length + 1} messageData={e.val().content}
-                         isReceived={e.val().sentBy != "fromMe"}/>
+                         isReceived={e.val().sentBy != this.state.fromUid}/>
         );
         this.state.messages.push(msg);
-        this.setState(this.state);
       }
     });
 
+    this.setState({loading: false});
   }
 
   static propTypes = {
@@ -49,9 +55,9 @@ class Messaging extends React.Component {
   sendNewMessage = (text) => {
     // TODO: use uid of users
     const message = {
-      uidFrom: "fromMe",
-      uidTutor: "fromMe",
-      uidTutee: "tutee",
+      uidFrom: this.state.fromUid,
+      uidTutor: this.state.toUid,
+      uidTutee: this.state.toUid,
       content: text
     };
 
@@ -72,23 +78,29 @@ class Messaging extends React.Component {
     });
   };
 
+  // TODO: send actual user name rather than uid
   render() {
     const messages = this.state.messages;
+    const username = this.state.toUid;
 
-    return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content"/>
-        <KeyboardAvoidingView
-          behavior='padding'
-          style={{'flex': 1, 'alignSelf': 'stretch'}}
-          keyboardVerticalOffset={60}
-        >
-          <MessagingHeader/>
-          <MessagingBody messages={messages}/>
-          <MessagingBar displayNewMessage={this.sendNewMessage}/>
-        </KeyboardAvoidingView>
-      </Container>
-    );
+    if (!this.state.loading) {
+      return (
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content"/>
+          <KeyboardAvoidingView
+            behavior='padding'
+            style={{'flex': 1, 'alignSelf': 'stretch'}}
+            keyboardVerticalOffset={60}
+          >
+            <MessagingHeader username={username}/>
+            <MessagingBody messages={messages}/>
+            <MessagingBar displayNewMessage={this.sendNewMessage}/>
+          </KeyboardAvoidingView>
+        </Container>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

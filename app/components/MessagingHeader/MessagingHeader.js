@@ -3,7 +3,9 @@ import { Text, View, Image } from 'react-native';
 
 import styles from './styles';
 
-const MessagingHeader = () => {
+const MessagingHeader = ({ username }) => {
+
+  // TODO: replace profile image with actual image
   return (
     <View style={styles.flexHorizontal}>
       <View style={styles.profileImageView}>
@@ -11,7 +13,7 @@ const MessagingHeader = () => {
       </View>
       <View style={styles.profileInfo}>
         <Text style={styles.profileText}>
-          Vittorio Guerrera
+          {username}
         </Text>
       </View>
     </View>
