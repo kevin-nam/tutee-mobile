@@ -6,6 +6,7 @@ import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { FullPost } from '../components/Post';
+import store from '../store/store';
 
 class Post extends React.Component {
   static propTypes = {
@@ -29,6 +30,7 @@ class Post extends React.Component {
         type: '',
         date: '',
       },
+      edit: false,
     };
   }
 
@@ -43,32 +45,34 @@ class Post extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Successfully got profile for ' + uid);
+          console.log('Successfully got data for ' + uid);
           return response.json();
         } else {
-          console.log('Error when getting profile data for ' + uid);
+          console.log('Error when getting user data for ' + uid);
         }
       })
       .then((data) => {
         this.setState({ user: data });
         this.setState({ post: this.props.navigation.state.params.post });
-        console.log('Got user profile data', data);
+        console.log('Got user data', data);
       });
   };
 
   render() {
+    const currentUid = store.getState().user.uid;
+    if (this.state.post.uid === currentUid) {
+      this.state.edit = true;
+    }
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
             <FullPost
-              title={this.state.post.title}
-              userImage={this.state.user.profile_picture}
-              userName={this.state.user.username}
-              content={this.state.post.description}
-              date={this.state.post.date}
-              tagString={this.state.post.tagString}
+              post={this.state.post}
+              user={this.state.user}
+              navigation={this.props.navigation}
+              edit={this.state.edit}
             />
           </ScrollView>
         </KeyboardAvoidingView>

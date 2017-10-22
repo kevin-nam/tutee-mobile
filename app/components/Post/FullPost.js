@@ -5,38 +5,51 @@ import moment from 'moment';
 
 import styles from './styles';
 
-const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
-  const image = require('./images/Placeholder.png');
+const FullPost = ({ post, user, navigation, edit }) => {
+  user.profile_picture = require('./images/Placeholder.png');
+  let editButton = edit ? (
+    <Button
+      color="yellow"
+      title="Edit"
+      onPress={() => {
+        navigation.navigate('ModifyPost', { edit: true, post: post });
+      }}
+    />
+  ) : (
+    <Button
+      color="green"
+      title="Request"
+      onPress={() => {
+        alert('click!');
+      }}
+    />
+  );
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{post.title}</Text>
         <View style={styles.author}>
           <Image
             resizeMode="cover"
             style={styles.icon}
-            source={image}
+            source={user.profile_picture}
             borderRadius={50}
           />
-          <Text style={styles.user}>{userName}</Text>
+          <Text style={styles.user}>{user.username}</Text>
         </View>
       </View>
       <View style={styles.body}>
-        <Text>{content}</Text>
+        <Text>{post.description}</Text>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.date}>{moment(date).format('MMMM D, YYYY')}</Text>
-        <Button
-          color="green"
-          title="Request"
-          onPress={() => {
-            alert('click!');
-          }}
-        />
+        <Text style={styles.date}>
+          {moment(post.date).format('MMMM D, YYYY')}
+        </Text>
+        {editButton}
       </View>
       <View style={styles.tagSection}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Text style={styles.tags}>{tagString}</Text>
+          <Text style={styles.tags}>{post.tagString}</Text>
         </ScrollView>
       </View>
     </View>
@@ -44,12 +57,10 @@ const FullPost = ({ title, userImage, userName, content, date, tagString }) => {
 };
 
 FullPost.propTypes = {
-  title: PropTypes.string,
-  userImage: PropTypes.string,
-  userName: PropTypes.string,
-  content: PropTypes.string,
-  date: PropTypes.string,
-  tagString: PropTypes.string,
+  post: PropTypes.object,
+  user: PropTypes.object,
+  navigation: PropTypes.object,
+  edit: PropTypes.bool,
 };
 
 export default FullPost;

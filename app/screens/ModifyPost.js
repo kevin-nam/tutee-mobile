@@ -6,6 +6,7 @@ import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { EditablePost } from '../components/Post';
+import { DeletePostWarning } from '../components/DeleteWarning';
 
 class ModifyPost extends React.Component {
   static propTypes = {
@@ -26,11 +27,11 @@ class ModifyPost extends React.Component {
         date: '',
       },
       edit: false,
-      navigation: this.props.navigation,
     };
   }
 
   componentWillMount() {
+    console.log(this.props.navigation.state.params.post);
     if (this.props.navigation.state.params.edit) {
       this.setState({ edit: this.props.navigation.state.params.edit });
       this.setState({ post: this.props.navigation.state.params.post });
@@ -44,21 +45,19 @@ class ModifyPost extends React.Component {
   }
 
   render() {
-    const navigation = this.state.navigation;
+    let deletePost = this.state.edit ? <DeletePostWarning /> : null;
+    console.log('post stuff', this.state.post);
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
             <EditablePost
-              title={this.state.post.title}
-              content={this.state.post.description}
-              tagString={this.state.post.tagString}
+              post={this.state.post}
               edit={this.state.edit}
-              uid={this.state.post.uid}
-              pid={this.state.post.pid}
-              navigation={navigation}
+              navigation={this.props.navigation}
             />
+            {deletePost}
           </ScrollView>
         </KeyboardAvoidingView>
       </Container>

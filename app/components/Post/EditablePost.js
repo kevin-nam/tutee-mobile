@@ -14,9 +14,9 @@ class EditablePost extends React.Component {
     super(props);
 
     this.state = {
-      titleText: '',
-      descriptionText: '',
-      tagText: '',
+      titleText: this.props.post.title,
+      descriptionText: this.props.post.description,
+      tagText: this.props.post.tagString,
       navigation: this.props.navigation,
     };
   }
@@ -29,8 +29,8 @@ class EditablePost extends React.Component {
       fetch('http://138.197.159.56:3232/post/update/', {
         method: 'POST',
         body: JSON.stringify({
-          pid: this.props.pid,
-          uid: this.props.uid,
+          pid: this.props.post.pid,
+          uid: this.props.post.uid,
           title: this.state.titleText,
           description: this.state.descriptionText,
           tagString: this.state.tagText,
@@ -47,6 +47,7 @@ class EditablePost extends React.Component {
           }
         })
         .then((data) => {
+          // console.log('update', data);
           this.props.navigation.navigate('Post', { post: data });
           // console.log(data);
         });
@@ -54,7 +55,7 @@ class EditablePost extends React.Component {
       fetch('http://138.197.159.56:3232/post/create/', {
         method: 'POST',
         body: JSON.stringify({
-          uid: this.props.uid,
+          uid: this.props.post.uid,
           title: this.state.titleText,
           description: this.state.descriptionText,
           tagString: this.state.tagText,
@@ -65,7 +66,7 @@ class EditablePost extends React.Component {
         .then((response) => {
           if (response.ok) {
             console.log('success');
-            console.log(response);
+            // console.log(response);
             return response.json();
           } else {
             console.log('Error when creating post');
@@ -81,6 +82,7 @@ class EditablePost extends React.Component {
 
   render() {
     const navigation = this.state.navigation;
+    console.log('test', this.props.post);
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -93,7 +95,8 @@ class EditablePost extends React.Component {
             onChangeText={(text) => {
               this.setState({ titleText: text });
             }}
-            value={this.props.title}
+            defaultValue={this.props.post.title}
+            editable={true}
           />
         </View>
         <View style={styles.body}>
@@ -103,12 +106,11 @@ class EditablePost extends React.Component {
             multiline={true}
             placeholder="Description"
             selectTextOnFocus={this.props.edit}
-            value={this.props.content}
+            defaultValue={this.props.post.description}
             style={styles.titleInput}
             onChangeText={(text) => {
               this.setState({ descriptionText: text });
             }}
-            value={this.props.content}
           />
         </View>
         <View style={styles.tagSection}>
@@ -121,7 +123,7 @@ class EditablePost extends React.Component {
             onChangeText={(text) => {
               this.setState({ tagText: text });
             }}
-            value={this.props.tagString}
+            defaultValue={this.props.post.tagString}
           />
         </View>
         <View style={styles.footer}>
