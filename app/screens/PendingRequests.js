@@ -34,7 +34,6 @@ class PendingRequests extends React.Component {
         }
       })
       .then((data) => {
-        console.log(data);
 
         const pendingConnections = [];
 

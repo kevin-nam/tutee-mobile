@@ -12,17 +12,14 @@ class ConnectionCard extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      hidden: false,
-    };
   }
 
   onPressHandler = () => {
     const myUid = store.getState().user.uid;
     this.props.navigation.navigate('Messaging', {
-      fromUid: 'myUid',
+      fromUid: myUid,
       toUid: this.props.uid,
+      isTutor: this.props.isTutor
     })
   };
 
@@ -30,7 +27,7 @@ class ConnectionCard extends React.Component {
   render() {
     return (
       <TouchableWithoutFeedback onPress={this.onPressHandler}>
-        <View style={this.state.hidden ? styles.hidden : styles.flexVertical}>
+        <View style={this.props.isTutor ? styles.flexVerticalTutor : styles.flexVertical}>
           <View style={styles.profileImageView}>
             <Image style={styles.profileImage} source={require('../MessagingHeader/default-user.jpg')}/>
           </View>

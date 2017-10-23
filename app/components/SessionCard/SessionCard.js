@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
-import store from '../../store/store';
 
-class RequestCard extends React.Component {
+class SessionCard extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,27 +12,25 @@ class RequestCard extends React.Component {
     };
   }
 
-  // TODO: refresh connections page when accepting (currently new connections not shown after approval)
   onPressAccept = () => {
     console.log('accept');
 
-    const connection = {
-      uid1: store.getState().user.uid,
-      uid2: this.props.uid
+    const sid = {
+      sid: this.props.sid,
     };
 
     const headers = new Headers({
       "Content-Type": "application/json",
     });
 
-    fetch('http://138.197.159.56:3232/connection/approve', {
+    fetch('http://138.197.159.56:3232/session/accept', {
       method: 'POST',
-      body: JSON.stringify(connection),
+      body: JSON.stringify(sid),
       headers: headers
     }).then((response) => {
       this.setState({hidden: true});
       if (response.ok) {
-        console.log('Successfully approved connection');
+        console.log('Successfully approved session');
       } else {
         console.log('Failed to approve connection', connection);
       }
@@ -43,24 +40,24 @@ class RequestCard extends React.Component {
 
   onPressReject = () => {
     console.log('reject');
+
     this.setState({hidden: true});
 
-    const connection = {
-      uid1: store.getState().user.uid,
-      uid2: this.props.uid
+    const sid = {
+      sid: this.props.sid,
     };
 
     const headers = new Headers({
       "Content-Type": "application/json",
     });
 
-    fetch('http://138.197.159.56:3232/connection/delete', {
+    fetch('http://138.197.159.56:3232/session/reject', {
       method: 'POST',
-      body: JSON.stringify(connection),
+      body: JSON.stringify(sid),
       headers: headers
     }).then(function (response) {
       if (response.ok) {
-        console.log('Successfully rejected connection');
+        console.log('Successfully rejected session');
       } else {
         console.log('Failed to reject connection', connection);
       }
@@ -74,7 +71,9 @@ class RequestCard extends React.Component {
           <Image style={styles.profileImage} source={require('../MessagingHeader/default-user.jpg')}/>
         </View>
         <View style={styles.profileTextView}>
-          <Text style={styles.profileText}>{this.props.uid}</Text>
+          <Text style={styles.profileText}>{this.props.tid}</Text>
+          <Text style={styles.sessionInfoText}>{this.props.duration} {this.props.duration > 1 ? 'hours' : 'hour'}</Text>
+          <Text style={styles.sessionInfoText}>${this.props.rate}/hour</Text>
         </View>
         <View style={styles.acceptRejectBtnView}>
           <TouchableOpacity onPress={this.onPressAccept} style={styles.acceptBtn}>
@@ -89,4 +88,4 @@ class RequestCard extends React.Component {
   }
 }
 
-export default RequestCard;
+export default SessionCard;

@@ -33,7 +33,6 @@ export default EStyleSheet.create({
     width: 50
   },
   profileTextView: {
-    marginRight: 200,
     justifyContent: 'center',
     height: 70
   },
@@ -42,14 +41,23 @@ export default EStyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-  flexVerticalTutor: {
-    alignItems: 'center',
-    height: 80,
-    width: '100%',
+  sessionInfoText: {
+    color: 'black',
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  acceptRejectBtnView: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'powderblue',
-    borderColor: 'lightgrey',
-    borderTopWidth: 2
+    marginRight: 25,
+    justifyContent: 'center',
+  },
+  acceptBtn: {
+    marginRight: 15,
+  },
+  acceptText: {
+    color: 'green',
+  },
+  rejectText: {
+    color: 'red',
   }
 });

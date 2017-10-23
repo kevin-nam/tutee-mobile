@@ -32,13 +32,31 @@ export default EStyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     alignItems: 'flex-start',
-    width: 200,
+    flex: 2,
     justifyContent: 'center',
-    height: 70
+    height: 70,
   },
   profileText: {
     color: 'black',
     fontSize: 18,
     fontWeight: '600',
-  }
+  },
+  requestBtnView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 50,
+    marginRight: 15,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'blue',
+  },
+  hideRequestBtnViw: {
+    display: 'none',
+    height: 0,
+    width: 0,
+  },
+  requestBtnText: {
+    color: 'blue',
+  },
 });
