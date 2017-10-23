@@ -23,6 +23,10 @@ class Connections extends React.Component {
     }
   }
 
+  componentWillMount() {
+    console.log('updating');
+  }
+
   componentDidMount() {
     const uid = store.getState().user.uid;
 
@@ -31,6 +35,7 @@ class Connections extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
+          console.log(response);
           console.log('Successfully got connection data for ' + uid);
           return response.json();
         } else {
@@ -42,7 +47,7 @@ class Connections extends React.Component {
 
         Object.values(data.connections).forEach(function(connection) {
           if (!connection.isPending) {
-            connections.push(connection.uid);
+            connections.push({uid: connection.uid, isTutor: connection.isTutor});
           }
         });
 
@@ -60,7 +65,7 @@ class Connections extends React.Component {
       const connectionCards = [];
       let i = 0;
       this.state.connections.forEach(function(connection) {
-        connectionCards.push(<ConnectionCard key={i++} uid={connection} navigation={navigation}/>)
+        connectionCards.push(<ConnectionCard key={i++} isTutor={connection.isTutor} uid={connection.uid} navigation={navigation}/>)
       });
 
       return (
@@ -98,6 +103,7 @@ class Connections extends React.Component {
               onPress={() => this.props.navigation.navigate('Messaging', {
               fromUid: 'fromMe',
               toUid: 'tutee',
+              isTutor: true,
             })}
             >
               Messaging Test
