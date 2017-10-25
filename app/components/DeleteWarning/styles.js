@@ -10,6 +10,19 @@ const styles = EStyleSheet.create({
     borderWidth: 3,
     borderColor: 'red',
     borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  warningTitle: {
+    fontSize: 30,
+    fontWeight: '800',
+    paddingBottom: 7,
+  },
+  warningDesc: {
+    fontSize: 18,
+    fontWeight: '500',
+    paddingBottom: 20,
   },
 });
 

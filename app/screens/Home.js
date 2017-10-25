@@ -66,7 +66,6 @@ class Home extends React.Component {
         </Text>
       );
     };
-
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />

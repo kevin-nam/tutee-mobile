@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 // import { connect } from 'react-redux';
 
 // import { connectAlert } from '../components/Alert';
@@ -27,11 +28,11 @@ class ModifyPost extends React.Component {
         date: '',
       },
       edit: false,
+      navigation: this.props.navigation,
     };
   }
 
   componentWillMount() {
-    console.log(this.props.navigation.state.params.post);
     if (this.props.navigation.state.params.edit) {
       this.setState({ edit: this.props.navigation.state.params.edit });
       this.setState({ post: this.props.navigation.state.params.post });
@@ -45,8 +46,16 @@ class ModifyPost extends React.Component {
   }
 
   render() {
-    let deletePost = this.state.edit ? <DeletePostWarning /> : null;
-    console.log('post stuff', this.state.post);
+    const backAction = NavigationActions.back({
+      key: 'SearchLandringPage',
+    });
+    let deletePost = this.state.edit ? (
+      <DeletePostWarning
+        pid={this.state.post.pid}
+        navigation={this.props.navigation}
+        backAction={backAction}
+      />
+    ) : null;
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />

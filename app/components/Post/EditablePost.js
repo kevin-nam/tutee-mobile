@@ -17,9 +17,17 @@ class EditablePost extends React.Component {
       titleText: this.props.post.title,
       descriptionText: this.props.post.description,
       tagText: this.props.post.tagString,
-      navigation: this.props.navigation,
     };
   }
+
+  goBack = (screen, params) => {
+    console.log('Pressed back');
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: screen, params })],
+    });
+    this.props.navigation.dispatch(resetAction);
+  };
 
   savePost = async () => {
     const headers = new Headers({
@@ -48,7 +56,7 @@ class EditablePost extends React.Component {
         })
         .then((data) => {
           // console.log('update', data);
-          this.props.navigation.navigate('Post', { post: data });
+          this.goBack('Post', { post: data });
           // console.log(data);
         });
     } else {
@@ -81,8 +89,7 @@ class EditablePost extends React.Component {
   };
 
   render() {
-    const navigation = this.state.navigation;
-    console.log('test', this.props.post);
+    const navigation = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -116,8 +123,7 @@ class EditablePost extends React.Component {
         <View style={styles.tagSection}>
           <TextInput
             autoCapitalize={'sentences'}
-            autoFocus={true}
-            placeholder="Tags"
+            placeholder="#Tags"
             selectTextOnFocus={this.props.edit}
             style={styles.titleInput}
             onChangeText={(text) => {
