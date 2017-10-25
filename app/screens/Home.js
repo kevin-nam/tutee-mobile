@@ -128,6 +128,7 @@ class Home extends React.Component {
       );
     };
 
+    const navigate = this.props.navigation;
     let pendingCards = <Text>No pending sessions</Text>;
     if (!this.state.loading && this.state.pendingSessions.length > 0) {
       pendingCards = [];
@@ -140,6 +141,7 @@ class Home extends React.Component {
             tid={session.tid}
             duration={session.duration}
             rate={session.rate}
+            navigation={navigate}
           />
         );
         console.log(session);
@@ -181,6 +183,17 @@ class Home extends React.Component {
             <Text>Pending Sessions</Text>
             {pendingCards}
           </View>
+          <Text
+            style={{
+              color: 'white',
+              textDecorationLine: 'underline',
+              fontWeight: 'bold',
+              fontSize: 20,
+            }}
+            onPress={() => this.props.navigation.navigate('Rating')}
+          >
+            Rating Page
+          </Text>
         </ScrollView>
       </Container>
     );

@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
 class SessionCard extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -11,6 +11,10 @@ class SessionCard extends React.Component {
       hidden: false,
     };
   }
+
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
 
   onPressAccept = () => {
     console.log('accept');
@@ -20,42 +24,42 @@ class SessionCard extends React.Component {
     };
 
     const headers = new Headers({
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     });
 
     fetch('http://138.197.159.56:3232/session/accept', {
       method: 'POST',
       body: JSON.stringify(sid),
-      headers: headers
+      headers: headers,
     }).then((response) => {
-      this.setState({hidden: true});
+      this.setState({ hidden: true });
       if (response.ok) {
         console.log('Successfully approved session');
       } else {
-        console.log('Failed to approve connection', connection);
+        console.log('Failed to approve session');
       }
     });
-
+    this.props.navigation.navigate('Rating');
   };
 
   onPressReject = () => {
     console.log('reject');
 
-    this.setState({hidden: true});
+    this.setState({ hidden: true });
 
     const sid = {
       sid: this.props.sid,
     };
 
     const headers = new Headers({
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     });
 
     fetch('http://138.197.159.56:3232/session/reject', {
       method: 'POST',
       body: JSON.stringify(sid),
-      headers: headers
-    }).then(function (response) {
+      headers: headers,
+    }).then(function(response) {
       if (response.ok) {
         console.log('Successfully rejected session');
       } else {
@@ -68,15 +72,23 @@ class SessionCard extends React.Component {
     return (
       <View style={this.state.hidden ? styles.hidden : styles.flexVertical}>
         <View style={styles.profileImageView}>
-          <Image style={styles.profileImage} source={require('../MessagingHeader/default-user.jpg')}/>
+          <Image
+            style={styles.profileImage}
+            source={require('../MessagingHeader/default-user.jpg')}
+          />
         </View>
         <View style={styles.profileTextView}>
           <Text style={styles.profileText}>{this.props.tid}</Text>
-          <Text style={styles.sessionInfoText}>{this.props.duration} {this.props.duration > 1 ? 'hours' : 'hour'}</Text>
+          <Text style={styles.sessionInfoText}>
+            {this.props.duration} {this.props.duration > 1 ? 'hours' : 'hour'}
+          </Text>
           <Text style={styles.sessionInfoText}>${this.props.rate}/hour</Text>
         </View>
         <View style={styles.acceptRejectBtnView}>
-          <TouchableOpacity onPress={this.onPressAccept} style={styles.acceptBtn}>
+          <TouchableOpacity
+            onPress={this.onPressAccept}
+            style={styles.acceptBtn}
+          >
             <Text style={styles.acceptText}>Accept</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.onPressReject}>
