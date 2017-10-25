@@ -39,4 +39,13 @@ export default EStyleSheet.create({
     color: 'black',
     fontSize: 16,
   },
+  systemMessageView: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  systemText: {
+    color: 'darkgrey',
+    fontSize: 16
+  }
 });

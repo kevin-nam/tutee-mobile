@@ -12,6 +12,8 @@ import Profile from '../screens/Profile';
 import Post from '../screens/Post';
 import ModifyPost from '../screens/ModifyPost';
 import SearchLandingPage from '../screens/SearchLandingPage';
+import PendingRequests from '../screens/PendingRequests';
+import StartASession from '../screens/StartASession';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
@@ -34,10 +36,23 @@ const ConnectionStack = StackNavigator(
         headerTitle: 'Messaging',
       },
     },
+    PendingRequests: {
+      screen: PendingRequests,
+      navigationOptions: {
+        headerTitle: 'Pending Requests',
+        header: () => null,
+      },
+    },
     Session: {
       screen: Session,
       navigationOptions: {
         headerTitle: 'Session',
+      },
+    },
+    StartASession: {
+      screen: StartASession,
+      navigationOptions: {
+        headerTitle: 'Create a new session',
       },
     },
   },

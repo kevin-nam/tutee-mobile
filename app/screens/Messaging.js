@@ -14,33 +14,59 @@ class Messaging extends React.Component {
     super(props);
 
     this.state = {
+      loading: true,
       messages: [],
-      dbh: firebaseDbh
+      dbh: firebaseDbh,
+      fromUid: this.props.navigation.state.params.fromUid,
+      toUid: this.props.navigation.state.params.toUid,
+      isInverseUidRef: false,
+      dbref: null,
     }
   }
 
-  componentWillMount() {
-    // connect to a Firebase table
-    // TODO: change use uid of users
-    var dbref = this.state.dbh.ref('/messages/fromMe-tutee/messages');
+  componentDidMount() {
+    console.log('fromUid: ' + this.state.fromUid + ", toUid: " + this.state.toUid);
 
-    // save database reference for later
-    this.setState({dbulref: dbref});
+    const listener = this.listenForMessages;
+
+    // connect to a Firebase table
+    const uidRef = this.state.fromUid + '-' + this.state.toUid;
+    const uidRef2 = this.state.toUid + '-' + this.state.fromUid;
+    const dbref = this.state.dbh.ref('/messages/');
+
+    // First check if dbref exists with fromUid-toUid
+    dbref.once('value', (snapshot) => {
+      if (snapshot.hasChild(uidRef)) {
+        console.log('not inversed', uidRef);
+        listener(uidRef);
+      }
+      // Else check if dbref exists with toUid-fromUid, if don't exist then just proceed with this one
+      else {
+        console.log('inversed listener', uidRef2);
+        this.setState({isInverseUidRef: true});
+        listener(uidRef2);
+      }
+    });
+  }
+
+  listenForMessages = (uidRef) => {
+    const dbref = this.state.dbh.ref('/messages/' + uidRef + '/messages');
+    this.setState({dbref: dbref});
 
     // listen for new messages
-    // TODO: verify sent by me
     dbref.on('child_added', (e) => {
       if (e) {
         const msg = (
-          <MessageBubble key={this.state.messages.length + 1} messageData={e.val().content}
-                         isReceived={e.val().sentBy != "fromMe"}/>
+          <MessageBubble sentBy={e.val().sentBy} key={this.state.messages.length + 1} messageData={e.val().content}
+                         isReceived={e.val().sentBy != this.state.fromUid}/>
         );
         this.state.messages.push(msg);
-        this.setState(this.state);
+        this.setState({loading: false});
       }
     });
 
-  }
+    this.setState({loading: false});
+  };
 
   static propTypes = {
     navigation: PropTypes.object,
@@ -48,13 +74,33 @@ class Messaging extends React.Component {
 
   sendNewMessage = (text) => {
     // TODO: use uid of users
-    const message = {
-      uidFrom: "fromMe",
-      uidTutor: "fromMe",
-      uidTutee: "tutee",
-      content: text
-    };
 
+
+
+    // Since reference in firebase database is uidTutor-uidTutee
+    if (this.state.isInverseUidRef) {
+      console.log('inversed');
+      const message = {
+        uidFrom: this.state.fromUid,
+        uidTutor: this.state.toUid,
+        uidTutee: this.state.fromUid,
+        content: text
+      };
+
+      this.fetchSendMessageRequest(message);
+    } else {
+      const message = {
+        uidFrom: this.state.fromUid,
+        uidTutor: this.state.fromUid,
+        uidTutee: this.state.toUid,
+        content: text
+      };
+
+      this.fetchSendMessageRequest(message);
+    }
+  };
+
+  fetchSendMessageRequest = (message) => {
     const headers = new Headers({
       "Content-Type": "application/json",
     });
@@ -63,32 +109,45 @@ class Messaging extends React.Component {
       method: 'POST',
       body: JSON.stringify(message),
       headers: headers
-    }).then(function(response) {
+    }).then((response) => {
+      this.setState({loading: false});
       if (response.ok) {
-        console.log('Successfully sent a message');
+        console.log('Successfully sent a message', message);
       } else {
         console.log('Sending message', message);
       }
     });
   };
 
+  componentWillUnmount() {
+    console.log('unmounting');
+    this.state.dbref.off();
+  }
+
+  // TODO: send actual user name rather than uid
   render() {
     const messages = this.state.messages;
+    const username = this.state.toUid;
+    const isTutor = this.props.navigation.state.params.isTutor;
 
-    return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content"/>
-        <KeyboardAvoidingView
-          behavior='padding'
-          style={{'flex': 1, 'alignSelf': 'stretch'}}
-          keyboardVerticalOffset={60}
-        >
-          <MessagingHeader/>
-          <MessagingBody messages={messages}/>
-          <MessagingBar displayNewMessage={this.sendNewMessage}/>
-        </KeyboardAvoidingView>
-      </Container>
-    );
+    if (!this.state.loading) {
+      return (
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content"/>
+          <KeyboardAvoidingView
+            behavior='padding'
+            style={{'flex': 1, 'alignSelf': 'stretch'}}
+            keyboardVerticalOffset={60}
+          >
+            <MessagingHeader navigation={this.props.navigation} isTutor={isTutor} uid={username} username={username}/>
+            <MessagingBody messages={messages}/>
+            <MessagingBar displayNewMessage={this.sendNewMessage}/>
+          </KeyboardAvoidingView>
+        </Container>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

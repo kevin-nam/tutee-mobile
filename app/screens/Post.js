@@ -17,6 +17,7 @@ class Post extends React.Component {
     super(props);
 
     this.state = {
+      loading: true,
       user: {
         username: '',
         profile_picture: '',
@@ -30,12 +31,7 @@ class Post extends React.Component {
         type: '',
         date: '',
       },
-      edit: false,
     };
-  }
-
-  componentWillMount() {
-    this.getFullPostData();
   }
 
   getFullPostData = async () => {
@@ -52,32 +48,40 @@ class Post extends React.Component {
         }
       })
       .then((data) => {
-        this.setState({ user: data });
-        this.setState({ post: this.props.navigation.state.params.post });
+        this.setState({
+          user: data,
+          post: this.props.navigation.state.params.post,
+          loading: false,
+        });
         console.log('Got user data', data);
+        console.log('got state post', this.state);
       });
   };
 
+  componentDidMount() {
+    this.getFullPostData();
+  }
+
   render() {
-    const currentUid = store.getState().user.uid;
-    if (this.state.post.uid === currentUid) {
-      this.state.edit = true;
+    if (!this.state.loading) {
+      return (
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content" />
+          <KeyboardAvoidingView behavior="padding">
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <FullPost
+                post={this.state.post}
+                user={this.state.user}
+                navigation={this.props.navigation}
+                edit={this.state.edit}
+              />
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </Container>
+      );
+    } else {
+      return null;
     }
-    return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content" />
-        <KeyboardAvoidingView behavior="padding">
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <FullPost
-              post={this.state.post}
-              user={this.state.user}
-              navigation={this.props.navigation}
-              edit={this.state.edit}
-            />
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </Container>
-    );
   }
 }
 

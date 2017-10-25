@@ -1,19 +1,24 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-  flexHorizontal: {
+  hidden: {
+    display: 'none',
+    opacity: 0,
+    height: 0,
+    width: 0,
+  },
+  flexVertical: {
     alignItems: 'center',
-    height: 60,
+    height: 80,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
+    backgroundColor: 'white',
     borderColor: 'lightgrey',
-    backgroundColor: 'white'
+    borderTopWidth: 2
   },
   profileImageView: {
-    marginTop: 5,
     marginLeft: 10,
-    marginRight: 20,
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,
@@ -27,36 +32,24 @@ export default EStyleSheet.create({
     height: 50,
     width: 50
   },
-  profileInfo: {
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    alignItems: 'flex-start',
-    flex: 2,
+  profileTextView: {
+    marginRight: 200,
     justifyContent: 'center',
-    height: 70,
+    height: 70
   },
   profileText: {
     color: 'black',
     fontSize: 18,
     fontWeight: '600',
   },
-  requestBtnView: {
-    flex: 1,
+  flexVerticalTutor: {
     alignItems: 'center',
-    justifyContent: 'center',
-    height: 50,
-    marginRight: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'blue',
-  },
-  hideRequestBtnViw: {
-    display: 'none',
-    height: 0,
-    width: 0,
-  },
-  requestBtnText: {
-    color: 'blue',
-  },
+    height: 80,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'powderblue',
+    borderColor: 'lightgrey',
+    borderTopWidth: 2
+  }
 });

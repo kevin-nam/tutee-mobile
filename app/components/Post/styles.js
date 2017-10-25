@@ -88,6 +88,17 @@ const styles = EStyleSheet.create({
   tags: {
     color: '$disabled',
   },
+  actionButton: {
+    marginRight: 8,
+  },
+  requestMessageText: {
+    color: 'blue',
+    fontSize: 18,
+  },
+  editMessageText: {
+    color: 'blue',
+    fontSize: 18,
+  },
 });
 
 export default styles;
