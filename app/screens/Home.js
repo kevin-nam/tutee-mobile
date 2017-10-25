@@ -147,21 +147,22 @@ class Home extends React.Component {
     }
 
     return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content" />
-        <HomeSearchBar
-          onSubmit={this.handlePressSearch}
-          onText={this.handleTextChange}
-        />
-        <ScrollView
-          style={{ marginTop: 60 }}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
-        >
+      <ScrollView
+        style={{ marginTop: 60 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
+      >
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content" />
+          <HomeSearchBar
+            onSubmit={this.handlePressSearch}
+            onText={this.handleTextChange}
+          />
+
           <KeyboardAvoidingView behavior="padding">
             <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
               {welcomeMessage(this.state.welcomeMessage)}
@@ -181,8 +182,8 @@ class Home extends React.Component {
             <Text>Pending Sessions</Text>
             {pendingCards}
           </View>
-        </ScrollView>
-      </Container>
+        </Container>
+      </ScrollView>
     );
   }
 }
