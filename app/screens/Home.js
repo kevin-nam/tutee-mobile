@@ -6,6 +6,8 @@ import {
   Text,
   Button,
   View,
+  ScrollView,
+  RefreshControl,
 } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { Container } from '../components/Container';
@@ -23,6 +25,7 @@ class Home extends React.Component {
       searchedTags: '',
       loading: true,
       pendingSessions: [],
+      refreshing: false,
     };
   }
 
@@ -105,10 +108,16 @@ class Home extends React.Component {
           this.setState({
             loading: false,
             pendingSessions: pendingSessions,
+            refreshing: false,
           });
         }
       });
   };
+
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this.getPendingSessions();
+  }
 
   render() {
     let welcomeMessage = function(t) {
@@ -144,25 +153,35 @@ class Home extends React.Component {
           onSubmit={this.handlePressSearch}
           onText={this.handleTextChange}
         />
-        <KeyboardAvoidingView behavior="padding">
-          <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
-            {welcomeMessage(this.state.welcomeMessage)}
-          </Text>
-          <Button
-            color="blue"
-            title="Create Post"
-            onPress={() =>
-              this.props.navigation.navigate('ModifyPost', {
-                uid: this.state.tempuid,
-                edit: false,
-              })}
-            style={{ fontSize: 14, fontWeight: '500' }}
-          />
-        </KeyboardAvoidingView>
-        <View style={{ width: '100%' }}>
-          <Text>Pending Sessions</Text>
-          {pendingCards}
-        </View>
+        <ScrollView
+          style={{ marginTop: 60 }}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
+        >
+          <KeyboardAvoidingView behavior="padding">
+            <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+              {welcomeMessage(this.state.welcomeMessage)}
+            </Text>
+            <Button
+              color="blue"
+              title="Create Post"
+              onPress={() =>
+                this.props.navigation.navigate('ModifyPost', {
+                  uid: this.state.tempuid,
+                  edit: false,
+                })}
+              style={{ fontSize: 14, fontWeight: '500' }}
+            />
+          </KeyboardAvoidingView>
+          <View style={{ width: '100%' }}>
+            <Text>Pending Sessions</Text>
+            {pendingCards}
+          </View>
+        </ScrollView>
       </Container>
     );
   }

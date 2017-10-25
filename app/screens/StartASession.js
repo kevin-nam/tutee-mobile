@@ -64,29 +64,56 @@ class StartASession extends React.Component {
   };
 
   sendSystemMessage = (text, tid, uid) => {
-    // TODO: use uid of users
-    const message = {
-      uidFrom: 'system',
-      uidTutor: tid,
-      uidTutee: uid,
-      content: text
-    };
 
-    const headers = new Headers({
-      "Content-Type": "application/json",
-    });
+    const isInverse = this.props.navigation.state.params.isInverseUidRef;
 
-    fetch('http://138.197.159.56:3232/messaging/send', {
-      method: 'POST',
-      body: JSON.stringify(message),
-      headers: headers
-    }).then(function(response) {
-      if (response.ok) {
-        console.log('Successfully sent a message');
-      } else {
-        console.log('Sending message', message);
-      }
-    });
+    if (isInverse){
+      const message = {
+        uidFrom: 'system',
+        uidTutor: uid,
+        uidTutee: tid,
+        content: text
+      };
+
+      const headers = new Headers({
+        "Content-Type": "application/json",
+      });
+
+      fetch('http://138.197.159.56:3232/messaging/send', {
+        method: 'POST',
+        body: JSON.stringify(message),
+        headers: headers
+      }).then(function (response) {
+        if (response.ok) {
+          console.log('Successfully sent a message');
+        } else {
+          console.log('Sending message', message);
+        }
+      });
+    } else {
+      const message = {
+        uidFrom: 'system',
+        uidTutor: tid,
+        uidTutee: uid,
+        content: text
+      };
+
+      const headers = new Headers({
+        "Content-Type": "application/json",
+      });
+
+      fetch('http://138.197.159.56:3232/messaging/send', {
+        method: 'POST',
+        body: JSON.stringify(message),
+        headers: headers
+      }).then(function (response) {
+        if (response.ok) {
+          console.log('Successfully sent a message');
+        } else {
+          console.log('Sending message', message);
+        }
+      });
+    }
   };
 
   render() {
@@ -98,14 +125,14 @@ class StartASession extends React.Component {
           <Text style={{
             fontSize: 18,
             color: 'white',
-            marginBottom: 20,
+            marginBottom: 10,
           }}>{this.props.navigation.state.params.username}</Text>
           <Image
             source={require('../components/MessagingHeader/default-user.jpg')}
             style={{
-              height: 200,
-              width: 200,
-              marginBottom: 30,
+              height: 150,
+              width: 150,
+              marginBottom: 20,
             }}
           />
           <Text>Duration (in hours)</Text>
@@ -115,7 +142,7 @@ class StartASession extends React.Component {
                      keyboardType='numeric'
                      placeholder="2" style={{
             width: 300,
-            height: 70,
+            height: '10%',
             backgroundColor: 'white',
             marginBottom: 10,
           }}/>
@@ -126,15 +153,15 @@ class StartASession extends React.Component {
                      keyboardType='numeric'
                      placeholder="15" style={{
             width: 300,
-            height: 70,
+            height: '10%',
             backgroundColor: 'white',
           }}/>
           <TouchableOpacity onPress={this.onPressRequest} style={{
-            marginTop: 40,
+            marginTop: 30,
             borderRadius: 10,
             backgroundColor: 'blue',
             width: 150,
-            height: 50,
+            height: '10%',
             justifyContent: 'center',
             alignItems: 'center',
           }}>

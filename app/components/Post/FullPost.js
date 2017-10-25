@@ -63,6 +63,10 @@ class FullPost extends React.Component {
               if (data.connections[posterUid].isPending) {
                 this.setState({ isPending: true });
               }
+              // else is the user already tutor to the poster?
+              else if (data.connections[posterUid].isTutor) {
+                this.setState({isRequestable : true});
+              }
             }
           } else {
             // User has no connections
