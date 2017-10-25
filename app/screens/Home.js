@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text, Button, View } from 'react-native';
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  Text,
+  Button,
+  View,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { Container } from '../components/Container';
 import { SessionCard } from '../components/SessionCard';
@@ -17,6 +25,7 @@ class Home extends React.Component {
       searchedTags: '',
       loading: true,
       pendingSessions: [],
+      refreshing: false,
     };
   }
 
@@ -82,26 +91,35 @@ class Home extends React.Component {
         }
       })
       .then((data) => {
-
         if (data) {
           const pendingSessions = [];
 
           Object.entries(data).forEach(([key, value]) => {
             if (value.status == 'PENDING') {
-              pendingSessions.push({sid: key, tid: value.tid, duration: value.duration, rate: value.rate});
+              pendingSessions.push({
+                sid: key,
+                tid: value.tid,
+                duration: value.duration,
+                rate: value.rate,
+              });
             }
           });
 
           this.setState({
             loading: false,
             pendingSessions: pendingSessions,
+            refreshing: false,
           });
         }
       });
   };
 
-  render() {
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this.getPendingSessions();
+  }
 
+  render() {
     let welcomeMessage = function(t) {
       return (
         <Text style={{ color: 'white', fontSize: 24, fontWeight: '600' }}>
@@ -114,8 +132,16 @@ class Home extends React.Component {
     if (!this.state.loading && this.state.pendingSessions.length > 0) {
       pendingCards = [];
       let i = 0;
-      this.state.pendingSessions.forEach(function (session) {
-        pendingCards.push(<SessionCard key={i++} sid={session.sid} tid={session.tid} duration={session.duration} rate={session.rate}/>);
+      this.state.pendingSessions.forEach(function(session) {
+        pendingCards.push(
+          <SessionCard
+            key={i++}
+            sid={session.sid}
+            tid={session.tid}
+            duration={session.duration}
+            rate={session.rate}
+          />
+        );
         console.log(session);
       });
     }
@@ -127,25 +153,35 @@ class Home extends React.Component {
           onSubmit={this.handlePressSearch}
           onText={this.handleTextChange}
         />
-        <KeyboardAvoidingView behavior="padding">
-          <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
-            {welcomeMessage(this.state.welcomeMessage)}
-          </Text>
-          <Button
-            color="blue"
-            title="Create Post"
-            onPress={() =>
-              this.props.navigation.navigate('ModifyPost', {
-                uid: this.state.tempuid,
-                edit: false,
-              })}
-            style={{ fontSize: 14, fontWeight: '500' }}
-          />
-        </KeyboardAvoidingView>
-        <View style={{width: '100%'}}>
-          <Text>Pending Sessions</Text>
-          {pendingCards}
-        </View>
+        <ScrollView
+          style={{ marginTop: 60 }}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
+        >
+          <KeyboardAvoidingView behavior="padding">
+            <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+              {welcomeMessage(this.state.welcomeMessage)}
+            </Text>
+            <Button
+              color="blue"
+              title="Create Post"
+              onPress={() =>
+                this.props.navigation.navigate('ModifyPost', {
+                  uid: this.state.tempuid,
+                  edit: false,
+                })}
+              style={{ fontSize: 14, fontWeight: '500' }}
+            />
+          </KeyboardAvoidingView>
+          <View style={{ width: '100%' }}>
+            <Text>Pending Sessions</Text>
+            {pendingCards}
+          </View>
+        </ScrollView>
       </Container>
     );
   }
