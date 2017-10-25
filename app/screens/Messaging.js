@@ -98,7 +98,8 @@ class Messaging extends React.Component {
       method: 'POST',
       body: JSON.stringify(message),
       headers: headers
-    }).then(function(response) {
+    }).then((response) => {
+      this.setState({loading: false});
       if (response.ok) {
         console.log('Successfully sent a message');
       } else {

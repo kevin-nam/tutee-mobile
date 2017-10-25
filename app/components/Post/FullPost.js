@@ -80,7 +80,7 @@ class FullPost extends React.Component {
       method: 'POST',
       body: JSON.stringify(connection),
       headers: headers
-    }).then(function(response) {
+    }).then((response) => {
       this.setState({isPending: true, isRequestable: false});
       if (response.ok) {
         console.log('Successfully created connection');
