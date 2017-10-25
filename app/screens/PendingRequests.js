@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
-import {Container} from '../components/Container';
-import {RequestCard} from '../components/RequestCard';
+import { ScrollView, Text, TouchableOpacity } from 'react-native';
+import { Container } from '../components/Container';
+import { RequestCard } from '../components/RequestCard';
+import { Header, Icon } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 import store from '../store/store';
 
 class PendingRequests extends React.Component {
@@ -16,8 +18,17 @@ class PendingRequests extends React.Component {
     this.state = {
       loading: true,
       pendingConnections: [],
-    }
+    };
   }
+
+  goBack = () => {
+    console.log('Pressed back');
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Connections' })],
+    });
+    this.props.navigation.dispatch(resetAction);
+  };
 
   componentDidMount() {
     const uid = store.getState().user.uid;
@@ -52,24 +63,42 @@ class PendingRequests extends React.Component {
   }
 
   render() {
-
     if (!this.state.loading) {
-
       const pendingCards = [];
       let i = 0;
       this.state.pendingConnections.forEach(function(connection) {
-        pendingCards.push(<RequestCard key={i++} uid={connection} />)
+        pendingCards.push(<RequestCard key={i++} uid={connection} />);
       });
-
-
 
       return (
         <Container backgroundColor={'#9E768F'}>
-          <ScrollView showsVerticalScrollIndicator={true} style={{
-            flex: 1,
-            width: '100%',
-          }}>
-            {pendingCards.length > 0 ? pendingCards : <Text>No pending requests </Text>}
+          <Header
+            statusBarProps={{
+              barStyle: 'light-content',
+              backgroundColor: 'black',
+              translucent: true,
+              height: 60,
+            }}
+            centerComponent={{ text: 'Pending Connections' }}
+            leftComponent={
+              <TouchableOpacity onPress={this.goBack}>
+                <Icon name="arrow-back" color="black" />
+              </TouchableOpacity>
+            }
+          />
+          <ScrollView
+            showsVerticalScrollIndicator={true}
+            style={{
+              flex: 1,
+              width: '100%',
+              marginTop: 80,
+            }}
+          >
+            {pendingCards.length > 0 ? (
+              pendingCards
+            ) : (
+              <Text>No pending requests </Text>
+            )}
           </ScrollView>
         </Container>
       );
