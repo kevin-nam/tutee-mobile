@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-const MessagingHeader = ({ username, uid, navigation, isTutor }) => {
+const MessagingHeader = ({ username, uid, navigation, isTutor, isInverseUidRef }) => {
 
   // TODO: replace profile image with actual image
   return (
@@ -17,7 +17,7 @@ const MessagingHeader = ({ username, uid, navigation, isTutor }) => {
         </Text>
       </View>
       <View style={isTutor ? styles.requestBtnView : styles.hideRequestBtnViw}>
-        <TouchableOpacity onPress={() => navigation.navigate('StartASession', {username: username, uid: uid})}>
+        <TouchableOpacity onPress={() => navigation.navigate('StartASession', {username: username, uid: uid, isInverseUidRef: isInverseUidRef})}>
           <Text style={styles.requestBtnText}>Start a session</Text>
         </TouchableOpacity>
       </View>
