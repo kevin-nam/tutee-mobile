@@ -96,7 +96,7 @@ const styles = EStyleSheet.create({
     fontSize: 18,
   },
   editMessageText: {
-    color: 'blue',
+    color: 'purple',
     fontSize: 18,
   },
 });
