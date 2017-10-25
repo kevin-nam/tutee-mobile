@@ -139,7 +139,7 @@ class Messaging extends React.Component {
             style={{'flex': 1, 'alignSelf': 'stretch'}}
             keyboardVerticalOffset={60}
           >
-            <MessagingHeader navigation={this.props.navigation} isTutor={isTutor} uid={username} username={username}/>
+            <MessagingHeader navigation={this.props.navigation} isTutor={isTutor} uid={username} username={username} isInverseUidRef={this.state.isInverseUidRef}/>
             <MessagingBody messages={messages}/>
             <MessagingBar displayNewMessage={this.sendNewMessage}/>
           </KeyboardAvoidingView>
