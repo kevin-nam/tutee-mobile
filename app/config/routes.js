@@ -40,6 +40,7 @@ const ConnectionStack = StackNavigator(
       screen: PendingRequests,
       navigationOptions: {
         headerTitle: 'Pending Requests',
+        header: () => null,
       },
     },
     Session: {
