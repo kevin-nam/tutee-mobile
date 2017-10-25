@@ -37,10 +37,12 @@ class Messaging extends React.Component {
     // First check if dbref exists with fromUid-toUid
     dbref.once('value', (snapshot) => {
       if (snapshot.hasChild(uidRef)) {
+        console.log('not inversed', uidRef);
         listener(uidRef);
       }
       // Else check if dbref exists with toUid-fromUid, if don't exist then just proceed with this one
       else {
+        console.log('inversed listener', uidRef2);
         this.setState({isInverseUidRef: true});
         listener(uidRef2);
       }
@@ -73,23 +75,32 @@ class Messaging extends React.Component {
   sendNewMessage = (text) => {
     // TODO: use uid of users
 
-    const message = {
-      uidFrom: this.state.fromUid,
-      uidTutor: this.state.fromUid,
-      uidTutee: this.state.toUid,
-      content: text
-    };
+
 
     // Since reference in firebase database is uidTutor-uidTutee
     if (this.state.isInverseUidRef) {
+      console.log('inversed');
       const message = {
         uidFrom: this.state.fromUid,
         uidTutor: this.state.toUid,
         uidTutee: this.state.fromUid,
         content: text
       };
-    }
 
+      this.fetchSendMessageRequest(message);
+    } else {
+      const message = {
+        uidFrom: this.state.fromUid,
+        uidTutor: this.state.fromUid,
+        uidTutee: this.state.toUid,
+        content: text
+      };
+
+      this.fetchSendMessageRequest(message);
+    }
+  };
+
+  fetchSendMessageRequest = (message) => {
     const headers = new Headers({
       "Content-Type": "application/json",
     });
@@ -101,7 +112,7 @@ class Messaging extends React.Component {
     }).then((response) => {
       this.setState({loading: false});
       if (response.ok) {
-        console.log('Successfully sent a message');
+        console.log('Successfully sent a message', message);
       } else {
         console.log('Sending message', message);
       }
