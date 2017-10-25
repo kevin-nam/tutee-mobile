@@ -6,6 +6,7 @@ import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { FullPost } from '../components/Post';
+import store from '../store/store';
 
 class Post extends React.Component {
   static propTypes = {
@@ -40,19 +41,19 @@ class Post extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Successfully got profile for ' + uid);
+          console.log('Successfully got data for ' + uid);
           return response.json();
         } else {
-          console.log('Error when getting profile data for ' + uid);
+          console.log('Error when getting user data for ' + uid);
         }
       })
       .then((data) => {
         this.setState({
           user: data,
           post: this.props.navigation.state.params.post,
-          loading: false
+          loading: false,
         });
-        console.log('Got user profile data', data);
+        console.log('Got user data', data);
         console.log('got state post', this.state);
       });
   };
@@ -62,23 +63,17 @@ class Post extends React.Component {
   }
 
   render() {
-    const post = this.state.post;
-    const user = this.state.user;
-
     if (!this.state.loading) {
       return (
         <Container backgroundColor="#9E768F">
-          <StatusBar barStyle="light-content"/>
+          <StatusBar barStyle="light-content" />
           <KeyboardAvoidingView behavior="padding">
             <ScrollView showsVerticalScrollIndicator={false}>
               <FullPost
-                uid={post.uid}
-                title={post.title}
-                userImage={user.profile_picture}
-                userName={user.username}
-                content={post.description}
-                date={post.date}
-                tagString={post.tagString}
+                post={this.state.post}
+                user={this.state.user}
+                navigation={this.props.navigation}
+                edit={this.state.edit}
               />
             </ScrollView>
           </KeyboardAvoidingView>

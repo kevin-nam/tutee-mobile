@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 // import { connect } from 'react-redux';
 
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { EditablePost } from '../components/Post';
+import { DeletePostWarning } from '../components/DeleteWarning';
 
 class ModifyPost extends React.Component {
   static propTypes = {
@@ -44,21 +46,27 @@ class ModifyPost extends React.Component {
   }
 
   render() {
-    const navigation = this.state.navigation;
+    const backAction = NavigationActions.back({
+      key: 'SearchLandringPage',
+    });
+    let deletePost = this.state.edit ? (
+      <DeletePostWarning
+        pid={this.state.post.pid}
+        navigation={this.props.navigation}
+        backAction={backAction}
+      />
+    ) : null;
     return (
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
             <EditablePost
-              title={this.state.post.title}
-              content={this.state.post.description}
-              tagString={this.state.post.tagString}
+              post={this.state.post}
               edit={this.state.edit}
-              uid={this.state.post.uid}
-              pid={this.state.post.pid}
-              navigation={navigation}
+              navigation={this.props.navigation}
             />
+            {deletePost}
           </ScrollView>
         </KeyboardAvoidingView>
       </Container>
