@@ -96,18 +96,17 @@ export default class App extends React.Component {
         headers: headers
       }).then(function (response) {
         if (response.ok) {
-          console.log('Successfully acknowledged notification');
+          console.log('Successfully acknowledged notification', e);
         } else {
           console.log('Error acknowledging notification', e);
         }
       });
-
     });
   };
 
   // Runs before render
   componentWillMount() {
-    // AsyncStorage.clear();
+    //AsyncStorage.clear();
     getiOSNotificationPermission();
     this.checkIfLoggedIn();
   }

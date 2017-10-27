@@ -26,7 +26,7 @@ class Login extends React.Component {
   logIn = async (props) => {
     const resetAction = NavigationActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Home' })],
+      actions: [NavigationActions.navigate({routeName: 'Index'})],
     });
 
     const {
