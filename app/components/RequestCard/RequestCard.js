@@ -66,12 +66,17 @@ class RequestCard extends React.Component {
   };
 
   render() {
+
+    let profile_picture = require('../MessagingHeader/default-user.jpg');
+    if (this.props.profile_picture) {
+      profile_picture = {uri: this.props.profile_picture}
+    }
     return (
       <View style={this.state.hidden ? styles.hidden : styles.flexVertical}>
         <View style={styles.profileImageView}>
           <Image
             style={styles.profileImage}
-            source={require('../MessagingHeader/default-user.jpg')}
+            source={profile_picture}
           />
         </View>
         <View style={styles.profileTextView}>

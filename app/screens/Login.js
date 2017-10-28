@@ -38,7 +38,7 @@ class Login extends React.Component {
     if (type === 'success') {
       // Get the user using Facebook's Graph API
       const response = await fetch(
-        `https://graph.facebook.com/me?fields=name,email,picture&access_token=${token}`
+        `https://graph.facebook.com/me?fields=name,email,picture.type(normal)&access_token=${token}`
       )
         .then(function(response) {
           if (response.ok) {
@@ -74,7 +74,7 @@ class Login extends React.Component {
             'Content-Type': 'application/json',
           });
 
-          fetch('http://138.197.159.56:3232/user/createUser', {
+          fetch('localhost:3232/user/createUser', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: headers,

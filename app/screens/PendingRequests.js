@@ -46,26 +46,57 @@ class PendingRequests extends React.Component {
       })
       .then((data) => {
         const pendingConnections = [];
-
-        Object.values(data.connections).forEach(function(connection) {
+        Object.values(data.connections).forEach((connection) => {
           if (connection.isPending && !connection.isRequesting) {
-            pendingConnections.push(connection.uid);
+            // Get Profile Data for each pending connection
+            this.getProfileData(connection.uid, (user) => {
+              pendingConnections.push({user: user, uid: connection.uid});
+
+              this.setState({
+                loading: false,
+                pendingConnections: pendingConnections,
+              });
+            });
           }
         });
 
-        this.setState({
-          loading: false,
-          pendingConnections: pendingConnections,
-        });
+
       });
   }
+
+  getProfileData = (uid, callback) => {
+    fetch('http://138.197.159.56:3232/user/getUser/' + uid, {
+      method: 'GET',
+    })
+      .then((response) => {
+        if (response.ok && response._bodyInit) {
+          return response.json();
+        } else {
+          console.log('Error when getting user data for ' + uid);
+          callback({
+            profile_picture: '',
+            username: uid,
+          })
+        }
+      })
+      .then((data) => {
+        if (data) {
+          callback(data);
+        } else {
+          callback({
+            profile_picture: '',
+            username: uid,
+          })
+        }
+      });
+  };
 
   render() {
     if (!this.state.loading) {
       const pendingCards = [];
       let i = 0;
       this.state.pendingConnections.forEach(function(connection) {
-        pendingCards.push(<RequestCard key={i++} uid={connection} />);
+        pendingCards.push(<RequestCard key={i++} user={connection.user} uid={connection.uid} />);
       });
 
       return (
