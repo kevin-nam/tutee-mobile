@@ -133,7 +133,10 @@ class FullPost extends React.Component {
   };
 
   render() {
-    this.props.user.profile_picture = require('./images/Placeholder.png');
+    let profile_picture = require('./images/Placeholder.png');
+    if (this.props.user.profile_picture) {
+       profile_picture = {uri: this.props.user.profile_picture};
+    }
     let chooseButton = this.state.isMine ? (
       <TouchableOpacity
         style={styles.actionButton}
@@ -169,7 +172,7 @@ class FullPost extends React.Component {
               <Image
                 resizeMode="cover"
                 style={styles.icon}
-                source={this.props.user.profile_picture}
+                source={profile_picture}
                 borderRadius={50}
               />
               <Text style={styles.user}>{this.props.user.username}</Text>

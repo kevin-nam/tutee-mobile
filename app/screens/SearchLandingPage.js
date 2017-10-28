@@ -25,26 +25,25 @@ class SearchLandingPage extends React.Component {
       tagString: '',
       postList: [],
       navigation: this.props.navigation,
+      loading: true,
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getPostListData();
   }
 
-  getPostListData = async () => {
+  getPostListData = () => {
     console.log(
       'Getting this on the search landing page: ' +
         this.props.navigation.state.params.tagList
     );
-    // this.setState({ tagString: this.props.navigation.state.params.tagList });
-    // console.log('the tagstring: ' + this.state.tagString);
 
     const headers = new Headers({
       'Content-Type': 'application/json',
     });
 
-    await fetch('http://138.197.159.56:3232/search/tags', {
+    fetch('http://138.197.159.56:3232/search/tags', {
       method: 'POST',
       body: JSON.stringify({
         tagString: this.props.navigation.state.params.tagList,
@@ -54,16 +53,50 @@ class SearchLandingPage extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('success');
           return response.json();
         } else {
           console.log('Error searching for posts.');
         }
       })
       .then((data) => {
-        // console.log(data);
-        this.setState({ postList: data });
-        console.log(data);
+
+        // Get Profile Data for each found post
+        const postList =[];
+        let i = 0;
+        data.forEach((post) => {
+          this.getProfileData(post.uid, (userData) => {
+            console.log(userData);
+            postList.push({user: userData, post: post});
+
+            // If last profile to get
+            if (++i === data.length) {
+              this.setState({postList: postList, loading: false});
+            }
+          });
+        });
+      });
+  };
+
+  getProfileData = (uid, callback) => {
+    fetch('http://138.197.159.56:3232/user/getUser/' + uid, {
+      method: 'GET',
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.log('Error when getting user data for ' + uid);
+        }
+      })
+      .then((data) => {
+        if (data) {
+          callback(data);
+        } else {
+          callback({
+            profile_picture: '',
+            username: uid,
+          })
+        }
       });
   };
 
@@ -71,40 +104,44 @@ class SearchLandingPage extends React.Component {
     const navigation = this.state.navigation;
     let posts = <Text>No posts found</Text>;
     if (this.state.postList && this.state.postList.length > 0) {
-      posts = this.state.postList.map(function(post, index) {
+      posts = this.state.postList.map(function(data, index) {
         return (
           <SmallPost
             key={index}
-            title={post.title}
-            userImage={null}
-            content={post.description}
-            date={post.date}
-            onPress={() => navigation.navigate('Post', { post: post })}
+            title={data.post.title}
+            userImage={data.user.profile_picture}
+            content={data.post.description}
+            date={data.post.date}
+            onPress={() => navigation.navigate('Post', { post: data.post, user: data.user })}
           />
         );
       });
     }
 
-    return (
-      <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content" />
-        <KeyboardAvoidingView behavior="padding">
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <List
-              containerStyle={{
-                marginTop: 0,
-                borderTopWidth: 0,
-                borderBottomWidth: 0,
-                backgroundColor: 'transparent',
-                marginVertical: 5,
-              }}
-            >
-              {posts}
-            </List>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </Container>
-    );
+    if (!this.state.loading) {
+      return (
+        <Container backgroundColor="#9E768F">
+          <StatusBar barStyle="light-content"/>
+          <KeyboardAvoidingView behavior="padding">
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <List
+                containerStyle={{
+                  marginTop: 0,
+                  borderTopWidth: 0,
+                  borderBottomWidth: 0,
+                  backgroundColor: 'transparent',
+                  marginVertical: 5,
+                }}
+              >
+                {posts}
+              </List>
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </Container>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

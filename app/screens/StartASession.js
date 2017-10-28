@@ -119,6 +119,12 @@ class StartASession extends React.Component {
   render() {
 
     if (!this.state.loading) {
+
+      let profile_picture = require('../components/MessagingHeader/default-user.jpg');
+      if (this.props.navigation.state.params.profile_picture) {
+        profile_picture = {uri: this.props.navigation.state.params.profile_picture};
+      }
+
       return (
         <Container backgroundColor={'#9E768F'}>
           <Text>Tutee:</Text>
@@ -128,7 +134,7 @@ class StartASession extends React.Component {
             marginBottom: 10,
           }}>{this.props.navigation.state.params.username}</Text>
           <Image
-            source={require('../components/MessagingHeader/default-user.jpg')}
+            source={profile_picture}
             style={{
               height: 150,
               width: 150,

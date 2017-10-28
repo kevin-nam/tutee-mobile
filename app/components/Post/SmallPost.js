@@ -8,6 +8,8 @@ import styles from './styles';
 const SmallPost = ({ title, userImage, content, date, onPress }) => {
   if (!userImage) {
     userImage = require('./images/Placeholder.png');
+  } else {
+    userImage = {uri: userImage};
   }
 
   return (
@@ -37,7 +39,7 @@ const SmallPost = ({ title, userImage, content, date, onPress }) => {
 
 SmallPost.propTypes = {
   title: PropTypes.string,
-  userImage: PropTypes.element,
+  userImage: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,
   onPress: PropTypes.func,
