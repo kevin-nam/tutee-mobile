@@ -7,17 +7,50 @@ class Rating extends React.Component {
     super(props);
 
     this.state = {
-      rating: 0,
+      newRating: 0,
+      currentSum: 0,
+      numOfRatings: 0,
     };
   }
 
-  handleChangeRating = (newRating) => {
+  handleChangeRating = (Rating) => {
     // console.log(newRating);
-    this.setState({ rating: newRating });
+    this.setState({ newRating: Rating });
   };
 
-  handleSubmitRating = () => {
+  handleSubmitRating = async () => {
     console.log('Pressed submit');
+
+    const newSum = this.state.currentSum + this.state.newRating;
+    const newAverage = newSum / (this.state.numOfRatings + 1);
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+
+    await fetch('http://138.197.159.56:3232/user/updateRating', {
+      method: 'POST',
+      body: JSON.stringify({
+        uid: '10154495184459503',
+        rating: newAverage,
+        sum: newSum,
+        numOfRatings: this.state.numOfRatings + 1,
+      }),
+      // JSON.stringify(this.props.navigation.state.postList),
+      headers: headers,
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('success');
+          return response.json();
+        } else {
+          console.log('Error updating the rating.');
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        // this.setState({ postList: data });
+      });
   };
 
   render() {
