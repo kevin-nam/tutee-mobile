@@ -14,6 +14,7 @@ import ModifyPost from '../screens/ModifyPost';
 import SearchLandingPage from '../screens/SearchLandingPage';
 import PendingRequests from '../screens/PendingRequests';
 import StartASession from '../screens/StartASession';
+import Rating from '../screens/Rating';
 import index from '../index';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
@@ -95,6 +96,12 @@ const HomeStack = StackNavigator(
       screen: ModifyPost,
       navigationOptions: {
         headerTitle: 'ModifyPost',
+      },
+    },
+    Rating: {
+      screen: Rating,
+      navigationOption: {
+        headerTitle: 'Rating',
       },
     },
   },
