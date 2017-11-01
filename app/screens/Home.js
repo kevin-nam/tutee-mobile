@@ -183,17 +183,6 @@ class Home extends React.Component {
             <Text>Pending Sessions</Text>
             {pendingCards}
           </View>
-          <Text
-            style={{
-              color: 'white',
-              textDecorationLine: 'underline',
-              fontWeight: 'bold',
-              fontSize: 20,
-            }}
-            onPress={() => this.props.navigation.navigate('Rating')}
-          >
-            Rating Page
-          </Text>
         </ScrollView>
       </Container>
     );

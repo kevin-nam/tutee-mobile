@@ -39,7 +39,9 @@ class SessionCard extends React.Component {
         console.log('Failed to approve session');
       }
     });
-    this.props.navigation.navigate('Rating');
+    this.props.navigation.navigate('Rating', {
+      uid: this.props.tid,
+    });
   };
 
   onPressReject = () => {

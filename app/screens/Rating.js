@@ -13,6 +13,40 @@ class Rating extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const newSum = this.state.currentSum + this.state.newRating;
+    const newAverage = newSum / (this.state.numOfRatings + 1);
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+
+    fetch(
+      'http://138.197.159.56:3232/user/getUser/' +
+        this.props.navigation.state.params.uid,
+      {
+        method: 'GET',
+        // JSON.stringify(this.props.navigation.state.postList),
+        headers: headers,
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          console.log('success');
+          return response.json();
+        } else {
+          console.log('Error updating the rating.');
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          currentSum: data.ratingSum,
+          numOfRatings: data.numOfRatings,
+        });
+      });
+  }
+
   handleChangeRating = (Rating) => {
     // console.log(newRating);
     this.setState({ newRating: Rating });
@@ -31,7 +65,7 @@ class Rating extends React.Component {
     await fetch('http://138.197.159.56:3232/user/updateRating', {
       method: 'POST',
       body: JSON.stringify({
-        uid: '10154495184459503',
+        uid: this.props.navigation.state.params.uid,
         rating: newAverage,
         sum: newSum,
         numOfRatings: this.state.numOfRatings + 1,
@@ -49,11 +83,12 @@ class Rating extends React.Component {
       })
       .then((data) => {
         console.log(data);
-        // this.setState({ postList: data });
+        this.props.navigation.goBack();
       });
   };
 
   render() {
+    // console.log(this.props.navigation.state.params.uid);
     return (
       <Container backgroundColor={'rgba(1, 1, 1, 0.5)'}>
         <RatingProp
