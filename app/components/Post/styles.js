@@ -9,25 +9,25 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: 'white',
-    width: 0.9 * SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
     marginVertical: 20,
     paddingBottom: 5,
     elevation: 4,
   },
   header: {
-    backgroundColor: '#A8DBA8',
-    width: 0.9 * SCREEN_WIDTH,
+    backgroundColor: '$baseCoral',
+    width: SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingBottom: 10,
     paddingTop: 5,
   },
   smallHeader: {
     flexDirection: 'row',
-    width: 0.9 * SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingVertical: 10,
     alignItems: 'flex-start',
-    backgroundColor: '#A8DBA8',
+    backgroundColor: '$baseCoral',
   },
   title: {
     fontWeight: '800',
@@ -60,7 +60,7 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
     alignItems: 'flex-start',
-    width: 0.9 * SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
   },
   content: {
     textAlign: 'right',
@@ -69,7 +69,7 @@ const styles = EStyleSheet.create({
     flex: 1,
   },
   footer: {
-    width: 0.9 * SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingBottom: 5,
     flexDirection: 'row',
@@ -78,26 +78,35 @@ const styles = EStyleSheet.create({
   },
   date: {
     fontWeight: '300',
-    color: '$disabled',
+    color: '$baseGray',
   },
   tagSection: {
-    width: 0.9 * SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
   tags: {
-    color: '$disabled',
+    color: '$baseGray',
   },
   actionButton: {
     marginRight: 8,
   },
   requestMessageText: {
-    color: 'blue',
+    color: '$baseBlue',
     fontSize: 18,
   },
   editMessageText: {
-    color: 'purple',
+    color: '$baseCoral',
     fontSize: 18,
+  },
+  $createButtonBackgroundColor: () => EStyleSheet.value('$baseBlue'),
+  $createButtonUnderlayColor: () => EStyleSheet.value('$blueDarken30'),
+  containerViewStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    borderRadius: 100,
+    backgroundColor: '$baseBlue',
   },
 });
 

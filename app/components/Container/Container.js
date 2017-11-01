@@ -4,21 +4,22 @@ import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import styles from './styles';
 
-const Container = ({ children, backgroundColor }) => {
-  const containerStyles = [styles.container];
-  if (backgroundColor) {
-    containerStyles.push({ backgroundColor });
-  }
-  return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={containerStyles}>{children}</View>
-    </TouchableWithoutFeedback>
-  );
-};
+class Container extends React.Component {
+  static propTypes = {
+    children: PropTypes.any,
+  };
 
-Container.propTypes = {
-  children: PropTypes.any,
-  backgroundColor: PropTypes.string,
-};
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.container}>{this.props.children}</View>
+      </TouchableWithoutFeedback>
+    );
+  }
+}
 
 export default Container;

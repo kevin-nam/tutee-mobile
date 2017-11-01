@@ -4,12 +4,12 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Text,
-  Button,
   View,
   ScrollView,
   RefreshControl,
+  AsyncStorage,
 } from 'react-native';
-import { AsyncStorage } from 'react-native';
+import { CreatePostButton } from '../components/Post';
 import { Container } from '../components/Container';
 import { SessionCard } from '../components/SessionCard';
 import { HomeSearchBar } from '../components/SearchBar';
@@ -147,41 +147,45 @@ class Home extends React.Component {
     }
 
     return (
-      <Container backgroundColor="#9E768F">
+      <Container>
         <StatusBar barStyle="light-content" />
         <HomeSearchBar
           onSubmit={this.handlePressSearch}
           onText={this.handleTextChange}
         />
-        <ScrollView
-          style={{ marginTop: 60 }}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
+        <View
+          style={{
+            flex: 1,
+            alignContent: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+          }}
         >
-          <KeyboardAvoidingView behavior="padding">
-            <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
-              {welcomeMessage(this.state.welcomeMessage)}
-            </Text>
-            <Button
-              color="blue"
-              title="Create Post"
-              onPress={() =>
-                this.props.navigation.navigate('ModifyPost', {
-                  uid: this.state.tempuid,
-                  edit: false,
-                })}
-              style={{ fontSize: 14, fontWeight: '500' }}
+          <ScrollView
+            style={{ marginTop: 60, flex: 1 }}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh.bind(this)}
+              />
+            }
+          >
+            <KeyboardAvoidingView behavior="padding">
+              <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+                {welcomeMessage(this.state.welcomeMessage)}
+              </Text>
+            </KeyboardAvoidingView>
+            <View style={{ width: '100%' }}>
+              <Text>Pending Sessions</Text>
+              {pendingCards}
+            </View>
+            <CreatePostButton
+              navigation={this.props.navigation}
+              uid={this.state.tempuid}
             />
-          </KeyboardAvoidingView>
-          <View style={{ width: '100%' }}>
-            <Text>Pending Sessions</Text>
-            {pendingCards}
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </Container>
     );
   }

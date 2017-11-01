@@ -1,7 +1,7 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createRootNavigator } from './config/routes';
-import { AsyncStorage, Platform, Alert } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import firebaseDbh from './config/firebase';
@@ -11,21 +11,29 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actions';
 
 EStyleSheet.build({
-  $disabled: '#777777',
+  // base color set
+  $baseCoral: '#FF6B6C',
+  $baseGray: '#777777',
+  $baseBlue: '#69D2E7',
+  $baseRed: '#D9534F',
+
+  // accent color set
+  $grayLigthen45: '#EAEAEA',
+  $grayLigthen40: '#DDDDDD',
+  $grayLighten35: '#D0D0D0',
+  $blueDarken30: '#1D869B',
 
   // outline: 1,
 });
 
 async function getiOSNotificationPermission() {
-  const { status } = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  );
+  const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
   if (status !== 'granted') {
     await Permissions.askAsync(Permissions.NOTIFICATIONS);
   }
 }
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -61,11 +69,13 @@ export default class App extends React.Component {
   };
 
   listenForNotifications = () => {
-    const dbref = firebaseDbh.ref('/notifications/' + store.getState().user.uid + '/notifications');
+    const dbref = firebaseDbh.ref(
+      '/notifications/' + store.getState().user.uid + '/notifications'
+    );
     console.log('listening....');
 
     // Listen for local notifications and do stuff
-    Notifications.addListener(notification => {
+    Notifications.addListener((notification) => {
       console.log('notification received', notification);
     });
 
@@ -86,15 +96,15 @@ export default class App extends React.Component {
       Expo.Notifications.presentLocalNotificationAsync(notification);
 
       const headers = new Headers({
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       });
 
       // acknowledge notification and remove from firebase
       fetch('http://138.197.159.56:3232/notifications/acknowledge', {
         method: 'POST',
-        body: JSON.stringify({uid: store.getState().user.uid}),
-        headers: headers
-      }).then(function (response) {
+        body: JSON.stringify({ uid: store.getState().user.uid }),
+        headers: headers,
+      }).then(function(response) {
         if (response.ok) {
           console.log('Successfully acknowledged notification', e);
         } else {
@@ -106,22 +116,19 @@ export default class App extends React.Component {
 
   // Runs before render
   componentWillMount() {
-    //AsyncStorage.clear();
+    // AsyncStorage.clear();
     getiOSNotificationPermission();
     this.checkIfLoggedIn();
   }
 
   // Render the appropriate screen
   render() {
-    EStyleSheet.build({
-      // outline: 1,
-    });
     const { checkedSignIn, signedIn } = this.state;
 
     if (!checkedSignIn) {
       return null;
     } else if (signedIn) {
-      this.listenForNotifications()
+      this.listenForNotifications();
     }
 
     const Layout = createRootNavigator(signedIn);
@@ -132,3 +139,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;

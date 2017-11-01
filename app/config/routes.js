@@ -152,7 +152,7 @@ const Navigator = TabNavigator(
       },
       showIcon: true,
       indicatorStyle: {
-        backgroundColor: ICON_COLOR,
+        backgroundColor: 'transparent',
       },
       showLabel: false,
       upperCaseLabel: false,

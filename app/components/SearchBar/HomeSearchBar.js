@@ -9,8 +9,10 @@ const HomeSearchBar = ({ onSubmit, onText }) => {
   return (
     <View style={styles.container}>
       <SearchBar
-        lightTheme
         round
+        inputStyle={styles.inputStyle}
+        containerStyle={styles.containerStyle}
+        placeholderTextColor={styles.placeholderTextColor}
         placeholder="Search..."
         returnKeyType="search"
         onSubmitEditing={onSubmit}
