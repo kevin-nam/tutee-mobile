@@ -15,6 +15,7 @@ import SearchLandingPage from '../screens/SearchLandingPage';
 import PendingRequests from '../screens/PendingRequests';
 import StartASession from '../screens/StartASession';
 import Rating from '../screens/Rating';
+import index from '../index';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
@@ -174,6 +175,13 @@ const Navigator = TabNavigator(
 export const createRootNavigator = (isSignedIn = false) => {
   return StackNavigator(
     {
+      Index: {
+        screen: index,
+        navigationOption: {
+          title: 'Index',
+          header: () => null,
+        },
+      },
       Login: {
         screen: Login,
         navigationOption: {

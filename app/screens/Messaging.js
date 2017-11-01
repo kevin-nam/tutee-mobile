@@ -21,6 +21,8 @@ class Messaging extends React.Component {
       toUid: this.props.navigation.state.params.toUid,
       isInverseUidRef: false,
       dbref: null,
+      username: this.props.navigation.state.params.username,
+      profile_picture: this.props.navigation.state.params.profile_picture,
     }
   }
 
@@ -127,8 +129,11 @@ class Messaging extends React.Component {
   // TODO: send actual user name rather than uid
   render() {
     const messages = this.state.messages;
-    const username = this.state.toUid;
+    const uid = this.state.toUid;
     const isTutor = this.props.navigation.state.params.isTutor;
+    const username = this.state.username;
+    const profile_picture = this.state.profile_picture;
+
 
     if (!this.state.loading) {
       return (
@@ -139,7 +144,7 @@ class Messaging extends React.Component {
             style={{'flex': 1, 'alignSelf': 'stretch'}}
             keyboardVerticalOffset={60}
           >
-            <MessagingHeader navigation={this.props.navigation} isTutor={isTutor} uid={username} username={username} isInverseUidRef={this.state.isInverseUidRef}/>
+            <MessagingHeader navigation={this.props.navigation} profile_picture={profile_picture} isTutor={isTutor} uid={uid} username={username} isInverseUidRef={this.state.isInverseUidRef}/>
             <MessagingBody messages={messages}/>
             <MessagingBar displayNewMessage={this.sendNewMessage}/>
           </KeyboardAvoidingView>

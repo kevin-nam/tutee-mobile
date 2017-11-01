@@ -9,7 +9,8 @@ const ProfileHeader = ({ user }) => {
       <View style={styles.profileImageView}>
         <Image
           style={styles.profileImage}
-          source={require('./default-user.jpg')}
+          resizeMode='stretch'
+          source={{uri: user.profile_picture}}
         />
       </View>
       <View style={styles.profileInfo}>

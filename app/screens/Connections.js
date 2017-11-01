@@ -38,8 +38,6 @@ class Connections extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          console.log(response);
-          console.log('Successfully got connection data for ' + uid);
           return response.json();
         } else {
           console.log('Error when getting connection data for ' + uid);
