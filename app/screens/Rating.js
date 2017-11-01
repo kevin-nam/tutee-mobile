@@ -8,43 +8,7 @@ class Rating extends React.Component {
 
     this.state = {
       newRating: 0,
-      currentSum: 0,
-      numOfRatings: 0,
     };
-  }
-
-  componentDidMount() {
-    const newSum = this.state.currentSum + this.state.newRating;
-    const newAverage = newSum / (this.state.numOfRatings + 1);
-
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-    });
-
-    fetch(
-      'http://138.197.159.56:3232/user/getUser/' +
-        this.props.navigation.state.params.uid,
-      {
-        method: 'GET',
-        // JSON.stringify(this.props.navigation.state.postList),
-        headers: headers,
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          console.log('success');
-          return response.json();
-        } else {
-          console.log('Error updating the rating.');
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        this.setState({
-          currentSum: data.ratingSum,
-          numOfRatings: data.numOfRatings,
-        });
-      });
   }
 
   handleChangeRating = (Rating) => {
@@ -55,8 +19,10 @@ class Rating extends React.Component {
   handleSubmitRating = async () => {
     console.log('Pressed submit');
 
-    const newSum = this.state.currentSum + this.state.newRating;
-    const newAverage = newSum / (this.state.numOfRatings + 1);
+    const newSum =
+      this.props.navigation.state.params.currentSum + this.state.newRating;
+    const newAverage =
+      newSum / (this.props.navigation.state.params.numOfRatings + 1);
 
     const headers = new Headers({
       'Content-Type': 'application/json',
@@ -68,7 +34,7 @@ class Rating extends React.Component {
         uid: this.props.navigation.state.params.uid,
         rating: newAverage,
         sum: newSum,
-        numOfRatings: this.state.numOfRatings + 1,
+        numOfRatings: this.props.navigation.state.params.numOfRatings + 1,
       }),
       // JSON.stringify(this.props.navigation.state.postList),
       headers: headers,
