@@ -17,9 +17,7 @@ EStyleSheet.build({
 });
 
 async function getiOSNotificationPermission() {
-  const { status } = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  );
+  const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
   if (status !== 'granted') {
     await Permissions.askAsync(Permissions.NOTIFICATIONS);
   }
@@ -61,11 +59,13 @@ export default class App extends React.Component {
   };
 
   listenForNotifications = () => {
-    const dbref = firebaseDbh.ref('/notifications/' + store.getState().user.uid + '/notifications');
+    const dbref = firebaseDbh.ref(
+      '/notifications/' + store.getState().user.uid + '/notifications'
+    );
     console.log('listening....');
 
     // Listen for local notifications and do stuff
-    Notifications.addListener(notification => {
+    Notifications.addListener((notification) => {
       console.log('notification received', notification);
     });
 
@@ -86,15 +86,15 @@ export default class App extends React.Component {
       Expo.Notifications.presentLocalNotificationAsync(notification);
 
       const headers = new Headers({
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       });
 
       // acknowledge notification and remove from firebase
       fetch('http://138.197.159.56:3232/notifications/acknowledge', {
         method: 'POST',
-        body: JSON.stringify({uid: store.getState().user.uid}),
-        headers: headers
-      }).then(function (response) {
+        body: JSON.stringify({ uid: store.getState().user.uid }),
+        headers: headers,
+      }).then(function(response) {
         if (response.ok) {
           console.log('Successfully acknowledged notification', e);
         } else {
@@ -106,7 +106,7 @@ export default class App extends React.Component {
 
   // Runs before render
   componentWillMount() {
-    //AsyncStorage.clear();
+    // AsyncStorage.clear();
     getiOSNotificationPermission();
     this.checkIfLoggedIn();
   }
@@ -121,7 +121,7 @@ export default class App extends React.Component {
     if (!checkedSignIn) {
       return null;
     } else if (signedIn) {
-      this.listenForNotifications()
+      this.listenForNotifications();
     }
 
     const Layout = createRootNavigator(signedIn);
