@@ -74,7 +74,7 @@ class Login extends React.Component {
             'Content-Type': 'application/json',
           });
 
-          fetch('localhost:3232/user/createUser', {
+          fetch('http://138.197.159.56:3232/user/createUser', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: headers,
