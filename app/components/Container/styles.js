@@ -5,7 +5,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '$grayLigthen45',
+    backgroundColor: '$grayLigthen50',
   },
   coralContainer: {
     flex: 1,

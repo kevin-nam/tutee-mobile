@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
+import { StatusBar, Text, View, AsyncStorage } from 'react-native';
 import { Container } from '../components/Container';
 import { FacebookLoginButton } from '../components/FacebookLoginButton';
 import { NavigationActions } from 'react-navigation';
-import { AsyncStorage } from 'react-native';
 import store from '../store/store';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/actions';
+import styles from './styles';
 
 const TOKEN_KEY = 'TOKEN_KEY';
 const USER_NAME_KEY = 'USER_NAME_KEY';
@@ -99,29 +99,18 @@ class Login extends React.Component {
   render() {
     return (
       <Container color={true}>
-        <StatusBar barStyle="light-content" />
-        <KeyboardAvoidingView behavior="padding">
-          <Text
-            style={{
-              color: 'white',
-              fontFamily: 'Poppins-BlackItalic',
-              fontSize: 50,
-              textAlign: 'center',
-            }}
-          >
-            Tutee Login Page
-          </Text>
-          <FacebookLoginButton onPress={this.handlePressFacebookLogin} />
-        </KeyboardAvoidingView>
+        <StatusBar />
+        <View style={styles.loginView}>
+          <View style={styles.loginLogoView}>
+            <Text style={styles.loginLogo}>Tutee Login Page</Text>
+          </View>
+          <View style={styles.loginButtonView}>
+            <FacebookLoginButton onPress={this.handlePressFacebookLogin} />
+          </View>
+        </View>
       </Container>
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Login));
 
 export default Login;
