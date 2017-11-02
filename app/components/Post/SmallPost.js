@@ -5,23 +5,32 @@ import moment from 'moment';
 
 import styles from './styles';
 
-const SmallPost = ({ title, userImage, content, date, onPress }) => {
+const SmallPost = ({
+  title,
+  userImage,
+  content,
+  date,
+  onPress,
+  onImagePress,
+}) => {
   if (!userImage) {
     userImage = require('./images/Placeholder.png');
   } else {
-    userImage = {uri: userImage};
+    userImage = { uri: userImage };
   }
 
   return (
     <View style={styles.container}>
       <TouchableHighlight onPress={onPress}>
         <View style={styles.smallHeader}>
-          <Image
-            resizeMode="cover"
-            style={styles.icon}
-            source={userImage}
-            borderRadius={50}
-          />
+          <TouchableHighlight onPress={onImagePress}>
+            <Image
+              resizeMode="cover"
+              style={styles.icon}
+              source={userImage}
+              borderRadius={50}
+            />
+          </TouchableHighlight>
           <Text style={styles.smallTitle}>{title}</Text>
         </View>
       </TouchableHighlight>
@@ -43,6 +52,7 @@ SmallPost.propTypes = {
   content: PropTypes.string,
   date: PropTypes.string,
   onPress: PropTypes.func,
+  onImagePress: PropTypes.func,
 };
 
 export default SmallPost;

@@ -30,7 +30,15 @@ class Profile extends React.Component {
   }
 
   getProfileData = async () => {
-    const uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
+    let uid;
+    if (typeof this.props.navigation.state.params !== 'undefined') {
+      console.log('it is NOT undefined');
+      uid = this.props.navigation.state.params.otherID;
+    } else {
+      console.log('it is undefined');
+      uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
+    }
+
     fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
       method: 'GET',
     })
