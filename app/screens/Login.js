@@ -26,7 +26,7 @@ class Login extends React.Component {
   logIn = async (props) => {
     const resetAction = NavigationActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({routeName: 'Index'})],
+      actions: [NavigationActions.navigate({ routeName: 'Index' })],
     });
 
     const {
@@ -101,7 +101,14 @@ class Login extends React.Component {
       <Container backgroundColor="#9E768F">
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
-          <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+          <Text
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins-Black',
+              fontSize: 50,
+              fontWeight: '600',
+            }}
+          >
             Tutee Login Page
           </Text>
           <FacebookLoginButton onPress={this.handlePressFacebookLogin} />

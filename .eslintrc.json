@@ -35,6 +35,7 @@
     "no-console": "warn",
     "no-undef": "warn",
     "quote-props": "off",
-    "new-cap": "warn"
+    "new-cap": "warn",
+    "max-len": "warn"
   }
 }
