@@ -59,18 +59,17 @@ class SearchLandingPage extends React.Component {
         }
       })
       .then((data) => {
-
         // Get Profile Data for each found post
-        const postList =[];
+        const postList = [];
         let i = 0;
         data.forEach((post) => {
           this.getProfileData(post.uid, (userData) => {
             console.log(userData);
-            postList.push({user: userData, post: post});
+            postList.push({ user: userData, post: post });
 
             // If last profile to get
             if (++i === data.length) {
-              this.setState({postList: postList, loading: false});
+              this.setState({ postList: postList, loading: false });
             }
           });
         });
@@ -95,7 +94,7 @@ class SearchLandingPage extends React.Component {
           callback({
             profile_picture: '',
             username: uid,
-          })
+          });
         }
       });
   };
@@ -112,7 +111,10 @@ class SearchLandingPage extends React.Component {
             userImage={data.user.profile_picture}
             content={data.post.description}
             date={data.post.date}
-            onPress={() => navigation.navigate('Post', { post: data.post, user: data.user })}
+            onPress={() =>
+              navigation.navigate('Post', { post: data.post, user: data.user })}
+            onImagePress={() =>
+              navigation.navigate('otherProfile', { otherID: data.post.uid })}
           />
         );
       });
@@ -121,7 +123,7 @@ class SearchLandingPage extends React.Component {
     if (!this.state.loading) {
       return (
         <Container backgroundColor="#9E768F">
-          <StatusBar barStyle="light-content"/>
+          <StatusBar barStyle="light-content" />
           <KeyboardAvoidingView behavior="padding">
             <ScrollView showsVerticalScrollIndicator={false}>
               <List

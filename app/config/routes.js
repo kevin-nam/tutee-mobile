@@ -104,6 +104,12 @@ const HomeStack = StackNavigator(
         headerTitle: 'Rating',
       },
     },
+    otherProfile: {
+      screen: Profile,
+      navigationOptions: {
+        headerTitle: 'Profile',
+      },
+    },
   },
   {
     mode: 'modal',
