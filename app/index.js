@@ -19,10 +19,14 @@ EStyleSheet.build({
   $baseGreen: '#5CB85C',
 
   // accent color set
+  $grayLigthen50: '#F6F6F6',
   $grayLigthen45: '#EAEAEA',
   $grayLigthen40: '#DDDDDD',
   $grayLighten35: '#D0D0D0',
   $blueDarken30: '#1D869B',
+
+  // other
+  $facebookBlue: '#3B5699',
 
   // outline: 1,
 });
