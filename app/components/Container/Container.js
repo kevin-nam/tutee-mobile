@@ -7,6 +7,7 @@ import styles from './styles';
 class Container extends React.Component {
   static propTypes = {
     children: PropTypes.any,
+    color: PropTypes.bool,
   };
 
   constructor(props) {
@@ -16,7 +17,13 @@ class Container extends React.Component {
   render() {
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.container}>{this.props.children}</View>
+        <View
+          style={
+            this.props.color ? styles.coralContainer : styles.grayContainer
+          }
+        >
+          {this.props.children}
+        </View>
       </TouchableWithoutFeedback>
     );
   }

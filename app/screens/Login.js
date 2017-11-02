@@ -98,15 +98,15 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Container backgroundColor="#9E768F">
+      <Container color={true}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <Text
             style={{
               color: 'white',
-              fontFamily: 'Poppins-Black',
+              fontFamily: 'Poppins-BlackItalic',
               fontSize: 50,
-              fontWeight: '600',
+              textAlign: 'center',
             }}
           >
             Tutee Login Page

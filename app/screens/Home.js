@@ -42,7 +42,7 @@ class Home extends React.Component {
   setWelcomeMessage = async () => {
     try {
       const name = store.getState().user.username;
-      this.setState({ welcomeMessage: 'Welcome ' + name + '!' });
+      this.setState({ welcomeMessage: 'Welcome, \n' + name + '!' });
     } catch (error) {
       console.log('Something went wrong when getting user name.');
     }
@@ -122,14 +122,31 @@ class Home extends React.Component {
   render() {
     let welcomeMessage = function(t) {
       return (
-        <Text style={{ color: 'white', fontSize: 24, fontWeight: '600' }}>
+        <Text
+          style={{
+            fontFamily: 'Poppins-BoldItalic',
+            textAlign: 'center',
+            color: '#777777',
+            fontSize: 24,
+          }}
+        >
           {t}
         </Text>
       );
     };
 
     const navigate = this.props.navigation;
-    let pendingCards = <Text>No pending sessions</Text>;
+    let pendingCards = (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Regular',
+          textAlign: 'center',
+          color: '#777777',
+        }}
+      >
+        No pending sessions
+      </Text>
+    );
     if (!this.state.loading && this.state.pendingSessions.length > 0) {
       pendingCards = [];
       let i = 0;
@@ -149,7 +166,7 @@ class Home extends React.Component {
     }
 
     return (
-      <Container>
+      <Container color={false}>
         <StatusBar barStyle="light-content" />
         <HomeSearchBar
           onSubmit={this.handlePressSearch}
@@ -174,12 +191,18 @@ class Home extends React.Component {
             }
           >
             <KeyboardAvoidingView behavior="padding">
-              <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
-                {welcomeMessage(this.state.welcomeMessage)}
-              </Text>
+              {welcomeMessage(this.state.welcomeMessage)}
             </KeyboardAvoidingView>
             <View style={{ width: '100%' }}>
-              <Text>Pending Sessions</Text>
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Regular',
+                  textAlign: 'center',
+                  color: '#777777',
+                }}
+              >
+                Pending Sessions
+              </Text>
               {pendingCards}
             </View>
             <CreatePostButton
