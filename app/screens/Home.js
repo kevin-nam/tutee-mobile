@@ -4,12 +4,12 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Text,
-  Button,
   View,
   ScrollView,
   RefreshControl,
+  AsyncStorage,
 } from 'react-native';
-import { AsyncStorage } from 'react-native';
+import { CreatePostButton } from '../components/Post';
 import { Container } from '../components/Container';
 import { SessionCard } from '../components/SessionCard';
 import { HomeSearchBar } from '../components/SearchBar';
@@ -42,7 +42,7 @@ class Home extends React.Component {
   setWelcomeMessage = async () => {
     try {
       const name = store.getState().user.username;
-      this.setState({ welcomeMessage: 'Welcome ' + name + '!' });
+      this.setState({ welcomeMessage: 'Welcome, \n' + name + '!' });
     } catch (error) {
       console.log('Something went wrong when getting user name.');
     }
@@ -122,14 +122,31 @@ class Home extends React.Component {
   render() {
     let welcomeMessage = function(t) {
       return (
-        <Text style={{ color: 'white', fontSize: 24, fontWeight: '600' }}>
+        <Text
+          style={{
+            fontFamily: 'Poppins-BoldItalic',
+            textAlign: 'center',
+            color: '#777777',
+            fontSize: 24,
+          }}
+        >
           {t}
         </Text>
       );
     };
 
     const navigate = this.props.navigation;
-    let pendingCards = <Text>No pending sessions</Text>;
+    let pendingCards = (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Regular',
+          textAlign: 'center',
+          color: '#777777',
+        }}
+      >
+        No pending sessions
+      </Text>
+    );
     if (!this.state.loading && this.state.pendingSessions.length > 0) {
       pendingCards = [];
       let i = 0;
@@ -149,41 +166,51 @@ class Home extends React.Component {
     }
 
     return (
-      <Container backgroundColor="#9E768F">
+      <Container color={false}>
         <StatusBar barStyle="light-content" />
         <HomeSearchBar
           onSubmit={this.handlePressSearch}
           onText={this.handleTextChange}
         />
-        <ScrollView
-          style={{ marginTop: 60 }}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
+        <View
+          style={{
+            flex: 1,
+            alignContent: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+          }}
         >
-          <KeyboardAvoidingView behavior="padding">
-            <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+          <ScrollView
+            style={{ marginTop: 60, flex: 1 }}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh.bind(this)}
+              />
+            }
+          >
+            <KeyboardAvoidingView behavior="padding">
               {welcomeMessage(this.state.welcomeMessage)}
-            </Text>
-            <Button
-              color="blue"
-              title="Create Post"
-              onPress={() =>
-                this.props.navigation.navigate('ModifyPost', {
-                  uid: this.state.tempuid,
-                  edit: false,
-                })}
-              style={{ fontSize: 14, fontWeight: '500' }}
+            </KeyboardAvoidingView>
+            <View style={{ width: '100%' }}>
+              <Text
+                style={{
+                  fontFamily: 'Poppins-Regular',
+                  textAlign: 'center',
+                  color: '#777777',
+                }}
+              >
+                Pending Sessions
+              </Text>
+              {pendingCards}
+            </View>
+            <CreatePostButton
+              navigation={this.props.navigation}
+              uid={this.state.tempuid}
             />
-          </KeyboardAvoidingView>
-          <View style={{ width: '100%' }}>
-            <Text>Pending Sessions</Text>
-            {pendingCards}
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </Container>
     );
   }

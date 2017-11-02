@@ -98,10 +98,17 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Container backgroundColor="#9E768F">
+      <Container color={true}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
-          <Text style={{ color: 'white', fontSize: 50, fontWeight: '600' }}>
+          <Text
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins-BlackItalic',
+              fontSize: 50,
+              textAlign: 'center',
+            }}
+          >
             Tutee Login Page
           </Text>
           <FacebookLoginButton onPress={this.handlePressFacebookLogin} />

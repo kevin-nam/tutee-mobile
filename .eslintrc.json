@@ -33,6 +33,9 @@
     "object-curly-spacing": ["error", "always"],
     "no-invalid-this": "warn",
     "no-console": "warn",
-    "no-undef": "warn"
+    "no-undef": "warn",
+    "quote-props": "off",
+    "new-cap": "warn",
+    "max-len": "warn"
   }
 }

@@ -1,11 +1,17 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
-  container: {
+  grayContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '$primaryBlue',
+    backgroundColor: '$grayLigthen45',
+  },
+  coralContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '$baseCoral',
   },
 });
 

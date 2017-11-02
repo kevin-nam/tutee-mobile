@@ -1,17 +1,28 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createRootNavigator } from './config/routes';
-import { AsyncStorage, Platform, Alert } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import firebaseDbh from './config/firebase';
-import { Notifications, Permissions } from 'expo';
+import { Notifications, Permissions, Font } from 'expo';
 
 import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actions';
 
 EStyleSheet.build({
-  $disabled: '#777777',
+  // base color set
+  $baseCoral: '#FF6B6C',
+  $baseGray: '#777777',
+  $baseBlue: '#69D2E7',
+  $baseRed: '#D9534F',
+  $baseGreen: '#5CB85C',
+
+  // accent color set
+  $grayLigthen45: '#EAEAEA',
+  $grayLigthen40: '#DDDDDD',
+  $grayLighten35: '#D0D0D0',
+  $blueDarken30: '#1D869B',
 
   // outline: 1,
 });
@@ -23,13 +34,14 @@ async function getiOSNotificationPermission() {
   }
 }
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       signedIn: false,
       checkedSignIn: false,
+      isFontLoaded: false,
     };
 
     console.ignoredYellowBox = ['Setting a timer'];
@@ -111,11 +123,32 @@ export default class App extends React.Component {
     this.checkIfLoggedIn();
   }
 
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
+      'Poppins-BlackItalic': require('../assets/fonts/Poppins-BlackItalic.ttf'),
+      'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
+      'Poppins-BoldItalic': require('../assets/fonts/Poppins-BoldItalic.ttf'),
+      'Poppins-ExtraBold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
+      'Poppins-ExtraBoldItalic': require('../assets/fonts/Poppins-ExtraBoldItalic.ttf'),
+      'Poppins-ExtraLight': require('../assets/fonts/Poppins-ExtraLight.ttf'),
+      'Poppins-ExtraLightItalic': require('../assets/fonts/Poppins-ExtraLightItalic.ttf'),
+      'Poppins-Italic': require('../assets/fonts/Poppins-Italic.ttf'),
+      'Poppins-Light': require('../assets/fonts/Poppins-Light.ttf'),
+      'Poppins-LightItalic': require('../assets/fonts/Poppins-LightItalic.ttf'),
+      'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
+      'Poppins-MediumItalic': require('../assets/fonts/Poppins-MediumItalic.ttf'),
+      'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
+      'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
+      'Poppins-SemiBoldItalic': require('../assets/fonts/Poppins-SemiBoldItalic.ttf'),
+      'Poppins-Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+      'Poppins-ThinItalic': require('../assets/fonts/Poppins-ThinItalic.ttf'),
+    });
+    this.setState({ isFontLoaded: true });
+  }
+
   // Render the appropriate screen
   render() {
-    EStyleSheet.build({
-      // outline: 1,
-    });
     const { checkedSignIn, signedIn } = this.state;
 
     if (!checkedSignIn) {
@@ -127,8 +160,10 @@ export default class App extends React.Component {
     const Layout = createRootNavigator(signedIn);
     return (
       <Provider store={store}>
-        <Layout />
+        {this.state.isFontLoaded ? <Layout /> : <Text>Error</Text>}
       </Provider>
     );
   }
 }
+
+export default App;
