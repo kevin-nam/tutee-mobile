@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
-import { connect } from 'react-redux';
-
-import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 
 class Session extends React.Component {
