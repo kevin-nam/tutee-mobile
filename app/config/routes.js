@@ -7,7 +7,7 @@ import Home from '../screens/Home';
 import Connections from '../screens/Connections';
 import Login from '../screens/Login';
 import Messaging from '../screens/Messaging';
-import Session from '../screens/Session';
+import RequestSession from '../screens/RequestSession';
 import Profile from '../screens/Profile';
 import Post from '../screens/Post';
 import ModifyPost from '../screens/ModifyPost';
@@ -15,6 +15,7 @@ import SearchLandingPage from '../screens/SearchLandingPage';
 import PendingRequests from '../screens/PendingRequests';
 import StartASession from '../screens/StartASession';
 import Rating from '../screens/Rating';
+import InSession from '../screens/InSession';
 import index from '../index';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
@@ -43,12 +44,6 @@ const ConnectionStack = StackNavigator(
       navigationOptions: {
         headerTitle: 'Pending Requests',
         header: () => null,
-      },
-    },
-    Session: {
-      screen: Session,
-      navigationOptions: {
-        headerTitle: 'Session',
       },
     },
     StartASession: {
@@ -108,6 +103,20 @@ const HomeStack = StackNavigator(
       screen: Profile,
       navigationOptions: {
         headerTitle: 'Profile',
+      },
+    },
+    RequestSession: {
+      screen: RequestSession,
+      navigationOptions: {
+        headerTitle: 'Session Request',
+        header: () => null,
+      },
+    },
+    InSession: {
+      screen: InSession,
+      navigationOptions: {
+        headerTitle: 'In Session',
+        header: () => null,
       },
     },
   },

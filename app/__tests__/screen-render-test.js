@@ -5,7 +5,7 @@ import Login from '../screens/Login';
 import Messaging from '../screens/Messaging';
 import Post from '../screens/Post';
 import Profile from '../screens/Profile';
-import Session from '../screens/Session';
+import Session from '../screens/RequestSession';
 import smallPost from '../screens/smallPost';
 import renderer from 'react-test-renderer';
 

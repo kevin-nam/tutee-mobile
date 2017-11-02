@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '../components/Container';
 import { RatingProp } from '../components/Rating';
+import { NavigationActions } from 'react-navigation';
 
 class Rating extends React.Component {
   constructor(props) {
@@ -17,8 +18,6 @@ class Rating extends React.Component {
   };
 
   handleSubmitRating = async () => {
-    console.log('Pressed submit');
-
     const newSum =
       this.props.navigation.state.params.currentSum + this.state.newRating;
     const newAverage =
@@ -48,13 +47,15 @@ class Rating extends React.Component {
         }
       })
       .then((data) => {
-        console.log(data);
-        this.props.navigation.goBack();
+        const resetAction = NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Home' })],
+        });
+        this.props.navigation.dispatch(resetAction);
       });
   };
 
   render() {
-    // console.log(this.props.navigation.state.params.uid);
     return (
       <Container backgroundColor={'rgba(1, 1, 1, 0.5)'}>
         <RatingProp

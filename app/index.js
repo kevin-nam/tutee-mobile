@@ -6,9 +6,11 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import firebaseDbh from './config/firebase';
 import { Notifications, Permissions, Font } from 'expo';
+import { NavigationActions } from 'react-navigation';
 
 import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actions';
+import * as sessonActions from './actions/session-actions';
 
 EStyleSheet.build({
   // base color set
@@ -87,6 +89,13 @@ class App extends React.Component {
 
     // listen for new notifications from firebase
     dbref.on('child_added', (e) => {
+
+      if (e.val().type === "NEW_SESSION_REQUEST") {
+        this.app.dispatch(sessonActions.showSessionRequest(e.val().content));
+      } else if (e.val().type === "ACCEPTED_SESSION_REQUEST") {
+        this.app.dispatch(sessonActions.showInSession(e.val().content));
+      }
+
       const notification = {
         title: 'Push Notification',
         body: e.val().msg,
@@ -164,7 +173,7 @@ class App extends React.Component {
     const Layout = createRootNavigator(signedIn);
     return (
       <Provider store={store}>
-        {this.state.isFontLoaded ? <Layout /> : <Text>Error</Text>}
+        {this.state.isFontLoaded ? <Layout ref={app => {this.app = app;}} /> : <Text>Error</Text>}
       </Provider>
     );
   }

@@ -1,28 +1,23 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, Text } from 'react-native';
 import { Container } from '../components/Container';
+import SessionRequest from '../components/SessionRequest/SessionRequest';
 
 class Session extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
   };
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const content = this.props.navigation.state.params.content;
+
     return (
       <Container backgroundColor="#9E768F">
-        <StatusBar barStyle="light-content" />
-        <KeyboardAvoidingView behavior="padding">
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 50,
-              fontWeight: '600',
-            }}
-          >
-            $$$
-          </Text>
-        </KeyboardAvoidingView>
+        <SessionRequest navigation={this.props.navigation} content={content} />
       </Container>
     );
   }
