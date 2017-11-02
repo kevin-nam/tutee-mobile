@@ -205,6 +205,18 @@ class Home extends React.Component {
               </Text>
               {pendingCards}
             </View>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 18,
+                fontWeight: '600',
+                textDecorationLine: 'underline',
+              }}
+              onPress={() =>
+                this.props.navigation.navigate('InSession')}
+            >
+              In Session Test
+            </Text>
             <CreatePostButton
               navigation={this.props.navigation}
               uid={this.state.tempuid}
