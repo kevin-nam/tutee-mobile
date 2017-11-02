@@ -1,7 +1,7 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createRootNavigator } from './config/routes';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import firebaseDbh from './config/firebase';
@@ -66,7 +66,7 @@ class App extends React.Component {
         this.setState({ signedIn: true });
       }
     } catch (error) {
-      console.log('Not logged in.');
+      console.log('Not logged in.', error);
     }
   };
 
