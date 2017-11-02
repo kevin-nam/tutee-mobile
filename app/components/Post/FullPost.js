@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   Alert,
+  TouchableHighlight,
 } from 'react-native';
 import moment from 'moment';
 import styles from './styles';
@@ -62,10 +63,9 @@ class FullPost extends React.Component {
               // If connection exists, is it pending?
               if (data.connections[posterUid].isPending) {
                 this.setState({ isPending: true });
-              }
-              // else is the user already tutor to the poster?
-              else if (data.connections[posterUid].isTutor) {
-                this.setState({isRequestable : true});
+              } else if (data.connections[posterUid].isTutor) {
+                // else is the user already tutor to the poster?
+                this.setState({ isRequestable: true });
               }
             }
           } else {
@@ -135,7 +135,7 @@ class FullPost extends React.Component {
   render() {
     let profile_picture = require('./images/Placeholder.png');
     if (this.props.user.profile_picture) {
-       profile_picture = {uri: this.props.user.profile_picture};
+      profile_picture = { uri: this.props.user.profile_picture };
     }
     let chooseButton = this.state.isMine ? (
       <TouchableOpacity
@@ -169,12 +169,14 @@ class FullPost extends React.Component {
           <View style={styles.header}>
             <Text style={styles.title}>{this.props.post.title}</Text>
             <View style={styles.author}>
-              <Image
-                resizeMode="cover"
-                style={styles.icon}
-                source={profile_picture}
-                borderRadius={50}
-              />
+              <TouchableHighlight onPress={this.props.onImagePress}>
+                <Image
+                  resizeMode="cover"
+                  style={styles.icon}
+                  source={profile_picture}
+                  borderRadius={50}
+                />
+              </TouchableHighlight>
               <Text style={styles.user}>{this.props.user.username}</Text>
             </View>
           </View>

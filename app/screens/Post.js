@@ -35,8 +35,10 @@ class Post extends React.Component {
   }
 
   getFullPostData = async () => {
-
-    if (!this.props.navigation.state.params.user || !this.props.navigation.state.params.post) {
+    if (
+      !this.props.navigation.state.params.user ||
+      !this.props.navigation.state.params.post
+    ) {
       const uid = await this.props.navigation.state.params.post.uid;
       fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
         method: 'GET',
@@ -84,6 +86,10 @@ class Post extends React.Component {
                 user={this.state.user}
                 navigation={this.props.navigation}
                 edit={this.state.edit}
+                onImagePress={() =>
+                  this.props.navigation.navigate('otherProfile', {
+                    otherID: this.state.post.uid,
+                  })}
               />
             </ScrollView>
           </KeyboardAvoidingView>
