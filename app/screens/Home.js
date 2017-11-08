@@ -166,7 +166,7 @@ class Home extends React.Component {
     }
 
     return (
-      <Container color={false}>
+      <Container color={true}>
         <StatusBar barStyle="light-content" />
         <HomeSearchBar
           onSubmit={this.handlePressSearch}
@@ -212,8 +212,7 @@ class Home extends React.Component {
                 fontWeight: '600',
                 textDecorationLine: 'underline',
               }}
-              onPress={() =>
-                this.props.navigation.navigate('InSession')}
+              onPress={() => this.props.navigation.navigate('InSession')}
             >
               In Session Test
             </Text>

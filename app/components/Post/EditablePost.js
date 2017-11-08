@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { View, TextInput, Button } from 'react-native';
 import { AutoExpandingTextInput } from '../TextInput';
+// import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
@@ -22,11 +23,13 @@ class EditablePost extends React.Component {
 
   goBack = (screen, params) => {
     console.log('Pressed back');
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: screen, params })],
-    });
-    this.props.navigation.dispatch(resetAction);
+    // TODO: Fix this so we dont go to edit pages
+    // const resetAction = NavigationActions.reset({
+    //   index: 0,
+    //   actions: [NavigationActions.navigate({ routeName: screen, params })],
+    // });
+    // this.props.navigation.dispatch(resetAction);
+    this.props.navigation.navigate(screen, params);
   };
 
   savePost = async () => {
