@@ -14,9 +14,10 @@ class MessagingBar extends React.Component {
   }
 
   onPressHandler = () => {
-    console.log(this.state.text);
-    this.props.displayNewMessage(this.state.text);
-    this.textInput.clear();
+    if (this.state.text) {
+      this.props.displayNewMessage(this.state.text);
+      this.textInput.clear();
+    }
   };
 
   render() {
@@ -26,6 +27,8 @@ class MessagingBar extends React.Component {
                    placeholder='Aa'
                    style={styles.bar}
                    ref={input => { this.textInput = input }}
+                   multiline={true}
+                   maxLength={100}
         />
         <TouchableOpacity
           onPress={this.onPressHandler}>

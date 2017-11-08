@@ -1,20 +1,32 @@
 import React from 'react';
-import {Text, ScrollView, Image} from 'react-native';
-import {MessageBubble} from '../MessageBubble';
+import {View, ScrollView} from 'react-native';
 
 import styles from './styles';
 
 class MessagingBody extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.view.scrollToEnd({animated: false});
+    }, 500);
   }
 
   render() {
     const msg = this.props.messages;
+
     return (
-      <ScrollView showsVerticalScrollIndicator={true} style={styles.flexHorizontal}>
-        {msg}
+      <ScrollView
+        contentContainerStyle={{flexGrow: 1}}
+        ref={input => {
+          this.view = input
+        }}>
+        <View style={styles.flexHorizontal}>
+          {msg}
+        </View>
       </ScrollView>
     );
   }

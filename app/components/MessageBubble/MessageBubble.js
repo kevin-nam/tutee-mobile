@@ -7,7 +7,7 @@ const MessageBubble = ({messageData, isReceived, sentBy}) => {
 
   // TODO: show date (when clicked on?)
 
-  if (sentBy == 'system') {
+  if (sentBy === 'system') {
     return (
       <View style={styles.messageContainer}>
         <View style={styles.systemMessageView}>
