@@ -3,12 +3,13 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
   flexHorizontal: {
     alignItems: 'center',
-    height: 60,
+    height: 70,
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     borderColor: 'lightgrey',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    marginTop: 5,
   },
   profileImageView: {
     marginTop: 5,
@@ -18,14 +19,11 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     width: 50,
     height: 50,
-    borderRadius: 60,
     overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'gray'
   },
   profileImage: {
     height: 50,
-    width: 50
+    width: 50,
   },
   profileInfo: {
     marginTop: 10,
@@ -38,18 +36,18 @@ export default EStyleSheet.create({
   },
   profileText: {
     color: 'black',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium'
   },
   requestBtnView: {
-    flex: 1,
+    marginTop: 10,
+    width: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 50,
+    height: 0,
     marginRight: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'blue',
+    borderRadius: 25,
+    backgroundColor: '$baseCoral'
   },
   hideRequestBtnViw: {
     display: 'none',
@@ -57,6 +55,14 @@ export default EStyleSheet.create({
     width: 0,
   },
   requestBtnText: {
-    color: 'blue',
+    fontSize: 14,
+    fontFamily: 'Poppins-Medium',
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
   },
+  backBtnView: {
+    marginLeft: 5,
+    marginRight: 15,
+  }
 });

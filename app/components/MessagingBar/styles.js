@@ -3,24 +3,35 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
   flexHorizontal: {
     alignItems: 'center',
-    height: 40,
+    minHeight: 40,
+    maxHeight: 80,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'lightgrey',
     borderTopWidth: 2
   },
   bar: {
-    height: 30,
+    marginTop: 5,
+    marginBottom: 5,
+    minHeight: 30,
+    maxHeight: 60,
     width: '85%',
     backgroundColor: 'white',
     borderRadius: 20,
     marginLeft: 10,
     borderWidth: 2,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
+    textAlign: 'left',
+    justifyContent: 'center',
+    paddingLeft: 15,
+    paddingRight: 15,
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
   },
   sendBtn: {
+    fontFamily: 'Poppins-Regular',
     color: 'skyblue',
     marginLeft: 10,
-    fontSize: 28
+    fontSize: 32
   }
 });

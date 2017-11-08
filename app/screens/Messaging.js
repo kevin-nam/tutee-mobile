@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {StatusBar, KeyboardAvoidingView, Text} from 'react-native';
+import {Platform, TouchableOpacity, KeyboardAvoidingView, Text, View} from 'react-native';
 import {Container} from '../components/Container';
 import {MessagingHeader} from '../components/MessagingHeader';
 import {MessagingBody} from '../components/MessagingBody';
 import {MessagingBar} from '../components/MessagingBar';
 import {MessageBubble} from '../components/MessageBubble';
 import firebaseDbh from '../config/firebase';
+
+const keyboardVerticalOffset = Platform.OS === 'ios' ? 7 : 32;
 
 class Messaging extends React.Component {
 
@@ -126,6 +128,10 @@ class Messaging extends React.Component {
     this.state.dbref.off();
   }
 
+  scrollToBottom = () => {
+    console.log('messagingbody:', this.body);
+  };
+
   // TODO: send actual user name rather than uid
   render() {
     const messages = this.state.messages;
@@ -134,21 +140,19 @@ class Messaging extends React.Component {
     const username = this.state.username;
     const profile_picture = this.state.profile_picture;
 
-
     if (!this.state.loading) {
       return (
-        <Container backgroundColor="#9E768F">
-          <StatusBar barStyle="light-content"/>
+        <View style={{flex: 1, backgroundColor:"white"}}>
           <KeyboardAvoidingView
             behavior='padding'
             style={{'flex': 1, 'alignSelf': 'stretch'}}
-            keyboardVerticalOffset={60}
+            keyboardVerticalOffset={keyboardVerticalOffset}
           >
             <MessagingHeader navigation={this.props.navigation} profile_picture={profile_picture} isTutor={isTutor} uid={uid} username={username} isInverseUidRef={this.state.isInverseUidRef}/>
             <MessagingBody messages={messages}/>
             <MessagingBar displayNewMessage={this.sendNewMessage}/>
           </KeyboardAvoidingView>
-        </Container>
+        </View>
       );
     } else {
       return null;

@@ -1,15 +1,20 @@
 import React from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 import styles from './styles';
 
 const MessagingHeader = ({ username, uid, navigation, isTutor, isInverseUidRef, profile_picture }) => {
 
-  // TODO: replace profile image with actual image
   return (
     <View style={styles.flexHorizontal}>
+      <View style={styles.backBtnView}>
+        <TouchableOpacity onPress={() => {navigation.goBack()}}>
+          <Icon name="arrow-back" color="black" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.profileImageView}>
-        {profile_picture ? <Image style={styles.profileImage} source={{uri: profile_picture }}/> : <Image style={styles.profileImage} source={require('./default-user.jpg')}/>}
+        {profile_picture ? <Image borderRadius={25} resizeMode="cover" style={styles.profileImage} source={{uri: profile_picture }}/> : <Image borderRadius={25} resizeMode="cover" style={styles.profileImage} source={require('./default-user.jpg')}/>}
       </View>
       <View style={styles.profileInfo}>
         <Text style={styles.profileText}>
