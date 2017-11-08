@@ -34,6 +34,7 @@ export default EStyleSheet.create({
     color: () =>
       color(EStyleSheet.value('$facebookBlue'))
         .darken(0.5)
-        .hexString(),
+        .hex()
+        .string(),
   },
 });

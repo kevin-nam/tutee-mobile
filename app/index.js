@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import firebaseDbh from './config/firebase';
 import { Notifications, Permissions, Font } from 'expo';
-import { NavigationActions } from 'react-navigation';
 
 import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actions';
@@ -21,9 +20,10 @@ EStyleSheet.build({
   $baseGreen: '#5CB85C',
 
   // accent color set
-  $grayLigthen50: '#F6F6F6',
-  $grayLigthen45: '#EAEAEA',
-  $grayLigthen40: '#DDDDDD',
+  $grayLightest: '#FEFEFE',
+  $grayLighten50: '#F6F6F6',
+  $grayLighten45: '#EAEAEA',
+  $grayLighten40: '#DDDDDD',
   $grayLighten35: '#D0D0D0',
   $blueDarken30: '#1D869B',
 

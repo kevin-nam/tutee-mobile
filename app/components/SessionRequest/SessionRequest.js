@@ -80,7 +80,9 @@ class SessionRequest extends React.Component {
       }
     });
 
-    this.props.navigation.dispatch(sessionActions.showInSession(this.props.content));
+    this.props.navigation.dispatch(
+      sessionActions.showInSession(this.props.content)
+    );
   };
 
   onPressReject = () => {
@@ -136,7 +138,7 @@ class SessionRequest extends React.Component {
             <TouchableOpacity
               onPress={this.onPressReject}
               style={styles.rejectBtn}
-              >
+            >
               <Text style={styles.rejectText}>Reject</Text>
             </TouchableOpacity>
           </View>

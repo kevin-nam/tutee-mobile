@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Container } from '../components/Container';
-import SessionRequest from "../components/SessionRequest/SessionRequest";
+import { SessionRequest } from '../components/SessionRequest';
 
 class Session extends React.Component {
   static propTypes = {
@@ -22,11 +22,5 @@ class Session extends React.Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Session));
 
 export default Session;

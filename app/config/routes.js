@@ -21,7 +21,8 @@ import index from '../index';
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
 const ICON_COLOR = 'white';
-const TAB_BACKGROUND_COLOR = 'black';
+// TODO: find a way to make this use var $baseBlue
+const TAB_BACKGROUND_COLOR = '#69D2E7';
 
 const ConnectionStack = StackNavigator(
   {
