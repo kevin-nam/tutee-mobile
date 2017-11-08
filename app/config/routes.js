@@ -38,6 +38,7 @@ const ConnectionStack = StackNavigator(
       screen: Messaging,
       navigationOptions: {
         headerTitle: 'Messaging',
+        header: () => null,
       },
     },
     PendingRequests: {

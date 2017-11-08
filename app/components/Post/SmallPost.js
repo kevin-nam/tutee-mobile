@@ -34,8 +34,9 @@ const SmallPost = ({
           <Text style={styles.smallTitle}>{title}</Text>
         </View>
       </TouchableHighlight>
+
       <View style={styles.body}>
-        <Text numberOfLines={3} ellipsizeMode="tail" style={styles.content}>
+        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.content}>
           {content}
         </Text>
       </View>

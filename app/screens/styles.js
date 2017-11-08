@@ -23,6 +23,18 @@ const styles = EStyleSheet.create({
     fontSize: 50,
     textAlign: 'center',
   },
+  searchLandingList: {
+    marginTop: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    backgroundColor: 'transparent',
+    marginVertical: 5,
+  },
+  searchLandingErrorText: {
+    fontFamily: 'Poppins-SemiBoldItalic',
+    fontSize: 25,
+    color: '$baseGray',
+  },
 });
 
 export default styles;

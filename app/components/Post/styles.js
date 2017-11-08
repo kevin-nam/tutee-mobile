@@ -10,7 +10,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'white',
     width: SCREEN_WIDTH,
-    marginVertical: 20,
+    marginVertical: 10,
     paddingBottom: 5,
     elevation: 4,
   },
@@ -26,18 +26,18 @@ const styles = EStyleSheet.create({
     width: SCREEN_WIDTH,
     paddingHorizontal: 10,
     paddingVertical: 10,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: '$baseCoral',
   },
   title: {
-    fontWeight: '800',
     fontSize: 25,
+    fontFamily: 'Poppins-Regular',
   },
   smallTitle: {
     paddingHorizontal: 10,
-    fontWeight: '600',
     fontSize: 20,
     flex: 1,
+    fontFamily: 'Poppins-Regular',
   },
   author: {
     flexDirection: 'row',
@@ -54,6 +54,7 @@ const styles = EStyleSheet.create({
     fontWeight: '400',
     fontSize: 20,
     flex: 1,
+    fontFamily: 'Poppins-Italic',
   },
   body: {
     paddingVertical: 10,
@@ -63,7 +64,8 @@ const styles = EStyleSheet.create({
     width: SCREEN_WIDTH,
   },
   content: {
-    textAlign: 'right',
+    textAlign: 'left',
+    fontFamily: 'Poppins-Light',
   },
   titleInput: {
     flex: 1,
@@ -77,8 +79,8 @@ const styles = EStyleSheet.create({
     alignItems: 'baseline',
   },
   date: {
-    fontWeight: '300',
     color: '$baseGray',
+    fontFamily: 'Poppins-ExtraLight',
   },
   tagSection: {
     width: SCREEN_WIDTH,
@@ -87,6 +89,7 @@ const styles = EStyleSheet.create({
   },
   tags: {
     color: '$baseGray',
+    fontFamily: 'Poppins-Thin',
   },
   actionButton: {
     marginRight: 8,

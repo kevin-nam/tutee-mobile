@@ -5,6 +5,9 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Text,
+  Image,
+  View,
+  Dimensions,
 } from 'react-native';
 import { List } from 'react-native-elements';
 // import { connect } from 'react-redux';
@@ -12,6 +15,7 @@ import { List } from 'react-native-elements';
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { SmallPost } from '../components/Post';
+import styles from './styles';
 
 class SearchLandingPage extends React.Component {
   static propTypes = {
@@ -59,20 +63,24 @@ class SearchLandingPage extends React.Component {
         }
       })
       .then((data) => {
-        // Get Profile Data for each found post
-        const postList = [];
-        let i = 0;
-        data.forEach((post) => {
-          this.getProfileData(post.uid, (userData) => {
-            console.log(userData);
-            postList.push({ user: userData, post: post });
+        if (data.length == 0) {
+          this.setState({ loading: false });
+        } else {
+          // Get Profile Data for each found post
+          const postList = [];
+          let i = 0;
+          data.forEach((post) => {
+            this.getProfileData(post.uid, (userData) => {
+              console.log(userData);
+              postList.push({ user: userData, post: post });
 
-            // If last profile to get
-            if (++i === data.length) {
-              this.setState({ postList: postList, loading: false });
-            }
+              // If last profile to get
+              if (++i === data.length) {
+                this.setState({ postList: postList, loading: false });
+              }
+            });
           });
-        });
+        }
       });
   };
 
@@ -100,8 +108,23 @@ class SearchLandingPage extends React.Component {
   };
 
   render() {
+    const SCREEN_WIDTH = Dimensions.get('window').width;
     const navigation = this.state.navigation;
-    let posts = <Text>No posts found</Text>;
+    const errorImage = require('../../assets/images/86.png');
+    let image = (
+      <Image
+        style={{
+          width: SCREEN_WIDTH,
+        }}
+        resizeMode="contain"
+        source={errorImage}
+      />
+    );
+    let posts = (
+      <Text style={styles.searchLandingErrorText}>
+        Error 86 - No posts found!
+      </Text>
+    );
     if (this.state.postList && this.state.postList.length > 0) {
       posts = this.state.postList.map(function(data, index) {
         return (
@@ -121,24 +144,22 @@ class SearchLandingPage extends React.Component {
     }
 
     if (!this.state.loading) {
+      if (this.state.postList.length > 0) {
+        return (
+          <Container color={false}>
+            <StatusBar barStyle="light-content" />
+            <KeyboardAvoidingView behavior="padding">
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <List containerStyle={styles.searchLandingList}>{posts}</List>
+              </ScrollView>
+            </KeyboardAvoidingView>
+          </Container>
+        );
+      }
       return (
         <Container backgroundColor="#9E768F">
-          <StatusBar barStyle="light-content" />
-          <KeyboardAvoidingView behavior="padding">
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <List
-                containerStyle={{
-                  marginTop: 0,
-                  borderTopWidth: 0,
-                  borderBottomWidth: 0,
-                  backgroundColor: 'transparent',
-                  marginVertical: 5,
-                }}
-              >
-                {posts}
-              </List>
-            </ScrollView>
-          </KeyboardAvoidingView>
+          <View>{image}</View>
+          <View>{posts}</View>
         </Container>
       );
     } else {
