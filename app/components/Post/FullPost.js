@@ -181,7 +181,9 @@ class FullPost extends React.Component {
             </View>
           </View>
           <View style={styles.body}>
-            <Text>{this.props.post.description}</Text>
+            <Text style={{ fontFamily: 'Poppins-Light' }}>
+              {this.props.post.description}
+            </Text>
           </View>
           <View style={styles.footer}>
             <Text style={styles.date}>

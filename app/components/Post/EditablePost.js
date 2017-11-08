@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { View, TextInput, Button } from 'react-native';
 import { AutoExpandingTextInput } from '../TextInput';
+import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
