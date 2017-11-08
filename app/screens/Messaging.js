@@ -128,11 +128,6 @@ class Messaging extends React.Component {
     this.state.dbref.off();
   }
 
-  scrollToBottom = () => {
-    console.log('messagingbody:', this.body);
-  };
-
-  // TODO: send actual user name rather than uid
   render() {
     const messages = this.state.messages;
     const uid = this.state.toUid;
