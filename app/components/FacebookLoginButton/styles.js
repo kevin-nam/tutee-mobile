@@ -27,7 +27,7 @@ export default EStyleSheet.create({
     paddingVertical: 20,
     paddingLeft: 20,
     fontFamily: 'Poppins-Bold',
-    fontSize: 20,
+    fontSize: 16,
     color: 'white',
   },
   $underlayColor: {
