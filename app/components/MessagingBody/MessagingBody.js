@@ -9,10 +9,18 @@ class MessagingBody extends React.Component {
     super(props);
   }
 
+  scrollToBottom = () => {
+    this.view.scrollToEnd({animated: false});
+  }
+
   componentDidMount() {
     setTimeout(() => {
-      this.view.scrollToEnd({animated: false});
+      this.scrollToBottom();
     }, 500);
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   render() {
