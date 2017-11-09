@@ -26,11 +26,11 @@ class Messaging extends React.Component {
       username: this.props.navigation.state.params.username,
       profile_picture: this.props.navigation.state.params.profile_picture,
     }
+
+    this.refs = {}
   }
 
   componentDidMount() {
-    console.log('fromUid: ' + this.state.fromUid + ", toUid: " + this.state.toUid);
-
     const listener = this.listenForMessages;
 
     // connect to a Firebase table
@@ -78,8 +78,6 @@ class Messaging extends React.Component {
 
   sendNewMessage = (text) => {
     // TODO: use uid of users
-
-
 
     // Since reference in firebase database is uidTutor-uidTutee
     if (this.state.isInverseUidRef) {
@@ -143,7 +141,7 @@ class Messaging extends React.Component {
             style={{'flex': 1, 'alignSelf': 'stretch'}}
             keyboardVerticalOffset={keyboardVerticalOffset}
           >
-            <MessagingHeader navigation={this.props.navigation} profile_picture={profile_picture} isTutor={isTutor} uid={uid} username={username} isInverseUidRef={this.state.isInverseUidRef}/>
+            <MessagingHeader dbref={this.state.dbref} navigation={this.props.navigation} profile_picture={profile_picture} isTutor={isTutor} uid={uid} username={username} isInverseUidRef={this.state.isInverseUidRef}/>
             <MessagingBody messages={messages}/>
             <MessagingBar displayNewMessage={this.sendNewMessage}/>
           </KeyboardAvoidingView>

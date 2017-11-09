@@ -4,12 +4,15 @@ import { Icon } from 'react-native-elements';
 
 import styles from './styles';
 
-const MessagingHeader = ({ username, uid, navigation, isTutor, isInverseUidRef, profile_picture }) => {
+const MessagingHeader = ({ username, uid, navigation, isTutor, isInverseUidRef, profile_picture, dbref }) => {
 
   return (
     <View style={styles.flexHorizontal}>
       <View style={styles.backBtnView}>
-        <TouchableOpacity onPress={() => {navigation.goBack()}}>
+        <TouchableOpacity onPress={() => {
+          dbref.off();
+          navigation.goBack();
+        }}>
           <Icon name="arrow-back" color="black" />
         </TouchableOpacity>
       </View>

@@ -27,6 +27,7 @@ class StartASession extends React.Component {
 
     if (this.state.duration > 0 && this.state.rate > 0) {
       const toUid = this.props.navigation.state.params.uid;
+      const myUsername = store.getState().user.username;
       const myUid = store.getState().user.uid;
       const sendMessage = this.sendSystemMessage;
       const rate = this.state.rate;
@@ -54,7 +55,7 @@ class StartASession extends React.Component {
           console.log('Error sending session request', message);
         }
         sendMessage(
-          myUid +
+          myUsername +
             ' sent a session request: $' +
             rate +
             '/hr' +

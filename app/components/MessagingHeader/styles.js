@@ -44,7 +44,7 @@ export default EStyleSheet.create({
     width: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 0,
+    height: 47,
     marginRight: 15,
     borderRadius: 25,
     backgroundColor: '$baseCoral'
