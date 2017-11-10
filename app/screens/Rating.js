@@ -57,7 +57,7 @@ class Rating extends React.Component {
 
   render() {
     return (
-      <Container backgroundColor={'rgba(1, 1, 1, 0.5)'}>
+      <Container color={false}>
         <RatingProp
           onChangeRating={this.handleChangeRating}
           onSubmit={this.handleSubmitRating}

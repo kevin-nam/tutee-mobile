@@ -103,14 +103,26 @@ const styles = EStyleSheet.create({
     color: '$baseCoral',
     fontSize: 18,
   },
-  $createButtonBackgroundColor: () => EStyleSheet.value('$baseBlue'),
-  $createButtonUnderlayColor: () => EStyleSheet.value('$blueDarken30'),
-  containerViewStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    borderRadius: 100,
+  createPostBtnContainer: {
+    marginTop: 10,
+    paddingRight: 10,
+    paddingLeft: 5,
     backgroundColor: '$baseBlue',
+    width: SCREEN_WIDTH * 0.6,
+    borderRadius: SCREEN_WIDTH * 0.6 / 2,
+  },
+  createPostBtnWrapper: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+  },
+  createPostBtnText: {
+    paddingVertical: 10,
+    paddingLeft: 10,
+    fontFamily: 'Poppins-Bold',
+    fontSize: 20,
+    color: 'white',
   },
   ratingText: {
     fontSize: 12,

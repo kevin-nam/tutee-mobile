@@ -1,17 +1,16 @@
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import styles from './styles';
 
 class MessagingBody extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
   scrollToBottom = () => {
-    this.view.scrollToEnd({animated: false});
-  }
+    this.view.scrollToEnd({ animated: false });
+  };
 
   componentDidMount() {
     setTimeout(() => {
@@ -28,13 +27,12 @@ class MessagingBody extends React.Component {
 
     return (
       <ScrollView
-        contentContainerStyle={{flexGrow: 1}}
-        ref={input => {
-          this.view = input
-        }}>
-        <View style={styles.flexHorizontal}>
-          {msg}
-        </View>
+        contentContainerStyle={styles.scrollView}
+        ref={(input) => {
+          this.view = input;
+        }}
+      >
+        <View style={styles.flexHorizontal}>{msg}</View>
       </ScrollView>
     );
   }
