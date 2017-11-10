@@ -30,8 +30,10 @@ const styles = EStyleSheet.create({
     backgroundColor: '$baseCoral',
   },
   title: {
-    fontSize: 25,
+    fontSize: 18,
     fontFamily: 'Poppins-Regular',
+    marginLeft: 5,
+    marginTop: 5,
   },
   smallTitle: {
     paddingHorizontal: 10,
@@ -50,10 +52,9 @@ const styles = EStyleSheet.create({
     height: 50,
   },
   user: {
-    paddingHorizontal: 10,
+    marginLeft: 5,
     fontWeight: '400',
-    fontSize: 20,
-    flex: 1,
+    fontSize: 14,
     fontFamily: 'Poppins-Italic',
   },
   body: {
@@ -110,6 +111,16 @@ const styles = EStyleSheet.create({
     flex: 1,
     borderRadius: 100,
     backgroundColor: '$baseBlue',
+  },
+  ratingText: {
+    fontSize: 12,
+    color: '#ffc300',
+    marginLeft: 4,
+  },
+  ratingView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 });
 

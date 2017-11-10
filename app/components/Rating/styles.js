@@ -2,7 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
   container: {
-    'flexDirection': 'row',
+    flexDirection: 'row',
     '@media ios': {
       paddingTop: 20,
     },
