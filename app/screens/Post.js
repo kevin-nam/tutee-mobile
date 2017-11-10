@@ -77,7 +77,7 @@ class Post extends React.Component {
   render() {
     if (!this.state.loading) {
       return (
-        <Container backgroundColor="#9E768F">
+        <Container color={false}>
           <StatusBar barStyle="light-content" />
           <KeyboardAvoidingView behavior="padding">
             <ScrollView showsVerticalScrollIndicator={false}>

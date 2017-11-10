@@ -1,6 +1,7 @@
-import { Button } from 'react-native-elements';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TouchableOpacity, View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
@@ -15,22 +16,20 @@ class CreatePostButton extends React.Component {
   }
   render() {
     return (
-      <Button
-        title="CREATE POST"
-        raised
-        iconLeft
-        icon={{ name: 'add' }}
+      <TouchableOpacity
         onPress={() =>
           this.props.navigation.navigate('ModifyPost', {
             uid: this.props.uid,
             edit: false,
           })}
-        backgroundColor={styles.$createButtonBackgroundColor}
-        underlayColor={styles.$createButtonUnderlayColor}
-        fontWeight="500"
-        containerViewStyle={styles.containerViewStyle}
-        borderRadius={100}
-      />
+        style={styles.createPostBtnContainer}
+        activeOpacity={0.5}
+      >
+        <View style={styles.createPostBtnWrapper}>
+          <Icon name="plus" size={20} color="white" />
+          <Text style={styles.createPostBtnText}>Create Post</Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 }

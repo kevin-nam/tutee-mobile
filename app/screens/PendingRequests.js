@@ -50,7 +50,7 @@ class PendingRequests extends React.Component {
           if (connection.isPending && !connection.isRequesting) {
             // Get Profile Data for each pending connection
             this.getProfileData(connection.uid, (user) => {
-              pendingConnections.push({user: user, uid: connection.uid});
+              pendingConnections.push({ user: user, uid: connection.uid });
 
               this.setState({
                 loading: false,
@@ -59,8 +59,6 @@ class PendingRequests extends React.Component {
             });
           }
         });
-
-
       });
   }
 
@@ -76,7 +74,7 @@ class PendingRequests extends React.Component {
           callback({
             profile_picture: '',
             username: uid,
-          })
+          });
         }
       })
       .then((data) => {
@@ -86,7 +84,7 @@ class PendingRequests extends React.Component {
           callback({
             profile_picture: '',
             username: uid,
-          })
+          });
         }
       });
   };
@@ -96,11 +94,13 @@ class PendingRequests extends React.Component {
       const pendingCards = [];
       let i = 0;
       this.state.pendingConnections.forEach(function(connection) {
-        pendingCards.push(<RequestCard key={i++} user={connection.user} uid={connection.uid} />);
+        pendingCards.push(
+          <RequestCard key={i++} user={connection.user} uid={connection.uid} />
+        );
       });
 
       return (
-        <Container backgroundColor={'#9E768F'}>
+        <Container color={false}>
           <Header
             statusBarProps={{
               barStyle: 'light-content',
@@ -136,11 +136,5 @@ class PendingRequests extends React.Component {
     }
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Connections));
 
 export default PendingRequests;

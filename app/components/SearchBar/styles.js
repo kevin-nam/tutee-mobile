@@ -16,9 +16,7 @@ const styles = EStyleSheet.create({
     borderTopWidth: 0,
   },
   inputStyle: {
-    backgroundColor: '$grayLighten35',
-  },
-  placeholderTextColor: {
+    backgroundColor: '$grayLighten50',
     color: '$baseGray',
   },
 });

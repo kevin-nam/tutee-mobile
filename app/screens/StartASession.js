@@ -136,7 +136,7 @@ class StartASession extends React.Component {
       }
 
       return (
-        <Container backgroundColor={'#9E768F'}>
+        <Container color={false}>
           <Text>Tutee:</Text>
           <Text
             style={{

@@ -20,11 +20,12 @@ EStyleSheet.build({
   $baseGreen: '#5CB85C',
 
   // accent color set
-  $grayLightest: '#FEFEFE',
   $grayLighten50: '#F6F6F6',
   $grayLighten45: '#EAEAEA',
   $grayLighten40: '#DDDDDD',
   $grayLighten35: '#D0D0D0',
+  $grayLighten30: '#C4C4C4',
+  $grayLighten25: '#B7B7B7',
   $blueDarken30: '#1D869B',
 
   // other

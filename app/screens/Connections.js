@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
   ScrollView,
-  KeyboardAvoidingView,
   Text,
   TouchableOpacity,
   RefreshControl,
@@ -12,7 +11,7 @@ import {
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { ConnectionCard } from '../components/ConnectionCard';
-import { Header, List, ListItem, Icon } from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
 import store from '../store/store';
 
 class Connections extends React.Component {
@@ -93,7 +92,7 @@ class Connections extends React.Component {
       });
 
       return (
-        <Container backgroundColor={'#9E768F'}>
+        <Container color={false}>
           <Header
             statusBarProps={{
               barStyle: 'light-content',
@@ -151,11 +150,5 @@ class Connections extends React.Component {
     }
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Connections));
 
 export default Connections;

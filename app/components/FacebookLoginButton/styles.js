@@ -1,6 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
-import color from 'color';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -29,12 +28,5 @@ export default EStyleSheet.create({
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
     color: 'white',
-  },
-  $underlayColor: {
-    color: () =>
-      color(EStyleSheet.value('$facebookBlue'))
-        .darken(0.5)
-        .hex()
-        .string(),
   },
 });

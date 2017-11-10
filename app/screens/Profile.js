@@ -64,7 +64,7 @@ class Profile extends React.Component {
     // Need to check if uid and user are ok
     if (uid && user) {
       return (
-        <Container backgroundColor="#9E768F">
+        <Container color={false}>
           <StatusBar barStyle="light-content" />
           <View
             style={{
@@ -84,11 +84,5 @@ class Profile extends React.Component {
     }
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Profile));
 
 export default Profile;
