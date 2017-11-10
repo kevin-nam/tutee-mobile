@@ -1,13 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  Platform,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Text,
-  View,
-} from 'react-native';
-import { Container } from '../components/Container';
+import { Platform, KeyboardAvoidingView, View } from 'react-native';
 import { MessagingHeader } from '../components/MessagingHeader';
 import { MessagingBody } from '../components/MessagingBody';
 import { MessagingBar } from '../components/MessagingBar';
@@ -31,13 +24,11 @@ class Messaging extends React.Component {
       username: this.props.navigation.state.params.username,
       profile_picture: this.props.navigation.state.params.profile_picture,
     };
+
+    this.refs = {};
   }
 
   componentDidMount() {
-    console.log(
-      'fromUid: ' + this.state.fromUid + ', toUid: ' + this.state.toUid
-    );
-
     const listener = this.listenForMessages;
 
     // connect to a Firebase table
@@ -152,6 +143,7 @@ class Messaging extends React.Component {
             keyboardVerticalOffset={keyboardVerticalOffset}
           >
             <MessagingHeader
+              dbref={this.state.dbref}
               navigation={this.props.navigation}
               profile_picture={profile_picture}
               isTutor={isTutor}
