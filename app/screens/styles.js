@@ -37,12 +37,11 @@ const styles = EStyleSheet.create({
     marginBottom: 20,
     alignContent: 'center',
   },
-  // homeImage: {
-  //   flex: 1,
-  //   height: '30%',
-  //   width: '30%',
-  //   resizeMode: 'contain',
-  // },
+  homeBadgeSectionView: {
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   homeWelcomeText: {
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',

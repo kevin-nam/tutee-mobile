@@ -82,14 +82,17 @@ class Home extends React.Component {
   render() {
     const navigation = this.props.navigation;
     let welcomeText = (
-      <Text style={styles.homeWelcomeText}>{this.state.welcomeMessage}</Text>
+      <Text allowFontScaling={false} style={styles.homeWelcomeText}>
+        {this.state.welcomeMessage}
+      </Text>
     );
 
     let tags =
       this.state.recentTags.length > 0 ? (
-        this.state.recentTags.map(function(tag) {
+        this.state.recentTags.map(function(tag, index) {
           return (
             <Badge
+              key={index}
               containerStyle={styles.homeBadgeContainer}
               textStyle={styles.homeBadgeText}
               value={'#' + tag}
@@ -102,7 +105,7 @@ class Home extends React.Component {
           );
         })
       ) : (
-        <Text style={styles.homeNoTagPhrase}>
+        <Text allowFontScaling={false} style={styles.homeNoTagPhrase}>
           {'What?! No #Tags?? \n\n ΣΣ(ﾟДﾟ;)'}
         </Text>
       );
@@ -116,21 +119,12 @@ class Home extends React.Component {
         />
         <View style={styles.homeMainView}>
           {welcomeText}
-          {
-            <Image
-              style={styles.homeImage}
-              source={require('../../assets/images/corgipon.png')}
-            />
-          }
-          <Text style={styles.homeCatchPhrase}>Let's get learning!</Text>
-          <View
-            style={{
-              marginVertical: 10,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text style={styles.homeTagPhrase}>
+          {<Image source={require('../../assets/images/corgipon.png')} />}
+          <Text allowFontScaling={false} style={styles.homeCatchPhrase}>
+            Let's get learning!
+          </Text>
+          <View style={styles.homeBadgeSectionView}>
+            <Text allowFontScaling={false} style={styles.homeTagPhrase}>
               Some of the most recent #Tags
             </Text>
             <View style={styles.homeBadgeView}>{tags}</View>
