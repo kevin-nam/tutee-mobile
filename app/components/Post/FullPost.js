@@ -12,6 +12,7 @@ import {
 import moment from 'moment';
 import styles from './styles';
 import store from '../../store/store';
+import { Icon } from 'react-native-elements';
 
 class FullPost extends React.Component {
   static propTypes = {
@@ -177,9 +178,22 @@ class FullPost extends React.Component {
                   borderRadius={50}
                 />
               </TouchableHighlight>
-              <Text style={styles.user}>{this.props.user.username}</Text>
+              <View style={{ marginLeft: 5 }}>
+                <Text style={styles.user}>{this.props.user.username}</Text>
+                {this.props.user.rating !== -1 ? (
+                  <View style={styles.ratingView}>
+                    <Icon name="star" color="#ffc300" size={14} />
+                    <Text style={styles.ratingText}>
+                      {this.props.user.rating}/5
+                    </Text>
+                  </View>
+                ) : (
+                  <Text style={styles.ratingText}>New Tutor !</Text>
+                )}
+              </View>
             </View>
           </View>
+
           <View style={styles.body}>
             <Text style={{ fontFamily: 'Poppins-Light' }}>
               {this.props.post.description}

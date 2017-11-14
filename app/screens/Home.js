@@ -1,54 +1,63 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  StatusBar,
-  KeyboardAvoidingView,
-  Text,
-  View,
-  ScrollView,
-  RefreshControl,
-  AsyncStorage,
-} from 'react-native';
+import { StatusBar, Text, View, Image, AsyncStorage } from 'react-native';
+import { Badge } from 'react-native-elements';
 import { CreatePostButton } from '../components/Post';
 import { Container } from '../components/Container';
-import { SessionCard } from '../components/SessionCard';
 import { HomeSearchBar } from '../components/SearchBar';
 import store from '../store/store';
+import styles from './styles';
 
 class Home extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
     this.setWelcomeMessage = this.setWelcomeMessage.bind(this);
     this.state = {
+      recentTags: [],
       welcomeMessage: 'Welcome!',
       tempuid: '',
       searchedTags: '',
-      loading: true,
-      pendingSessions: [],
-      refreshing: false,
     };
   }
 
   // Runs before render
   componentWillMount() {
+    this.getRecentTags(6);
     this.setWelcomeMessage();
     this.tempFunc();
   }
 
-  static propTypes = {
-    navigation: PropTypes.object,
+  getRecentTags = (num) => {
+    fetch('http://138.197.159.56:3232/tags/recentTags/' + num, {
+      method: 'GET',
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.log('Error when getting recent tags ');
+        }
+      })
+      .then((data) => {
+        this.setState({ recentTags: data });
+      });
   };
 
   setWelcomeMessage = async () => {
     try {
       const name = store.getState().user.username;
-      this.setState({ welcomeMessage: 'Welcome, \n' + name + '!' });
+      const firstName = name.split(' ')[0];
+      this.setState({ welcomeMessage: 'Hey, ' + firstName + '!' });
     } catch (error) {
       console.log('Something went wrong when getting user name.');
     }
   };
 
-  handlePressSearch = (value) => {
+  handlePressSearch = () => {
     if (this.state.searchedTags.length != 0) {
       console.log('Submitted search');
 
@@ -70,100 +79,33 @@ class Home extends React.Component {
     await this.setState({ tempuid: uid });
   };
 
-  componentDidMount() {
-    this.getPendingSessions();
-  }
-
-  getPendingSessions = () => {
-    const uid = store.getState().user.uid;
-
-    fetch('http://138.197.159.56:3232/session/get/' + uid, {
-      method: 'GET',
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log('Successfully got session data for ' + uid);
-          if (response._bodyText) {
-            return response.json();
-          }
-        } else {
-          console.log('Error when getting session data for ' + uid);
-        }
-      })
-      .then((data) => {
-        if (data) {
-          const pendingSessions = [];
-
-          Object.entries(data).forEach(([key, value]) => {
-            if (value.status == 'PENDING') {
-              pendingSessions.push({
-                sid: key,
-                tid: value.tid,
-                duration: value.duration,
-                rate: value.rate,
-              });
-            }
-          });
-
-          this.setState({
-            loading: false,
-            pendingSessions: pendingSessions,
-            refreshing: false,
-          });
-        }
-      });
-  };
-
-  _onRefresh() {
-    this.setState({ refreshing: true });
-    this.getPendingSessions();
-  }
-
   render() {
-    let welcomeMessage = function(t) {
-      return (
-        <Text
-          style={{
-            fontFamily: 'Poppins-BoldItalic',
-            textAlign: 'center',
-            color: '#777777',
-            fontSize: 24,
-          }}
-        >
-          {t}
+    const navigation = this.props.navigation;
+    let welcomeText = (
+      <Text style={styles.homeWelcomeText}>{this.state.welcomeMessage}</Text>
+    );
+
+    let tags =
+      this.state.recentTags.length > 0 ? (
+        this.state.recentTags.map(function(tag) {
+          return (
+            <Badge
+              containerStyle={styles.homeBadgeContainer}
+              textStyle={styles.homeBadgeText}
+              value={'#' + tag}
+              onPress={() => {
+                navigation.navigate('SearchLandingPage', {
+                  tagList: tag,
+                });
+              }}
+            />
+          );
+        })
+      ) : (
+        <Text style={styles.homeNoTagPhrase}>
+          {'What?! No #Tags?? \n\n ΣΣ(ﾟДﾟ;)'}
         </Text>
       );
-    };
-
-    const navigate = this.props.navigation;
-    let pendingCards = (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Regular',
-          textAlign: 'center',
-          color: '#777777',
-        }}
-      >
-        No pending sessions
-      </Text>
-    );
-    if (!this.state.loading && this.state.pendingSessions.length > 0) {
-      pendingCards = [];
-      let i = 0;
-      this.state.pendingSessions.forEach(function(session) {
-        pendingCards.push(
-          <SessionCard
-            key={i++}
-            sid={session.sid}
-            tid={session.tid}
-            duration={session.duration}
-            rate={session.rate}
-            navigation={navigate}
-          />
-        );
-        console.log(session);
-      });
-    }
 
     return (
       <Container color={true}>
@@ -172,65 +114,36 @@ class Home extends React.Component {
           onSubmit={this.handlePressSearch}
           onText={this.handleTextChange}
         />
-        <View
-          style={{
-            flex: 1,
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <ScrollView
-            style={{ marginTop: 60, flex: 1 }}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this._onRefresh.bind(this)}
-              />
-            }
-          >
-            <KeyboardAvoidingView behavior="padding">
-              {welcomeMessage(this.state.welcomeMessage)}
-            </KeyboardAvoidingView>
-            <View style={{ width: '100%' }}>
-              <Text
-                style={{
-                  fontFamily: 'Poppins-Regular',
-                  textAlign: 'center',
-                  color: '#777777',
-                }}
-              >
-                Pending Sessions
-              </Text>
-              {pendingCards}
-            </View>
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 18,
-                fontWeight: '600',
-                textDecorationLine: 'underline',
-              }}
-              onPress={() => this.props.navigation.navigate('InSession')}
-            >
-              In Session Test
-            </Text>
-            <CreatePostButton
-              navigation={this.props.navigation}
-              uid={this.state.tempuid}
+        <View style={styles.homeMainView}>
+          {welcomeText}
+          {
+            <Image
+              style={styles.homeImage}
+              source={require('../../assets/images/corgipon.png')}
             />
-          </ScrollView>
+          }
+          <Text style={styles.homeCatchPhrase}>Let's get learning!</Text>
+          <View
+            style={{
+              marginVertical: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={styles.homeTagPhrase}>
+              Some of the most recent #Tags
+            </Text>
+            <View style={styles.homeBadgeView}>{tags}</View>
+          </View>
+        </View>
+        <View style={styles.homeCreatePostButtonView}>
+          <CreatePostButton
+            navigation={this.props.navigation}
+            uid={this.state.tempuid}
+          />
         </View>
       </Container>
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Home));
-
 export default Home;

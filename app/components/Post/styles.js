@@ -36,8 +36,10 @@ const styles = EStyleSheet.create({
     borderRadius: 4,
   },
   title: {
-    fontSize: 25,
+    fontSize: 18,
     fontFamily: 'Poppins-Regular',
+    marginLeft: 5,
+    marginTop: 5,
   },
   smallTitle: {
     marginLeft: 10,
@@ -59,10 +61,10 @@ const styles = EStyleSheet.create({
     height: 50,
   },
   user: {
+    marginLeft: 5,
     paddingHorizontal: 5,
     fontWeight: '400',
-    fontSize: 20,
-    flex: 1,
+    fontSize: 14,
     fontFamily: 'Poppins-Italic',
   },
   body: {
@@ -114,14 +116,36 @@ const styles = EStyleSheet.create({
     color: '$baseCoral',
     fontSize: 18,
   },
-  $createButtonBackgroundColor: () => EStyleSheet.value('$baseBlue'),
-  $createButtonUnderlayColor: () => EStyleSheet.value('$blueDarken30'),
-  containerViewStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    borderRadius: 100,
+  createPostBtnContainer: {
+    marginTop: 10,
+    paddingRight: 10,
+    paddingLeft: 5,
     backgroundColor: '$baseBlue',
+    width: SCREEN_WIDTH * 0.6,
+    borderRadius: SCREEN_WIDTH * 0.6 / 2,
+  },
+  createPostBtnWrapper: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+  },
+  createPostBtnText: {
+    paddingVertical: 10,
+    paddingLeft: 10,
+    fontFamily: 'Poppins-Bold',
+    fontSize: 20,
+    color: 'white',
+  },
+  ratingText: {
+    fontSize: 12,
+    color: '#ffc300',
+    marginLeft: 4,
+  },
+  ratingView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 });
 

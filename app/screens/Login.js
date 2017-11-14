@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, Text, View, AsyncStorage } from 'react-native';
+import { StatusBar, Text, View, Image, AsyncStorage } from 'react-native';
 import { Container } from '../components/Container';
 import { FacebookLoginButton } from '../components/FacebookLoginButton';
 import { NavigationActions } from 'react-navigation';
@@ -102,7 +102,8 @@ class Login extends React.Component {
         <StatusBar />
         <View style={styles.loginView}>
           <View style={styles.loginLogoView}>
-            <Text style={styles.loginLogo}>Tutee Login Page</Text>
+            <Image source={require('../../assets/images/corgilightbulb.gif')} />
+            <Text style={styles.loginLogo}>Tutee</Text>
           </View>
           <View style={styles.loginButtonView}>
             <FacebookLoginButton onPress={this.handlePressFacebookLogin} />

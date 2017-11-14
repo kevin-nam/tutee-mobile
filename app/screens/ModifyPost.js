@@ -57,7 +57,7 @@ class ModifyPost extends React.Component {
       />
     ) : null;
     return (
-      <Container backgroundColor="#9E768F">
+      <Container color={false}>
         <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView behavior="padding">
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -73,11 +73,5 @@ class ModifyPost extends React.Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Home));
 
 export default ModifyPost;

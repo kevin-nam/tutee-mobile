@@ -16,7 +16,7 @@ class InSession extends React.Component {
     const content = this.props.navigation.state.params.content;
 
     return (
-      <Container backgroundColor="#9E768F">
+      <Container color={false}>
         <InSessionView navigation={this.props.navigation} content={content} />
       </Container>
     );

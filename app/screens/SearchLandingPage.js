@@ -165,10 +165,4 @@ class SearchLandingPage extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Home));
-
 export default SearchLandingPage;
