@@ -93,6 +93,7 @@ const styles = EStyleSheet.create({
    * SEARCHLANDINGPAGE STYLE
    */
   searchLandingList: {
+    flex: 1,
     marginTop: 0,
     borderTopWidth: 0,
     borderBottomWidth: 0,

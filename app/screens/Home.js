@@ -87,9 +87,10 @@ class Home extends React.Component {
 
     let tags =
       this.state.recentTags.length > 0 ? (
-        this.state.recentTags.map(function(tag) {
+        this.state.recentTags.map(function(tag, index) {
           return (
             <Badge
+              key={index}
               containerStyle={styles.homeBadgeContainer}
               textStyle={styles.homeBadgeText}
               value={'#' + tag}

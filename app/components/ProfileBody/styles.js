@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
   flexHorizontal: {
     alignItems: 'center',
-    flex: 3,
+    flex: 4,
     flexDirection: 'column',
     backgroundColor: 'white'
   },
@@ -28,7 +28,8 @@ export default EStyleSheet.create({
   contentView: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    alignContent: 'center',
   },
   icon: {
     fontSize: 24,
@@ -46,9 +47,6 @@ export default EStyleSheet.create({
     alignSelf: 'stretch',
   },
   postsView: {
-    marginTop: 15,
-    marginLeft: 15,
-    marginRight: 15,
     flex: 1,
     alignSelf: 'stretch',
     backgroundColor: 'white',
@@ -60,7 +58,11 @@ export default EStyleSheet.create({
     backgroundColor: 'green'
   },
   bioText: {
-    fontSize: 24,
+    fontSize: 14,
+    color: 'black'
+  },
+  noBioText: {
+    fontSize: 14,
     color: 'darkgrey'
   },
   postText: {

@@ -1,40 +1,59 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Platform } from 'react-native';
+
+const marginTopOffset = Platform.OS === 'ios' ? 0 : 10;
 
 export default EStyleSheet.create({
   flexHorizontal: {
+    marginTop: marginTopOffset,
     alignItems: 'center',
-    flex: 1,
+    height: 140 + marginTopOffset * 2,
     flexDirection: 'row',
     justifyContent: 'center'
   },
   profileImageView: {
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 100,
+    width: '45%',
     height: 100,
-    borderRadius: 100,
     overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'gray'
   },
   profileImage: {
-    height: 125,
-    width: 125
+    marginLeft: 5,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: '$grayLighten50'
   },
   profileInfo: {
-    marginTop: 10,
     marginRight: 10,
-    alignItems: 'center',
-    width: 200,
+    alignItems: 'flex-start',
+    width: '50%',
     justifyContent: 'center',
-    height: 100
   },
   profileText: {
+    fontFamily: 'Poppins-Medium',
     color: 'black',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 22,
+  },
+  ratingView: {
+    marginTop: 5,
+    marginRight: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ratingText: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    color: '$baseGray',
+    marginTop: 3,
+  },
+  notRatedYetText: {
+    fontFamily: 'Poppins-Regular',
+    marginTop: 5,
+    fontSize: 12,
+    color: '$baseGray',
   }
 });
