@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, TouchableWithoutFeedback} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import store from '../../store/store';
 import PropTypes from 'prop-types';
@@ -63,10 +64,14 @@ class ConnectionCard extends React.Component {
           <View style={this.props.isTutor ? styles.flexVerticalTutor : styles.flexVertical}>
             <View style={styles.profileImageView}>
               <Image style={styles.profileImage}
+                     borderRadius={25}
                      source={this.state.profile_picture ? {uri: this.state.profile_picture} : require('../MessagingHeader/default-user.jpg')}/>
             </View>
             <View style={styles.profileTextView}>
               <Text style={styles.profileText}>{this.state.username}</Text>
+            </View>
+            <View style={this.props.isTutor ? styles.hidden : styles.studentIconView}>
+              <Icon name="graduation-cap" color="#FF6B6C" size={18} />
             </View>
           </View>
         </TouchableWithoutFeedback>
