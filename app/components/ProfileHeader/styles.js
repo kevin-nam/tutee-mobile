@@ -15,14 +15,14 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     width: 100,
     height: 100,
-    borderRadius: 100,
     overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'gray'
   },
   profileImage: {
-    height: 125,
-    width: 125
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: '$grayLighten50'
   },
   profileInfo: {
     marginTop: 10,
@@ -33,8 +33,27 @@ export default EStyleSheet.create({
     height: 100
   },
   profileText: {
+    fontFamily: 'Poppins-Medium',
     color: 'black',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 24,
+  },
+  ratingView: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ratingText: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    color: '$baseGray',
+    marginTop: 3,
+    marginLeft: 8,
+  },
+  notRatedYetText: {
+    fontFamily: 'Poppins-Regular',
+    marginTop: 5,
+    fontSize: 12,
+    color: '$baseGray',
   }
 });

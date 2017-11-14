@@ -10,9 +10,6 @@ import {
   Dimensions,
 } from 'react-native';
 import { List } from 'react-native-elements';
-// import { connect } from 'react-redux';
-
-// import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { SmallPost } from '../components/Post';
 import styles from './styles';
@@ -148,9 +145,9 @@ class SearchLandingPage extends React.Component {
         return (
           <Container color={false}>
             <StatusBar barStyle="light-content" />
-            <KeyboardAvoidingView behavior="padding">
-              <ScrollView showsVerticalScrollIndicator={false}>
-                <List containerStyle={styles.searchLandingList}>{posts}</List>
+            <KeyboardAvoidingView style={{flex: 1, width: '100%'}} behavior="padding">
+              <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+                <List style={{flex: 1}} containerStyle={styles.searchLandingList}>{posts}</List>
               </ScrollView>
             </KeyboardAvoidingView>
           </Container>

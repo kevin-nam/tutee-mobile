@@ -24,6 +24,7 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
   },
   searchLandingList: {
+    flex: 1,
     marginTop: 0,
     borderTopWidth: 0,
     borderBottomWidth: 0,

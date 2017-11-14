@@ -28,7 +28,7 @@ const SmallPost = ({
               resizeMode="cover"
               style={styles.icon}
               source={userImage}
-              borderRadius={50}
+              borderRadius={25}
             />
           </TouchableHighlight>
           <Text style={styles.smallTitle}>{title}</Text>

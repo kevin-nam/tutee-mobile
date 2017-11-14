@@ -32,10 +32,8 @@ class Profile extends React.Component {
   getProfileData = async () => {
     let uid;
     if (typeof this.props.navigation.state.params !== 'undefined') {
-      console.log('it is NOT undefined');
       uid = this.props.navigation.state.params.otherID;
     } else {
-      console.log('it is undefined');
       uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
     }
 
@@ -75,7 +73,7 @@ class Profile extends React.Component {
             }}
           >
             <ProfileHeader user={user} />
-            <ProfileBody user={user} uid={uid} />
+            <ProfileBody navigation={this.props.navigation} user={user} uid={uid} />
           </View>
         </Container>
       );
