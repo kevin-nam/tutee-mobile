@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { Button, Icon } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 import styles from './styles';
 
