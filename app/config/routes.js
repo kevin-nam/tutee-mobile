@@ -89,6 +89,12 @@ const HomeStack = StackNavigator(
         headerTitle: 'Post',
       },
     },
+    CreatePost: {
+      screen: ModifyPost,
+      navigationOptions: {
+        headerTitle: 'CreatePost',
+      },
+    },
     ModifyPost: {
       screen: ModifyPost,
       navigationOptions: {
