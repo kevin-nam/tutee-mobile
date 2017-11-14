@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Text, Button, Alert } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import { Button, Icon } from 'react-native-elements';
 
 import styles from './styles';
 
@@ -73,8 +74,11 @@ class DeletePostWarning extends React.Component {
           This section is for deleting the post.
         </Text>
         <Button
-          color="red"
+          borderRadius={20}
+          backgroundColor="red"
+          color="white"
           title="Delete Post"
+          fontFamily="Poppins-Medium"
           onPress={() => {
             this.onPressDelete();
           }}

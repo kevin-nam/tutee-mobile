@@ -16,13 +16,13 @@ const styles = EStyleSheet.create({
   },
   warningTitle: {
     fontSize: 30,
-    fontWeight: '800',
     paddingBottom: 7,
+    fontFamily: 'Poppins-Regular',
   },
   warningDesc: {
     fontSize: 18,
-    fontWeight: '500',
     paddingBottom: 20,
+    fontFamily: 'Poppins-Regular',
   },
 });
 

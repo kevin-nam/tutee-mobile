@@ -104,6 +104,14 @@ const styles = EStyleSheet.create({
     fontSize: 25,
     color: '$baseGray',
   },
+  /**
+   * MODIFYPOSTPAGE STYLE
+   */
+  deletePostView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;

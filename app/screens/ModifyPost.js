@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  ScrollView,
+  View,
+} from 'react-native';
 import { NavigationActions } from 'react-navigation';
 // import { connect } from 'react-redux';
 
@@ -8,6 +13,7 @@ import { NavigationActions } from 'react-navigation';
 import { Container } from '../components/Container';
 import { EditablePost } from '../components/Post';
 import { DeletePostWarning } from '../components/DeleteWarning';
+import styles from './styles';
 
 class ModifyPost extends React.Component {
   static propTypes = {
@@ -66,7 +72,7 @@ class ModifyPost extends React.Component {
               edit={this.state.edit}
               navigation={this.props.navigation}
             />
-            {deletePost}
+            <View style={styles.deletePostView}>{deletePost}</View>
           </ScrollView>
         </KeyboardAvoidingView>
       </Container>

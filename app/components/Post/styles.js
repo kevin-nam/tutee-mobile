@@ -70,6 +70,7 @@ const styles = EStyleSheet.create({
   },
   titleInput: {
     flex: 1,
+    fontFamily: 'Poppins-Regular',
   },
   footer: {
     width: SCREEN_WIDTH,
@@ -102,6 +103,16 @@ const styles = EStyleSheet.create({
   editMessageText: {
     color: '$baseCoral',
     fontSize: 18,
+  },
+  cancelMessageText: {
+    color: '$baseRed',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
+  },
+  saveMessageText: {
+    color: '$baseGreen',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
   },
   createPostBtnContainer: {
     marginTop: 10,
