@@ -11,7 +11,8 @@ import {
 // import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { ConnectionCard } from '../components/ConnectionCard';
-import { Header, Icon } from 'react-native-elements';
+import { Header } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import store from '../store/store';
 
 class Connections extends React.Component {
@@ -94,19 +95,27 @@ class Connections extends React.Component {
       return (
         <Container color={false}>
           <Header
-            statusBarProps={{
-              barStyle: 'light-content',
-              backgroundColor: 'black',
-              translucent: true,
-              height: 60,
+            outerContainerStyles={{
+              height: 70,
             }}
-            centerComponent={{ text: 'Connections' }}
-            leftComponent={
+            innerContainerStyles={{
+              marginTop: 15,
+              alignItems: 'center',
+            }}
+            backgroundColor="#FF6B6C"
+            centerComponent={<Text
+              style={{
+                color: 'white',
+                fontFamily: 'Poppins-Bold',
+                fontSize: 14
+              }}>
+              Connections</Text>}
+            rightComponent={
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate('PendingRequests')}
               >
-                <Icon name="fiber-new" color="black" />
+                <Icon name="user-plus" color="white" size={20}/>
               </TouchableOpacity>
             }
           />
@@ -116,7 +125,7 @@ class Connections extends React.Component {
             style={{
               flex: 1,
               width: '100%',
-              marginTop: 60,
+              marginTop: 70,
             }}
             refreshControl={
               <RefreshControl
@@ -126,22 +135,6 @@ class Connections extends React.Component {
             }
           >
             {connectionCards}
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 18,
-                fontWeight: '600',
-                textDecorationLine: 'underline',
-              }}
-              onPress={() =>
-                this.props.navigation.navigate('Messaging', {
-                  fromUid: 'fromMe',
-                  toUid: 'tutee',
-                  isTutor: true,
-                })}
-            >
-              Messaging Test
-            </Text>
           </ScrollView>
         </Container>
       );

@@ -14,8 +14,8 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    borderColor: 'lightgrey',
-    borderTopWidth: 2
+    borderColor: '$baseBlue',
+    marginBottom: 5,
   },
   profileImageView: {
     marginLeft: 10,
@@ -23,24 +23,25 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     width: 50,
     height: 50,
-    borderRadius: 60,
+    borderRadius: 25,
     overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'gray'
+    borderWidth: 1,
+    borderColor: '$grayLighten45'
   },
   profileImage: {
     height: 50,
-    width: 50
+    width: 50,
+    borderRadius: 25,
   },
   profileTextView: {
-    marginRight: 200,
+    flex: 1,
     justifyContent: 'center',
-    height: 70
+    marginLeft: 15
   },
   profileText: {
     color: 'black',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 14,
+    fontFamily: 'Poppins-Light',
   },
   flexVerticalTutor: {
     alignItems: 'center',
@@ -48,8 +49,12 @@ export default EStyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'powderblue',
-    borderColor: 'lightgrey',
-    borderTopWidth: 2
+    backgroundColor: 'white',
+    borderColor: '$baseBlue',
+    marginBottom: 5,
+  },
+  studentIconView: {
+    position: 'absolute',
+    right: 10,
   }
 });

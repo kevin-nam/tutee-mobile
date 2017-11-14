@@ -167,7 +167,7 @@ const Navigator = TabNavigator(
       navigationOptions: {
         tabBarIcon: () => (
           <Ionicons
-            name={`${ICON_PLATFORM}-mail`}
+            name={`${ICON_PLATFORM}-chatbubbles`}
             size={ICON_SIZE}
             color={ICON_COLOR}
           />

@@ -24,8 +24,6 @@ class Messaging extends React.Component {
       username: this.props.navigation.state.params.username,
       profile_picture: this.props.navigation.state.params.profile_picture,
     };
-
-    this.refs = {};
   }
 
   componentDidMount() {
