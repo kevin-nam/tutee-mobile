@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
   flexHorizontal: {
     alignItems: 'center',
-    flex: 3,
+    flex: 4,
     flexDirection: 'column',
     backgroundColor: 'white'
   },

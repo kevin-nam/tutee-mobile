@@ -109,7 +109,7 @@ class EditablePost extends React.Component {
             editable={true}
           />
         </View>
-        <View style={styles.body}>
+        <View style={styles.fullBody}>
           <AutoExpandingTextInput
             autoGrow={true}
             autoCapitalize={'sentences'}

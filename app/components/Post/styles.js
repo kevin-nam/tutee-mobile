@@ -16,7 +16,19 @@ const styles = EStyleSheet.create({
     alignSelf: 'center',
     borderBottomWidth: 2,
     borderBottomColor: '$grayLighten50',
-    borderRadius: 10,
+  },
+  smallContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
+    width: '100%',
+    elevation: 4,
+    alignSelf: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: '$grayLighten35',
+    marginBottom: 7,
   },
   header: {
     backgroundColor: '$baseCoral',
@@ -32,8 +44,8 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: '$baseCoral',
     borderBottomWidth: 2,
-    borderBottomColor: '$grayLighten50',
-    borderRadius: 4,
+    borderBottomColor: '$grayLighten35',
+    borderRadius: 2,
   },
   title: {
     fontSize: 18,
@@ -46,7 +58,7 @@ const styles = EStyleSheet.create({
     marginRight: 10,
     fontSize: 14,
     flex: 1,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Light',
   },
   author: {
     flexDirection: 'row',
@@ -60,19 +72,35 @@ const styles = EStyleSheet.create({
     width: 50,
     height: 50,
   },
+  smallIcon: {
+    marginLeft: 10,
+    marginRight: 5,
+    width: 50,
+    height: 50,
+  },
   user: {
     marginLeft: 5,
-    paddingHorizontal: 5,
     fontWeight: '400',
     fontSize: 14,
     fontFamily: 'Poppins-Italic',
   },
-  body: {
+  smallBody: {
+    marginHorizontal: 10,
     paddingVertical: 10,
     paddingHorizontal: 10,
     flex: 1,
     alignItems: 'flex-start',
     width: '100%',
+    minHeight: 60,
+  },
+  fullBody: {
+    marginTop: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    flex: 1,
+    alignItems: 'flex-start',
+    width: '100%',
+    minHeight: 125,
   },
   content: {
     fontSize: 12,
@@ -81,6 +109,14 @@ const styles = EStyleSheet.create({
   },
   titleInput: {
     flex: 1,
+  },
+  smallFooter: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'baseline',
+    marginRight: 20,
+    marginBottom: 5,
   },
   footer: {
     width: '100%',

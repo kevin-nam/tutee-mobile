@@ -175,7 +175,7 @@ class FullPost extends React.Component {
                   resizeMode="cover"
                   style={styles.icon}
                   source={profile_picture}
-                  borderRadius={50}
+                  borderRadius={25}
                 />
               </TouchableHighlight>
               <View style={{ marginLeft: 5 }}>
@@ -194,7 +194,7 @@ class FullPost extends React.Component {
             </View>
           </View>
 
-          <View style={styles.body}>
+          <View style={styles.fullBody}>
             <Text style={{ fontFamily: 'Poppins-Light' }}>
               {this.props.post.description}
             </Text>
