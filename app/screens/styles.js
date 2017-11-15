@@ -103,6 +103,7 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-SemiBoldItalic',
     fontSize: 25,
     color: '$baseGray',
+    textAlign: 'center',
   },
   /**
    * MODIFYPOST STYLE
@@ -119,6 +120,10 @@ const styles = EStyleSheet.create({
     flex: 1,
     width: '100%',
     marginTop: 70,
+  },
+  customScrollViewContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   customHeaderOuterContainerStyle: {
     height: 70,

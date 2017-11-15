@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Container } from '../components/Container';
 import { RequestCard } from '../components/RequestCard';
 import { Header } from 'react-native-elements';
@@ -56,11 +56,14 @@ class PendingRequests extends React.Component {
               pendingConnections.push({ user: user, uid: connection.uid });
 
               this.setState({
-                loading: false,
                 pendingConnections: pendingConnections,
               });
             });
           }
+        });
+
+        this.setState({
+          loading: false,
         });
       });
   }
@@ -102,6 +105,17 @@ class PendingRequests extends React.Component {
         );
       });
 
+      let image = (
+        <Image key="0" source={require('../../assets/images/corgimomo.png')} />
+      );
+      let errorText = (
+        <Text key="1" style={styles.searchLandingErrorText}>
+          {
+            'No pending connection requests? \n Guess you\'ll have to settle for me! \n (◕‿◕✿)'
+          }
+        </Text>
+      );
+
       return (
         <Container color={false}>
           <Header
@@ -117,7 +131,7 @@ class PendingRequests extends React.Component {
               </Text>
             }
             leftComponent={
-              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <TouchableOpacity onPress={() => this.goBack()}>
                 <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
@@ -125,12 +139,9 @@ class PendingRequests extends React.Component {
           <ScrollView
             showsVerticalScrollIndicator={true}
             style={styles.customScrollView}
+            contentContainerStyle={styles.customScrollViewContainer}
           >
-            {pendingCards.length > 0 ? (
-              pendingCards
-            ) : (
-              <Text allowFontScaling={false}>No pending requests </Text>
-            )}
+            {pendingCards.length > 0 ? pendingCards : [image, errorText]}
           </ScrollView>
         </Container>
       );
