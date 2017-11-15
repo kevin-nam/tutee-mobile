@@ -1,4 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Platform } from 'react-native';
 
 const styles = EStyleSheet.create({
   /**
@@ -89,6 +90,42 @@ const styles = EStyleSheet.create({
     color: '$baseGray',
   },
   /**
+   * STARTASESSION STYLE
+   */
+  startSessionImage: {
+    height: 150,
+    width: 150,
+    marginBottom: 20,
+  },
+  startSessionUsername: {
+    fontSize: 18,
+    color: 'white',
+    marginBottom: 10,
+  },
+  startSessionDurationInput: {
+    width: 300,
+    height: '10%',
+    backgroundColor: 'white',
+    marginBottom: 10,
+  },
+  startSessionRateInput: {
+    width: 300,
+    height: '10%',
+    backgroundColor: 'white',
+  },
+  startSessionButtonStyle: {
+    marginTop: 30,
+    borderRadius: 10,
+    backgroundColor: 'blue',
+    width: 150,
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  startSessionButtonText: {
+    color: 'white',
+  },
+  /**
    * SEARCHLANDINGPAGE STYLE
    */
   searchLandingList: {
@@ -105,6 +142,9 @@ const styles = EStyleSheet.create({
     color: '$baseGray',
     textAlign: 'center',
   },
+  searchLandingView: {
+    flex: 1,
+  },
   /**
    * MODIFYPOST STYLE
    */
@@ -112,6 +152,27 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  /**
+   * PROFILE STYLE
+   */
+  profileView: {
+    paddingTop: Platform.OS === 'ios' ? 0 : 14,
+    flex: 1,
+    alignSelf: 'stretch',
+    flexDirection: 'column',
+    backgroundColor: 'white',
+  },
+  /**
+   * MESSAGING STYLE
+   */
+  messagingView: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  messagingKeyboardAvoid: {
+    flex: 1,
+    alignSelf: 'stretch',
   },
   /**
    * MULTI-SCREEN STYLE

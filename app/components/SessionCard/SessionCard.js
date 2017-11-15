@@ -129,21 +129,29 @@ class SessionCard extends React.Component {
             <Image style={styles.profileImage} source={profile_picture} />
           </View>
           <View style={styles.profileTextView}>
-            <Text style={styles.profileText}>{this.state.username}</Text>
-            <Text style={styles.sessionInfoText}>
+            <Text allowFontScaling={false} style={styles.profileText}>
+              {this.state.username}
+            </Text>
+            <Text allowFontScaling={false} style={styles.sessionInfoText}>
               {this.props.duration} {this.props.duration > 1 ? 'hours' : 'hour'}
             </Text>
-            <Text style={styles.sessionInfoText}>${this.props.rate}/hour</Text>
+            <Text allowFontScaling={false} style={styles.sessionInfoText}>
+              ${this.props.rate}/hour
+            </Text>
           </View>
           <View style={styles.acceptRejectBtnView}>
             <TouchableOpacity
               onPress={this.onPressAccept}
               style={styles.acceptBtn}
             >
-              <Text style={styles.acceptText}>Accept</Text>
+              <Text allowFontScaling={false} style={styles.acceptText}>
+                Accept
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.onPressReject}>
-              <Text style={styles.rejectText}>Reject</Text>
+              <Text allowFontScaling={false} style={styles.rejectText}>
+                Reject
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -152,7 +152,10 @@ class SearchLandingPage extends React.Component {
               innerContainerStyles={styles.customHeaderInnerContainerStyle}
               backgroundColor={EStyleSheet.value('$baseCoral')}
               centerComponent={
-                <Text style={styles.customHeaderCenterComponentText}>
+                <Text
+                  allowFontScaling={false}
+                  style={styles.customHeaderCenterComponentText}
+                >
                   {this.props.navigation.state.params.tagList}
                 </Text>
               }
@@ -169,11 +172,11 @@ class SearchLandingPage extends React.Component {
               behavior="padding"
             >
               <ScrollView
-                style={{ flex: 1 }}
+                style={styles.searchLandingView}
                 showsVerticalScrollIndicator={false}
               >
                 <List
-                  style={{ flex: 1 }}
+                  style={styles.searchLandingView}
                   containerStyle={styles.searchLandingList}
                 >
                   {posts}
@@ -190,7 +193,10 @@ class SearchLandingPage extends React.Component {
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
             backgroundColor={EStyleSheet.value('$baseCoral')}
             centerComponent={
-              <Text style={styles.customHeaderCenterComponentText}>
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
+              >
                 {this.props.navigation.state.params.tagList}
               </Text>
             }

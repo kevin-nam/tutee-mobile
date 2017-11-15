@@ -8,7 +8,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     width: 0.9 * SCREEN_WIDTH,
     borderWidth: 3,
-    borderColor: 'red',
+    borderColor: '$baseRed',
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

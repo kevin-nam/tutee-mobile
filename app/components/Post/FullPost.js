@@ -13,6 +13,7 @@ import moment from 'moment';
 import styles from './styles';
 import store from '../../store/store';
 import { Icon } from 'react-native-elements';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class FullPost extends React.Component {
   static propTypes = {
@@ -134,10 +135,6 @@ class FullPost extends React.Component {
   };
 
   render() {
-    let profile_picture = require('./images/Placeholder.png');
-    if (this.props.user.profile_picture) {
-      profile_picture = { uri: this.props.user.profile_picture };
-    }
     let chooseButton = this.state.isMine ? (
       <TouchableOpacity
         style={styles.actionButton}
@@ -148,7 +145,9 @@ class FullPost extends React.Component {
           });
         }}
       >
-        <Text style={styles.editMessageText}>Edit</Text>
+        <Text allowFontScaling={false} style={styles.editMessageText}>
+          Edit
+        </Text>
       </TouchableOpacity>
     ) : (
       <TouchableOpacity
@@ -157,7 +156,7 @@ class FullPost extends React.Component {
           this.state.isRequestable ? this.onPressRequest : this.onPressMessage
         }
       >
-        <Text style={styles.requestMessageText}>
+        <Text allowFontScaling={false} style={styles.requestMessageText}>
           {this.state.isRequestable
             ? 'Request'
             : this.state.isPending ? 'Pending' : 'Message'}
@@ -168,39 +167,49 @@ class FullPost extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={styles.title}>{this.props.post.title}</Text>
+            <Text allowFontScaling={false} style={styles.title}>
+              {this.props.post.title}
+            </Text>
             <View style={styles.author}>
               <TouchableHighlight onPress={this.props.onImagePress}>
                 <Image
                   resizeMode="cover"
                   style={styles.icon}
-                  source={profile_picture}
+                  source={this.props.user.profile_picture}
                   borderRadius={25}
                 />
               </TouchableHighlight>
-              <View style={{ marginLeft: 5 }}>
-                <Text style={styles.user}>{this.props.user.username}</Text>
+              <View style={styles.authorSubView}>
+                <Text allowFontScaling={false} style={styles.user}>
+                  {this.props.user.username}
+                </Text>
                 {this.props.user.rating !== -1 ? (
                   <View style={styles.ratingView}>
-                    <Icon name="star" color="#ffc300" size={14} />
-                    <Text style={styles.ratingText}>
+                    <Icon
+                      name="star"
+                      color={EStyleSheet.value('$baseYellow')}
+                      size={14}
+                    />
+                    <Text allowFontScaling={false} style={styles.ratingText}>
                       {this.props.user.rating}/5
                     </Text>
                   </View>
                 ) : (
-                  <Text style={styles.ratingText}>New Tutor !</Text>
+                  <Text allowFontScaling={false} style={styles.ratingText}>
+                    New Tutor!
+                  </Text>
                 )}
               </View>
             </View>
           </View>
 
           <View style={styles.fullBody}>
-            <Text style={{ fontFamily: 'Poppins-Light' }}>
+            <Text allowFontScaling={false} style={styles.descriptionText}>
               {this.props.post.description}
             </Text>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.date}>
+            <Text allowFontScaling={false} style={styles.date}>
               {moment(this.props.post.date).format('MMMM D, YYYY')}
             </Text>
             {chooseButton}
@@ -210,7 +219,9 @@ class FullPost extends React.Component {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              <Text style={styles.tags}>{this.props.post.tagString}</Text>
+              <Text allowFontScaling={false} style={styles.tags}>
+                {this.props.post.tagString}
+              </Text>
             </ScrollView>
           </View>
         </View>

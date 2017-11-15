@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Button } from 'react-native-elements';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import styles from './styles';
 
@@ -69,13 +70,15 @@ class DeletePostWarning extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.warningTitle}>Warning!</Text>
-        <Text style={styles.warningDesc}>
+        <Text allowFontScaling={false} style={styles.warningTitle}>
+          Warning!
+        </Text>
+        <Text allowFontScaling={false} style={styles.warningDesc}>
           This section is for deleting the post.
         </Text>
         <Button
           borderRadius={20}
-          backgroundColor="red"
+          backgroundColor={EStyleSheet.value('$baseRed')}
           color="white"
           title="Delete Post"
           fontFamily="Poppins-Medium"

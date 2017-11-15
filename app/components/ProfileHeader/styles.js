@@ -10,7 +10,7 @@ export default EStyleSheet.create({
     height: 140 + marginTopOffset * 2,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '$baseCoral'
+    backgroundColor: '$baseCoral',
   },
   profileImageView: {
     alignItems: 'center',
@@ -25,7 +25,7 @@ export default EStyleSheet.create({
     width: 100,
     borderRadius: 50,
     borderWidth: 2,
-    borderColor: '$grayLighten40'
+    borderColor: '$grayLighten40',
   },
   profileInfo: {
     marginRight: 10,
@@ -56,5 +56,5 @@ export default EStyleSheet.create({
     marginTop: 5,
     fontSize: 12,
     color: '$baseGray',
-  }
+  },
 });

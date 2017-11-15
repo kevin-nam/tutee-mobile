@@ -3,6 +3,7 @@ import React from 'react';
 import { Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Container } from '../components/Container';
 import store from '../store/store';
+import styles from './styles';
 
 class StartASession extends React.Component {
   static propTypes = {
@@ -138,25 +139,12 @@ class StartASession extends React.Component {
 
       return (
         <Container color={false}>
-          <Text>Tutee:</Text>
-          <Text
-            style={{
-              fontSize: 18,
-              color: 'white',
-              marginBottom: 10,
-            }}
-          >
+          <Text allowFontScaling={false}>Tutee:</Text>
+          <Text allowFontScaling={false} style={styles.startSessionUsername}>
             {this.props.navigation.state.params.username}
           </Text>
-          <Image
-            source={profile_picture}
-            style={{
-              height: 150,
-              width: 150,
-              marginBottom: 20,
-            }}
-          />
-          <Text>Duration (in hours)</Text>
+          <Image source={profile_picture} style={styles.startSessionImage} />
+          <Text allowFontScaling={false}>Duration (in hours)</Text>
           <TextInput
             onChangeText={(duration) => {
               this.setState({ duration: duration });
@@ -164,14 +152,9 @@ class StartASession extends React.Component {
             maxLength={3}
             keyboardType="numeric"
             placeholder="2"
-            style={{
-              width: 300,
-              height: '10%',
-              backgroundColor: 'white',
-              marginBottom: 10,
-            }}
+            style={styles.startSessionDurationInput}
           />
-          <Text>Rate (per hour)</Text>
+          <Text allowFontScaling={false}>Rate (per hour)</Text>
           <TextInput
             onChangeText={(rate) => {
               this.setState({ rate: rate });
@@ -179,25 +162,18 @@ class StartASession extends React.Component {
             maxLength={5}
             keyboardType="numeric"
             placeholder="15"
-            style={{
-              width: 300,
-              height: '10%',
-              backgroundColor: 'white',
-            }}
+            style={styles.startSessionRateInput}
           />
           <TouchableOpacity
             onPress={this.onPressRequest}
-            style={{
-              marginTop: 30,
-              borderRadius: 10,
-              backgroundColor: 'blue',
-              width: 150,
-              height: '10%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+            style={styles.startSessionButtonStyle}
           >
-            <Text style={{ color: 'white' }}>Request a session</Text>
+            <Text
+              allowFontScaling={false}
+              style={styles.startSessionButtonText}
+            >
+              Request a session
+            </Text>
           </TouchableOpacity>
         </Container>
       );

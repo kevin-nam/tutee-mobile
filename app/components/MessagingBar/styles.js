@@ -7,8 +7,8 @@ export default EStyleSheet.create({
     maxHeight: 80,
     flexDirection: 'row',
     backgroundColor: 'white',
-    borderColor: 'lightgrey',
-    borderTopWidth: 2
+    borderColor: '$grayLighten40',
+    borderTopWidth: 2,
   },
   bar: {
     marginTop: 5,
@@ -20,7 +20,7 @@ export default EStyleSheet.create({
     borderRadius: 20,
     marginLeft: 10,
     borderWidth: 2,
-    borderColor: 'lightgrey',
+    borderColor: '$grayLighten40',
     textAlign: 'left',
     justifyContent: 'center',
     paddingLeft: 15,
@@ -30,8 +30,8 @@ export default EStyleSheet.create({
   },
   sendBtn: {
     fontFamily: 'Poppins-Regular',
-    color: 'skyblue',
+    color: '$baseBlue',
     marginLeft: 10,
-    fontSize: 32
-  }
+    fontSize: 32,
+  },
 });

@@ -40,7 +40,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderBottomWidth: 1,
-    borderColor: '$grayLighten50'
+    borderColor: '$grayLighten50',
   },
   title: {
     fontSize: 18,
@@ -60,6 +60,12 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
     paddingTop: 5,
+  },
+  authorSubView: {
+    marginLeft: 5,
+  },
+  descriptionText: {
+    fontFamily: 'Poppins-Light',
   },
   icon: {
     marginLeft: 5,
@@ -126,7 +132,7 @@ const styles = EStyleSheet.create({
     fontSize: 12,
     textAlign: 'left',
     marginTop: 5,
-    marginLeft: 10
+    marginLeft: 10,
   },
   tagSection: {
     width: '100%',

@@ -98,7 +98,10 @@ class Connections extends React.Component {
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
             backgroundColor={EStyleSheet.value('$baseCoral')}
             centerComponent={
-              <Text style={styles.customHeaderCenterComponentText}>
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
+              >
                 Connections
               </Text>
             }

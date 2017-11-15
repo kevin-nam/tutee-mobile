@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
-// import { connect } from 'react-redux';
-
-// import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { FullPost } from '../components/Post';
-import store from '../store/store';
 
 class Post extends React.Component {
   static propTypes = {
@@ -100,11 +96,5 @@ class Post extends React.Component {
     }
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// export default connect(mapStateToProps)(connectAlert(Home));
 
 export default Post;

@@ -109,9 +109,13 @@ class PendingRequests extends React.Component {
         <Image key="0" source={require('../../assets/images/corgimomo.png')} />
       );
       let errorText = (
-        <Text key="1" style={styles.searchLandingErrorText}>
+        <Text
+          key="1"
+          allowFontScaling={false}
+          style={styles.searchLandingErrorText}
+        >
           {
-            'No pending connection requests? \n Guess you\'ll have to settle for me! \n (◕‿◕✿)'
+            '\n No pending connection requests? \n Guess you\'ll have to settle for me! \n (◕‿◕✿)'
           }
         </Text>
       );
