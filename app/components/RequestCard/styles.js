@@ -14,8 +14,7 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    borderColor: 'lightgrey',
-    borderTopWidth: 2
+    marginBottom: 5,
   },
   profileImageView: {
     marginLeft: 10,
@@ -23,23 +22,26 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     width: 50,
     height: 50,
-    borderRadius: 60,
+    borderRadius: 25,
     overflow: 'hidden',
     borderWidth: 2,
-    borderColor: 'gray'
+    borderColor: '$grayLighten45'
   },
   profileImage: {
     height: 50,
-    width: 50
+    width: 50,
+    borderRadius: 25,
   },
   profileTextView: {
     justifyContent: 'center',
-    height: 70
+    alignItems: 'flex-start',
+    marginLeft: 25,
+    flex: 1
   },
   profileText: {
     color: 'black',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 14,
+    fontFamily: 'Poppins-Light',
   },
   acceptRejectBtnView: {
     flexDirection: 'row',
@@ -47,7 +49,7 @@ export default EStyleSheet.create({
     justifyContent: 'center',
   },
   acceptBtn: {
-    marginRight: 15,
+    marginRight: 20,
   },
   acceptText: {
     color: 'green',
