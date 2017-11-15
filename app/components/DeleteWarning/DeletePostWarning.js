@@ -77,7 +77,7 @@ class DeletePostWarning extends React.Component {
           This section is for deleting the post.
         </Text>
         <Button
-          borderRadius={20}
+          borderRadius={30}
           backgroundColor={EStyleSheet.value('$baseRed')}
           color="white"
           title="Delete Post"

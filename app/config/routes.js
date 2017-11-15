@@ -82,6 +82,7 @@ const HomeStack = StackNavigator(
       screen: Post,
       navigationOptions: {
         headerTitle: 'Post',
+        header: () => null,
       },
     },
     CreatePost: {

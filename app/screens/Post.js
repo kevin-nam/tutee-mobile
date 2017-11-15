@@ -1,8 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
+import {
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container } from '../components/Container';
 import { FullPost } from '../components/Post';
+import { Header } from 'react-native-elements';
+import styles from './styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class Post extends React.Component {
   static propTypes = {
@@ -75,8 +85,32 @@ class Post extends React.Component {
       return (
         <Container color={false}>
           <StatusBar barStyle="light-content" />
-          <KeyboardAvoidingView behavior="padding">
-            <ScrollView showsVerticalScrollIndicator={false}>
+          <Header
+            outerContainerStyles={styles.customHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value('white')}
+            centerComponent={
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentTextBlack}
+              >
+                Post
+              </Text>
+            }
+            leftComponent={
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icon name="chevron-left" color="black" size={20} />
+              </TouchableOpacity>
+            }
+          />
+          <KeyboardAvoidingView
+            style={styles.customScrollView}
+            behavior="padding"
+          >
+            <ScrollView
+              style={styles.searchLandingView}
+              showsVerticalScrollIndicator={false}
+            >
               <FullPost
                 post={this.state.post}
                 user={this.state.user}

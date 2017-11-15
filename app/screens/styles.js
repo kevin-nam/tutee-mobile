@@ -164,6 +164,12 @@ const styles = EStyleSheet.create({
     backgroundColor: 'white',
   },
   /**
+   * PENDINGREQUEST STYLE
+   */
+  pendingRequestImage: {
+    marginTop: 20,
+  },
+  /**
    * MESSAGING STYLE
    */
   messagingView: {
@@ -196,7 +202,12 @@ const styles = EStyleSheet.create({
   customHeaderCenterComponentText: {
     color: 'white',
     fontFamily: 'Poppins-Bold',
-    fontSize: 14,
+    fontSize: 16,
+  },
+  customHeaderCenterComponentTextBlack: {
+    color: 'black',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
   },
 });
 

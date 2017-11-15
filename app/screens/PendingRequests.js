@@ -105,12 +105,9 @@ class PendingRequests extends React.Component {
         );
       });
 
-      let image = (
-        <Image key="0" source={require('../../assets/images/corgimomo.png')} />
-      );
       let errorText = (
         <Text
-          key="1"
+          key="0"
           allowFontScaling={false}
           style={styles.searchLandingErrorText}
         >
@@ -118,6 +115,14 @@ class PendingRequests extends React.Component {
             '\n No pending connection requests? \n Guess you\'ll have to settle for me! \n (◕‿◕✿)'
           }
         </Text>
+      );
+
+      let image = (
+        <Image
+          style={styles.pendingRequestImage}
+          key="1"
+          source={require('../../assets/images/corgimomo.png')}
+        />
       );
 
       return (
@@ -145,7 +150,7 @@ class PendingRequests extends React.Component {
             style={styles.customScrollView}
             contentContainerStyle={styles.customScrollViewContainer}
           >
-            {pendingCards.length > 0 ? pendingCards : [image, errorText]}
+            {pendingCards.length > 0 ? pendingCards : [errorText, image]}
           </ScrollView>
         </Container>
       );
