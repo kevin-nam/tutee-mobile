@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, View } from 'react-native';
+import { Platform, StatusBar, View } from 'react-native';
 import { Container } from '../components/Container';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { ProfileBody } from '../components/ProfileBody';
@@ -66,7 +66,7 @@ class Profile extends React.Component {
           <StatusBar barStyle="light-content" />
           <View
             style={{
-              paddingTop: 14,
+              paddingTop: Platform.OS === 'ios' ? 0 : 14,
               flex: 1,
               alignSelf: 'stretch',
               flexDirection: 'column',
