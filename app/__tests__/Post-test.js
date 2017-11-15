@@ -9,5 +9,5 @@ it('renders SmallPost without crashing', () => {
 
 it('renders FullPost without crashing', () => {
   const rendered = renderer.create(<FullPost />).toJSON();
-  expect(rendered).toBeTruthy();
+  expect(rendered).toBeNull();
 });

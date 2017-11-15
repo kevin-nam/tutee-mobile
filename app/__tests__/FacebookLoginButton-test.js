@@ -6,4 +6,3 @@ it('renders FacebookLoginButton without crashing', () => {
   const rendered = renderer.create(<FacebookLoginButton />).toJSON();
   expect(rendered).toBeTruthy();
 });
-

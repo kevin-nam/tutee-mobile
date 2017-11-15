@@ -5,7 +5,7 @@ export default EStyleSheet.create({
     alignItems: 'center',
     flex: 4,
     flexDirection: 'column',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   profileText: {
     color: 'black',
@@ -23,7 +23,7 @@ export default EStyleSheet.create({
   tab: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   contentView: {
     flex: 1,
@@ -33,11 +33,11 @@ export default EStyleSheet.create({
   },
   icon: {
     fontSize: 24,
-    color: 'grey'
+    color: 'grey',
   },
   iconSelected: {
     fontSize: 24,
-    color: '$baseBlue'
+    color: '$baseBlue',
   },
   bioView: {
     marginTop: 15,
@@ -50,24 +50,24 @@ export default EStyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     backgroundColor: '$grayLighten50',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   sessionsView: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'green'
+    backgroundColor: '$baseGreen',
   },
   bioText: {
     fontSize: 14,
-    color: 'black'
+    color: 'black',
   },
   noBioText: {
     fontSize: 14,
-    color: 'darkgrey'
+    color: '$baseGray',
   },
   postText: {
     fontSize: 24,
-    color: 'darkgrey',
-    marginBottom: 5
-  }
+    color: '$baseGray',
+    marginBottom: 5,
+  },
 });

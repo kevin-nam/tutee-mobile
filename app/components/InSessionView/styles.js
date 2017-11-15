@@ -15,7 +15,7 @@ export default EStyleSheet.create({
     backgroundColor: '$baseCoral',
   },
   titleView: {
-    marginTop: '15%'
+    marginTop: '15%',
   },
   titleText: {
     fontSize: 28,
@@ -43,7 +43,7 @@ export default EStyleSheet.create({
   },
   nameText: {
     fontSize: 18,
-    fontWeight: "600"
+    fontWeight: '600',
   },
   infoText: {
     marginTop: 4,
@@ -56,7 +56,7 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     width: '65%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   endBtn: {
     justifyContent: 'center',
@@ -66,11 +66,10 @@ export default EStyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
     borderRadius: 20,
-    backgroundColor: '$baseBlue'
+    backgroundColor: '$baseBlue',
   },
   endBtnText: {
     fontSize: 18,
     color: 'white',
   },
-
 });

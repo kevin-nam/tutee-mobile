@@ -7,9 +7,6 @@ import {
   View,
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-// import { connect } from 'react-redux';
-
-// import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { EditablePost } from '../components/Post';
 import { DeletePostWarning } from '../components/DeleteWarning';

@@ -25,7 +25,7 @@ export default EStyleSheet.create({
     borderRadius: 25,
     overflow: 'hidden',
     borderWidth: 2,
-    borderColor: '$grayLighten45'
+    borderColor: '$grayLighten45',
   },
   profileImage: {
     height: 50,
@@ -36,7 +36,7 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     marginLeft: 25,
-    flex: 1
+    flex: 1,
   },
   profileText: {
     color: 'black',
@@ -52,9 +52,9 @@ export default EStyleSheet.create({
     marginRight: 20,
   },
   acceptText: {
-    color: 'green',
+    color: '$baseGreen',
   },
   rejectText: {
-    color: 'red',
-  }
+    color: '$baseRed',
+  },
 });

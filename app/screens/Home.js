@@ -50,7 +50,11 @@ class Home extends React.Component {
         }
       })
       .then((data) => {
-        this.setState({ recentTags: data });
+        if (!data) {
+          this.setState({ recentTags: [] });
+        } else {
+          this.setState({ recentTags: data });
+        }
       });
   };
 
@@ -89,7 +93,9 @@ class Home extends React.Component {
   render() {
     const navigation = this.props.navigation;
     let welcomeText = (
-      <Text style={styles.homeWelcomeText}>{this.state.welcomeMessage}</Text>
+      <Text allowFontScaling={false} style={styles.homeWelcomeText}>
+        {this.state.welcomeMessage}
+      </Text>
     );
 
     let tags =
@@ -110,7 +116,7 @@ class Home extends React.Component {
           );
         })
       ) : (
-        <Text style={styles.homeNoTagPhrase}>
+        <Text allowFontScaling={false} style={styles.homeNoTagPhrase}>
           {'What?! No #Tags?? \n\n ΣΣ(ﾟДﾟ;)'}
         </Text>
       );
@@ -124,13 +130,10 @@ class Home extends React.Component {
         />
         <View style={styles.homeMainView}>
           {welcomeText}
-          {
-            <Image
-              style={styles.homeImage}
-              source={require('../../assets/images/corgipon.png')}
-            />
-          }
-          <Text style={styles.homeCatchPhrase}>Let's get learning!</Text>
+          {<Image source={require('../../assets/images/corgipon.png')} />}
+          <Text allowFontScaling={false} style={styles.homeCatchPhrase}>
+            Let's get learning!
+          </Text>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('Rating');
@@ -138,14 +141,8 @@ class Home extends React.Component {
           >
             <Text>Rating Page</Text>
           </TouchableOpacity>
-          <View
-            style={{
-              marginVertical: 10,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text style={styles.homeTagPhrase}>
+          <View style={styles.homeBadgeSectionView}>
+            <Text allowFontScaling={false} style={styles.homeTagPhrase}>
               Some of the most recent #Tags
             </Text>
             <View style={styles.homeBadgeView}>{tags}</View>

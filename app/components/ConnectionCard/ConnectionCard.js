@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, Image, TouchableWithoutFeedback} from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import store from '../../store/store';
 import PropTypes from 'prop-types';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class ConnectionCard extends React.Component {
-
   static propTypes = {
     navigation: PropTypes.object,
   };
@@ -18,7 +18,7 @@ class ConnectionCard extends React.Component {
       username: this.props.uid,
       profile_picture: '',
       loading: true,
-    }
+    };
   }
 
   onPressHandler = () => {
@@ -29,7 +29,7 @@ class ConnectionCard extends React.Component {
       isTutor: this.props.isTutor,
       username: this.state.username,
       profile_picture: this.state.profile_picture,
-    })
+    });
   };
 
   componentDidMount() {
@@ -37,41 +37,66 @@ class ConnectionCard extends React.Component {
   }
 
   getProfileData = () => {
-    fetch('http://138.197.159.56:3232/user/getUser/' + (this.props.uid), {
+    fetch('http://138.197.159.56:3232/user/getUser/' + this.props.uid, {
       method: 'GET',
     })
       .then((response) => {
         if (response.ok && response._bodyText) {
-            return response.json();
+          return response.json();
         } else {
           console.log('Error when getting profile data for ' + this.props.uid);
         }
       })
       .then((data) => {
         if (data) {
-          this.setState({username: data.username, profile_picture: data.profile_picture, loading: false});
+          this.setState({
+            username: data.username,
+            profile_picture: data.profile_picture,
+            loading: false,
+          });
         } else {
-          this.setState({loading: false});
+          this.setState({ loading: false });
         }
       });
   };
 
   render() {
-
     if (!this.state.loading) {
       return (
         <TouchableWithoutFeedback onPress={this.onPressHandler}>
-          <View style={this.props.isTutor ? styles.flexVerticalTutor : styles.flexVertical}>
+          <View
+            style={
+              this.props.isTutor
+                ? styles.flexVerticalTutor
+                : styles.flexVertical
+            }
+          >
             <View style={styles.profileImageView}>
-              <Image style={styles.profileImage}
-                     borderRadius={25}
-                     source={this.state.profile_picture ? {uri: this.state.profile_picture} : require('../MessagingHeader/default-user.jpg')}/>
+              <Image
+                style={styles.profileImage}
+                borderRadius={25}
+                source={
+                  this.state.profile_picture
+                    ? { uri: this.state.profile_picture }
+                    : require('../MessagingHeader/default-user.jpg')
+                }
+              />
             </View>
             <View style={styles.profileTextView}>
-              <Text style={styles.profileText}>{this.state.username}</Text>
+              <Text allowFontScaling={false} style={styles.profileText}>
+                {this.state.username}
+              </Text>
             </View>
-            <View style={this.props.isTutor ? styles.hidden : styles.studentIconView}>
-              <Icon name="graduation-cap" color="#FF6B6C" size={18} />
+            <View
+              style={
+                this.props.isTutor ? styles.hidden : styles.studentIconView
+              }
+            >
+              <Icon
+                name="graduation-cap"
+                color={EStyleSheet.value('$baseCoral')}
+                size={18}
+              />
             </View>
           </View>
         </TouchableWithoutFeedback>

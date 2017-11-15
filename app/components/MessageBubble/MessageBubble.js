@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View } from 'react-native';
 
 import styles from './styles';
 
-const MessageBubble = ({messageData, isReceived, sentBy}) => {
-
+const MessageBubble = ({ messageData, isReceived, sentBy }) => {
   // TODO: show date (when clicked on?)
 
   if (sentBy === 'system') {
@@ -12,7 +11,9 @@ const MessageBubble = ({messageData, isReceived, sentBy}) => {
       <View style={styles.messageContainer}>
         <View style={styles.systemMessageView}>
           <View style={styles.textView}>
-            <Text style={styles.systemText}>{messageData}</Text>
+            <Text allowFontScaling={false} style={styles.systemText}>
+              {messageData}
+            </Text>
           </View>
         </View>
       </View>
@@ -20,9 +21,18 @@ const MessageBubble = ({messageData, isReceived, sentBy}) => {
   } else {
     return (
       <View style={styles.messageContainer}>
-        <View style={isReceived ? styles.notMyMessageView : styles.myMessageView}>
+        <View
+          style={isReceived ? styles.notMyMessageView : styles.myMessageView}
+        >
           <View style={styles.textView}>
-            <Text style={isReceived ? styles.notMyMessageText : styles.myMessageText}>{messageData}</Text>
+            <Text
+              allowFontScaling={false}
+              style={
+                isReceived ? styles.notMyMessageText : styles.myMessageText
+              }
+            >
+              {messageData}
+            </Text>
           </View>
         </View>
       </View>

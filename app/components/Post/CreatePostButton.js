@@ -27,7 +27,9 @@ class CreatePostButton extends React.Component {
       >
         <View style={styles.createPostBtnWrapper}>
           <Icon name="plus" size={20} color="white" />
-          <Text style={styles.createPostBtnText}>Create Post</Text>
+          <Text allowFontScaling={false} style={styles.createPostBtnText}>
+            Create Post
+          </Text>
         </View>
       </TouchableOpacity>
     );

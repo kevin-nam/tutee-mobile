@@ -6,6 +6,7 @@ import { MessagingBody } from '../components/MessagingBody';
 import { MessagingBar } from '../components/MessagingBar';
 import { MessageBubble } from '../components/MessageBubble';
 import firebaseDbh from '../config/firebase';
+import styles from './styles';
 
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 7 : 32;
 
@@ -134,10 +135,10 @@ class Messaging extends React.Component {
 
     if (!this.state.loading) {
       return (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={styles.messagingView}>
           <KeyboardAvoidingView
             behavior="padding"
-            style={{ flex: 1, alignSelf: 'stretch' }}
+            style={styles.messagingKeyboardAvoid}
             keyboardVerticalOffset={keyboardVerticalOffset}
           >
             <MessagingHeader

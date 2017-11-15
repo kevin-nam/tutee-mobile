@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Platform } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -41,12 +42,11 @@ const styles = EStyleSheet.create({
     marginBottom: 20,
     alignContent: 'center',
   },
-  // homeImage: {
-  //   flex: 1,
-  //   height: '30%',
-  //   width: '30%',
-  //   resizeMode: 'contain',
-  // },
+  homeBadgeSectionView: {
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   homeWelcomeText: {
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
@@ -94,6 +94,42 @@ const styles = EStyleSheet.create({
     color: '$baseGray',
   },
   /**
+   * STARTASESSION STYLE
+   */
+  startSessionImage: {
+    height: 150,
+    width: 150,
+    marginBottom: 20,
+  },
+  startSessionUsername: {
+    fontSize: 18,
+    color: 'white',
+    marginBottom: 10,
+  },
+  startSessionDurationInput: {
+    width: 300,
+    height: '10%',
+    backgroundColor: 'white',
+    marginBottom: 10,
+  },
+  startSessionRateInput: {
+    width: 300,
+    height: '10%',
+    backgroundColor: 'white',
+  },
+  startSessionButtonStyle: {
+    marginTop: 30,
+    borderRadius: 10,
+    backgroundColor: 'blue',
+    width: 150,
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  startSessionButtonText: {
+    color: 'white',
+  },
+  /**
    * SEARCHLANDINGPAGE STYLE
    */
   searchLandingList: {
@@ -108,9 +144,13 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-SemiBoldItalic',
     fontSize: 25,
     color: '$baseGray',
+    textAlign: 'center',
+  },
+  searchLandingView: {
+    flex: 1,
   },
   /**
-   * MODIFYPOSTPAGE STYLE
+   * MODIFYPOST STYLE
    */
   deletePostView: {
     flexDirection: 'row',
@@ -144,6 +184,62 @@ const styles = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  /**
+   * PROFILE STYLE
+   */
+  profileView: {
+    paddingTop: Platform.OS === 'ios' ? 0 : 14,
+    flex: 1,
+    alignSelf: 'stretch',
+    flexDirection: 'column',
+    backgroundColor: 'white',
+  },
+  /**
+   * PENDINGREQUEST STYLE
+   */
+  pendingRequestImage: {
+    marginTop: 20,
+  },
+  /**
+   * MESSAGING STYLE
+   */
+  messagingView: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  messagingKeyboardAvoid: {
+    flex: 1,
+    alignSelf: 'stretch',
+  },
+  /**
+   * MULTI-SCREEN STYLE
+   */
+  customScrollView: {
+    flex: 1,
+    width: '100%',
+    marginTop: 70,
+  },
+  customScrollViewContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  customHeaderOuterContainerStyle: {
+    height: 70,
+  },
+  customHeaderInnerContainerStyle: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  customHeaderCenterComponentText: {
+    color: 'white',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+  },
+  customHeaderCenterComponentTextBlack: {
+    color: 'black',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
   },
 });
 

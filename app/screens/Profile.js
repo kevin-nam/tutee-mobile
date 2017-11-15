@@ -5,6 +5,7 @@ import { Container } from '../components/Container';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { ProfileBody } from '../components/ProfileBody';
 import { AsyncStorage } from 'react-native';
+import styles from './styles';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -64,16 +65,13 @@ class Profile extends React.Component {
       return (
         <Container color={false}>
           <StatusBar barStyle="light-content" />
-          <View
-            style={{
-              flex: 1,
-              alignSelf: 'stretch',
-              flexDirection: 'column',
-              backgroundColor: 'white',
-            }}
-          >
+          <View style={styles.profileView}>
             <ProfileHeader user={user} />
-            <ProfileBody navigation={this.props.navigation} user={user} uid={uid} />
+            <ProfileBody
+              navigation={this.props.navigation}
+              user={user}
+              uid={uid}
+            />
           </View>
         </Container>
       );

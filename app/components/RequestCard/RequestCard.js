@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import store from '../../store/store';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class RequestCard extends React.Component {
   constructor(props) {
@@ -66,10 +67,9 @@ class RequestCard extends React.Component {
   };
 
   render() {
-
     let profile_picture = require('../MessagingHeader/default-user.jpg');
     if (this.props.profile_picture) {
-      profile_picture = {uri: this.props.profile_picture}
+      profile_picture = { uri: this.props.profile_picture };
     }
 
     let username = this.props.uid;
@@ -94,10 +94,18 @@ class RequestCard extends React.Component {
             onPress={this.onPressAccept}
             style={styles.acceptBtn}
           >
-            <Ionicons name="ios-checkmark-circle" color="#5CB85C" size={32}/>
+            <Ionicons
+              name="ios-checkmark-circle"
+              color={EStyleSheet.value('$baseGreen')}
+              size={32}
+            />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.onPressReject}>
-            <Ionicons name="ios-close-circle" color="#D9534F" size={32}/>
+            <Ionicons
+              name="ios-close-circle"
+              color={EStyleSheet.value('$baseRed')}
+              size={32}
+            />
           </TouchableOpacity>
         </View>
       </View>

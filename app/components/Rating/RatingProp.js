@@ -16,7 +16,9 @@ const RatingProp = ({ onChangeRating, onSubmit }) => {
           onFinishRating={onChangeRating}
         />
         <TouchableOpacity onPress={onSubmit}>
-          <Text style={styles.submitButton}>{'\n'}Submit</Text>
+          <Text allowFontScaling={false} style={styles.submitButton}>
+            {'\n'}Submit
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

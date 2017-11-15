@@ -5,10 +5,11 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const styles = EStyleSheet.create({
   container: {
+    marginTop: 30,
     flex: 1,
     width: 0.9 * SCREEN_WIDTH,
     borderWidth: 3,
-    borderColor: 'red',
+    borderColor: '$baseRed',
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

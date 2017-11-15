@@ -5,7 +5,6 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const styles = EStyleSheet.create({
   textInput: {
-    // flex: 1,
     width: 0.9 * SCREEN_WIDTH,
     paddingRight: 20,
     paddingVertical: 5,
