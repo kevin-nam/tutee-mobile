@@ -26,7 +26,7 @@ export default EStyleSheet.create({
     paddingVertical: 15,
     paddingLeft: 15,
     fontFamily: 'Poppins-Bold',
-    fontSize: 18,
+    fontSize: 16,
     color: 'white',
   },
 });
