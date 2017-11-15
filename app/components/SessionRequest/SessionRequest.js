@@ -81,7 +81,7 @@ class SessionRequest extends React.Component {
     });
 
     this.props.navigation.dispatch(
-      sessionActions.showInSession(this.props.content)
+      sessionActions.showInSession(this.props.content, this.state.username)
     );
   };
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import { Container } from '../components/Container';
 import { RatingProp } from '../components/Rating';
 import { NavigationActions } from 'react-navigation';
+import styles from './styles';
 
 class Rating extends React.Component {
   constructor(props) {
@@ -9,11 +11,15 @@ class Rating extends React.Component {
 
     this.state = {
       newRating: 0,
+      tutorName: '',
     };
   }
 
+  componentWillMount() {
+    this.setState({ tutorName: this.props.navigation.state.params.username });
+  }
+
   handleChangeRating = (Rating) => {
-    // console.log(newRating);
     this.setState({ newRating: Rating });
   };
 
@@ -57,11 +63,22 @@ class Rating extends React.Component {
 
   render() {
     return (
-      <Container color={false}>
-        <RatingProp
-          onChangeRating={this.handleChangeRating}
-          onSubmit={this.handleSubmitRating}
-        />
+      <Container color={true}>
+        <View style={styles.ratingBoxView}>
+          <View stlye={styles.ratingContentView}>
+            <Text allowFontScaling={false} style={styles.ratingText}>
+              Congratulations on completing your tutoring session with
+              {' ' + this.state.tutorName}!{'\n\n'}
+              Please give your tutor a rating based on their performance !
+            </Text>
+            <View style={styles.ratingPropView}>
+              <RatingProp
+                onChangeRating={this.handleChangeRating}
+                onSubmit={this.handleSubmitRating}
+              />
+            </View>
+          </View>
+        </View>
       </Container>
     );
   }

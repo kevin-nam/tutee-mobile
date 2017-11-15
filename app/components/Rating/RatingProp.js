@@ -10,14 +10,14 @@ const RatingProp = ({ onChangeRating, onSubmit }) => {
     <View style={styles.container}>
       <View style={styles.ratingBox}>
         <Rating
-          imageSize={30}
+          imageSize={40}
           showRating={true}
           type="custom"
           onFinishRating={onChangeRating}
         />
         <TouchableOpacity onPress={onSubmit}>
           <Text allowFontScaling={false} style={styles.submitButton}>
-            Submit
+            {'\n'}Submit
           </Text>
         </TouchableOpacity>
       </View>
