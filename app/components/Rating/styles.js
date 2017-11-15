@@ -17,8 +17,9 @@ const styles = EStyleSheet.create({
   },
   submitButton: {
     marginTop: 10,
-    color: 'blue',
-    fontSize: 18,
+    color: '$baseBlue',
+    fontSize: 24,
+    fontFamily: 'Poppins-Regular',
   },
 });
 

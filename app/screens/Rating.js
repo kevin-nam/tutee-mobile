@@ -1,7 +1,9 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import { Container } from '../components/Container';
 import { RatingProp } from '../components/Rating';
 import { NavigationActions } from 'react-navigation';
+import styles from './styles';
 
 class Rating extends React.Component {
   constructor(props) {
@@ -57,11 +59,21 @@ class Rating extends React.Component {
 
   render() {
     return (
-      <Container color={false}>
-        <RatingProp
-          onChangeRating={this.handleChangeRating}
-          onSubmit={this.handleSubmitRating}
-        />
+      <Container color={true}>
+        <View style={styles.ratingBoxView}>
+          <View stlye={styles.ratingContentView}>
+            <Text allowFontScaling={false} style={styles.ratingText}>
+              Congratulations on completing your tutoring session!{'\n\n'}
+              Please give your tutor a rating based on their performance !
+            </Text>
+            <View style={styles.ratingPropView}>
+              <RatingProp
+                onChangeRating={this.handleChangeRating}
+                onSubmit={this.handleSubmitRating}
+              />
+            </View>
+          </View>
+        </View>
       </Container>
     );
   }

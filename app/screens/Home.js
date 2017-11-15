@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StatusBar, Text, View, Image, AsyncStorage } from 'react-native';
+import {
+  StatusBar,
+  Text,
+  View,
+  Image,
+  AsyncStorage,
+  TouchableOpacity,
+} from 'react-native';
 import { Badge } from 'react-native-elements';
 import { CreatePostButton } from '../components/Post';
 import { Container } from '../components/Container';
@@ -124,6 +131,13 @@ class Home extends React.Component {
             />
           }
           <Text style={styles.homeCatchPhrase}>Let's get learning!</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Rating');
+            }}
+          >
+            <Text>Rating Page</Text>
+          </TouchableOpacity>
           <View
             style={{
               marginVertical: 10,

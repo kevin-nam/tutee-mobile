@@ -1,4 +1,8 @@
+import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const styles = EStyleSheet.create({
   /**
@@ -110,6 +114,34 @@ const styles = EStyleSheet.create({
    */
   deletePostView: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  /**
+   * RATINGPAGE STYLE
+   */
+  ratingBoxView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: SCREEN_WIDTH * 0.85,
+    height: SCREEN_HEIGHT * 0.7,
+    borderRadius: 20,
+    backgroundColor: 'white',
+  },
+  ratingContentView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ratingText: {
+    textAlign: 'center',
+    fontFamily: 'Poppins-Regular',
+    marginBottom: 50,
+    fontSize: 15,
+  },
+  ratingPropView: {
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
