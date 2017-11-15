@@ -135,7 +135,7 @@ class FullPost extends React.Component {
 
   render() {
     let profile_picture = require('./images/Placeholder.png');
-    if (this.props.user.profile_picture) {
+    if (this.props.user && this.props.user.profile_picture) {
       profile_picture = { uri: this.props.user.profile_picture };
     }
     let chooseButton = this.state.isMine ? (
