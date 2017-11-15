@@ -123,8 +123,10 @@ class SessionRequest extends React.Component {
             <Image style={styles.image} source={profile_picture} />
           </View>
           <View style={styles.infoView}>
-            <Text style={styles.nameText}>{this.state.username}</Text>
-            <Text style={styles.infoText}>
+            <Text allowFontScaling={false} style={styles.nameText}>
+              {this.state.username}
+            </Text>
+            <Text allowFontScaling={false} style={styles.infoText}>
               is sending you a session request for 1 hour at a rate of $10/hour!
             </Text>
           </View>
@@ -133,13 +135,17 @@ class SessionRequest extends React.Component {
               onPress={this.onPressAccept}
               style={styles.acceptBtn}
             >
-              <Text style={styles.acceptText}>Accept</Text>
+              <Text allowFontScaling={false} style={styles.acceptText}>
+                Accept
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={this.onPressReject}
               style={styles.rejectBtn}
             >
-              <Text style={styles.rejectText}>Reject</Text>
+              <Text allowFontScaling={false} style={styles.rejectText}>
+                Reject
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

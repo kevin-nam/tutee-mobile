@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Container } from '../components/Container';
 import { RequestCard } from '../components/RequestCard';
 import { Header } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import store from '../store/store';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import styles from './styles';
 
 class PendingRequests extends React.Component {
@@ -104,60 +105,52 @@ class PendingRequests extends React.Component {
         );
       });
 
+      let errorText = (
+        <Text
+          key="0"
+          allowFontScaling={false}
+          style={styles.searchLandingErrorText}
+        >
+          {
+            '\n No pending connection requests? \n Guess you\'ll have to settle for me! \n (◕‿◕✿)'
+          }
+        </Text>
+      );
+
       let image = (
         <Image
-          key='0'
-          style={{
-            width: '100%',
-          }}
-          resizeMode="contain"
-          source={require('../../assets/images/86.png')}
+          style={styles.pendingRequestImage}
+          key="1"
+          source={require('../../assets/images/corgimomo.png')}
         />
       );
-      let errorText = (
-          <Text key='1' style={styles.searchLandingErrorText}>
-            Error 86 - No pending connection requests!
-          </Text>
-        );
 
       return (
         <Container color={false}>
           <Header
-            outerContainerStyles={{
-              height: 70,
-            }}
-            innerContainerStyles={{
-              marginTop: 15,
-              alignItems: 'center',
-            }}
-            backgroundColor="#FF6B6C"
-            centerComponent={<Text
-              style={{
-                color: 'white',
-                fontFamily: 'Poppins-Bold',
-                fontSize: 14
-              }}>
-              Pending Connection Requests</Text>}
-            leftComponent={
-              <TouchableOpacity
-                onPress={() =>
-                  this.goBack()}
+            outerContainerStyles={styles.customHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
+            centerComponent={
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
               >
-                <Icon name="chevron-left" color="white" size={20}/>
+                Pending Connection Requests
+              </Text>
+            }
+            leftComponent={
+              <TouchableOpacity onPress={() => this.goBack()}>
+                <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
           />
           <ScrollView
             showsVerticalScrollIndicator={true}
-            style={{
-              flex: 1,
-              width: '100%',
-              marginTop: 70,
-            }}
+            style={styles.customScrollView}
+            contentContainerStyle={styles.customScrollViewContainer}
           >
-            {pendingCards.length > 0 ? (
-              pendingCards
-            ) : ([image, errorText])}
+            {pendingCards.length > 0 ? pendingCards : [errorText, image]}
           </ScrollView>
         </Container>
       );

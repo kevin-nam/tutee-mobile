@@ -22,7 +22,9 @@ class FacebookLoginButton extends React.Component {
       >
         <View style={styles.wrapper}>
           <Icon name="facebook" size={26} color="white" />
-          <Text style={styles.text}>Connect with Facebook</Text>
+          <Text allowFontScaling={false} style={styles.text}>
+            Connect with Facebook
+          </Text>
         </View>
       </TouchableOpacity>
     );

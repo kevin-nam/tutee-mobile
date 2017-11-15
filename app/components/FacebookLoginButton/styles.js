@@ -20,11 +20,11 @@ export default EStyleSheet.create({
   icon: {
     backgroundColor: 'white',
     color: '$facebookBlue',
-    marginRight: 20,
+    marginRight: 15,
   },
   text: {
-    paddingVertical: 20,
-    paddingLeft: 20,
+    paddingVertical: 15,
+    paddingLeft: 15,
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
     color: 'white',

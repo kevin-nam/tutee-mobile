@@ -6,14 +6,13 @@ import {
   TouchableOpacity,
   RefreshControl,
 } from 'react-native';
-// import { connect } from 'react-redux';
-
-// import { connectAlert } from '../components/Alert';
 import { Container } from '../components/Container';
 import { ConnectionCard } from '../components/ConnectionCard';
 import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import store from '../store/store';
+import styles from './styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class Connections extends React.Component {
   static propTypes = {
@@ -95,38 +94,30 @@ class Connections extends React.Component {
       return (
         <Container color={false}>
           <Header
-            outerContainerStyles={{
-              height: 70,
-            }}
-            innerContainerStyles={{
-              marginTop: 15,
-              alignItems: 'center',
-            }}
-            backgroundColor="#FF6B6C"
-            centerComponent={<Text
-              style={{
-                color: 'white',
-                fontFamily: 'Poppins-Bold',
-                fontSize: 14
-              }}>
-              Connections</Text>}
+            outerContainerStyles={styles.customHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
+            centerComponent={
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
+              >
+                Connections
+              </Text>
+            }
             rightComponent={
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate('PendingRequests')}
               >
-                <Icon name="user-plus" color="white" size={20}/>
+                <Icon name="user-plus" color="white" size={20} />
               </TouchableOpacity>
             }
           />
 
           <ScrollView
             showsVerticalScrollIndicator={true}
-            style={{
-              flex: 1,
-              width: '100%',
-              marginTop: 70,
-            }}
+            style={styles.customScrollView}
             refreshControl={
               <RefreshControl
                 refreshing={this.state.refreshing}

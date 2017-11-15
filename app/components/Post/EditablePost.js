@@ -142,13 +142,17 @@ class EditablePost extends React.Component {
               navigation.goBack(null);
             }}
           >
-            <Text style={styles.cancelMessageText}>Cancel</Text>
+            <Text allowFontScaling={false} style={styles.cancelMessageText}>
+              Cancel
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.actionButton}
             onPress={() => this.savePost()}
           >
-            <Text style={styles.saveMessageText}>Save</Text>
+            <Text allowFontScaling={false} style={styles.saveMessageText}>
+              Save
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

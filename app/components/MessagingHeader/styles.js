@@ -7,7 +7,7 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderColor: 'lightgrey',
+    borderColor: '$grayLighten40',
     backgroundColor: 'white',
     marginTop: 5,
   },
@@ -37,7 +37,7 @@ export default EStyleSheet.create({
   profileText: {
     color: 'black',
     fontSize: 16,
-    fontFamily: 'Poppins-Medium'
+    fontFamily: 'Poppins-Medium',
   },
   requestBtnView: {
     marginTop: 10,
@@ -47,7 +47,7 @@ export default EStyleSheet.create({
     height: 47,
     marginRight: 15,
     borderRadius: 25,
-    backgroundColor: '$baseCoral'
+    backgroundColor: '$baseCoral',
   },
   hideRequestBtnViw: {
     display: 'none',
@@ -64,5 +64,5 @@ export default EStyleSheet.create({
   backBtnView: {
     marginLeft: 5,
     marginRight: 15,
-  }
+  },
 });

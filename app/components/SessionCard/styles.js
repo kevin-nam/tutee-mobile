@@ -14,8 +14,8 @@ export default EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    borderColor: 'lightgrey',
-    borderTopWidth: 2
+    borderColor: '$grayLighten40',
+    borderTopWidth: 2,
   },
   profileImageView: {
     marginLeft: 10,
@@ -26,15 +26,15 @@ export default EStyleSheet.create({
     borderRadius: 60,
     overflow: 'hidden',
     borderWidth: 2,
-    borderColor: 'gray'
+    borderColor: '$grayLighten35',
   },
   profileImage: {
     height: 50,
-    width: 50
+    width: 50,
   },
   profileTextView: {
     justifyContent: 'center',
-    height: 70
+    height: 70,
   },
   profileText: {
     color: 'black',
@@ -55,9 +55,9 @@ export default EStyleSheet.create({
     marginRight: 15,
   },
   acceptText: {
-    color: 'green',
+    color: '$baseGreen',
   },
   rejectText: {
-    color: 'red',
-  }
+    color: '$baseRed',
+  },
 });

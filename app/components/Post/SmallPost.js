@@ -31,17 +31,26 @@ const SmallPost = ({
               borderRadius={25}
             />
           </TouchableHighlight>
-          <Text style={styles.smallTitle}>{title}</Text>
+          <Text allowFontScaling={false} style={styles.smallTitle}>
+            {title}
+          </Text>
         </View>
       </TouchableHighlight>
 
       <View style={styles.smallBody}>
-        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.content}>
+        <Text
+          allowFontScaling={false}
+          numberOfLines={2}
+          ellipsizeMode="tail"
+          style={styles.content}
+        >
           {content}
         </Text>
       </View>
       <View style={styles.smallFooter}>
-        <Text style={styles.date}>{moment(date).format('MMMM D, YYYY')}</Text>
+        <Text allowFontScaling={false} style={styles.date}>
+          {moment(date).format('MMMM D, YYYY')}
+        </Text>
       </View>
     </View>
   );

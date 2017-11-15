@@ -9,12 +9,13 @@ import {
   Image,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { List } from 'react-native-elements';
 import { Container } from '../components/Container';
 import { SmallPost } from '../components/Post';
 import styles from './styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class SearchLandingPage extends React.Component {
   static propTypes = {
@@ -147,62 +148,61 @@ class SearchLandingPage extends React.Component {
         return (
           <Container color={false}>
             <Header
-              outerContainerStyles={{
-                height: 70,
-              }}
-              innerContainerStyles={{
-                marginTop: 15,
-                alignItems: 'center',
-              }}
-              backgroundColor="#FF6B6C"
-              centerComponent={<Text
-                style={{
-                  color: 'white',
-                  fontFamily: 'Poppins-Bold',
-                  fontSize: 14
-                }}>
-                {this.props.navigation.state.params.tagList}</Text>}
+              outerContainerStyles={styles.customHeaderOuterContainerStyle}
+              innerContainerStyles={styles.customHeaderInnerContainerStyle}
+              backgroundColor={EStyleSheet.value('$baseCoral')}
+              centerComponent={
+                <Text
+                  allowFontScaling={false}
+                  style={styles.customHeaderCenterComponentText}
+                >
+                  {this.props.navigation.state.params.tagList}
+                </Text>
+              }
               leftComponent={
                 <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.goBack()}
+                  onPress={() => this.props.navigation.goBack()}
                 >
-                  <Icon name="chevron-left" color="white" size={20}/>
+                  <Icon name="chevron-left" color="white" size={20} />
                 </TouchableOpacity>
               }
             />
-            <KeyboardAvoidingView style={{marginTop: 70, flex: 1, width: '100%'}} behavior="padding">
-              <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-                <List style={{flex: 1}} containerStyle={styles.searchLandingList}>{posts}</List>
+            <KeyboardAvoidingView
+              style={styles.customScrollView}
+              behavior="padding"
+            >
+              <ScrollView
+                style={styles.searchLandingView}
+                showsVerticalScrollIndicator={false}
+              >
+                <List
+                  style={styles.searchLandingView}
+                  containerStyle={styles.searchLandingList}
+                >
+                  {posts}
+                </List>
               </ScrollView>
             </KeyboardAvoidingView>
           </Container>
         );
       }
       return (
-        <Container backgroundColor="#9E768F">
+        <Container color={false}>
           <Header
-            outerContainerStyles={{
-              height: 70,
-            }}
-            innerContainerStyles={{
-              marginTop: 15,
-              alignItems: 'center',
-            }}
-            backgroundColor="#FF6B6C"
-            centerComponent={<Text
-              style={{
-                color: 'white',
-                fontFamily: 'Poppins-Bold',
-                fontSize: 14
-              }}>
-              {this.props.navigation.state.params.tagList}</Text>}
-            leftComponent={
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.goBack()}
+            outerContainerStyles={styles.customHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
+            centerComponent={
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
               >
-                <Icon name="chevron-left" color="white" size={20}/>
+                {this.props.navigation.state.params.tagList}
+              </Text>
+            }
+            leftComponent={
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
           />

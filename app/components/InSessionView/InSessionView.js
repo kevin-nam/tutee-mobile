@@ -66,7 +66,7 @@ class InSessionView extends React.Component {
 
   getTutorProfileData = () => {
     const uid = this.props.content.tid;
-    
+
     fetch('http://138.197.159.56:3232/user/getUser/' + uid, {
       method: 'GET',
     })
@@ -136,17 +136,27 @@ class InSessionView extends React.Component {
 
       return (
         <View style={styles.flexVertical}>
-          <View style={styles.titleView}><Text style={styles.titleText}>In Session</Text></View>
+          <View style={styles.titleView}>
+            <Text allowFontScaling={false} style={styles.titleText}>
+              In Session
+            </Text>
+          </View>
           <View style={styles.imageView}>
             <Image style={styles.image} source={tutee_profile_picture} />
             <Image style={styles.image} source={tutor_profile_picture} />
           </View>
           <View style={styles.infoView}>
-            <Text style={styles.nameText}>Tutor: {this.state.tutor_username}</Text>
-            <Text style={styles.nameText}>Tutee: {this.state.tutee_username}</Text>
-            <Text style={styles.infoText}>
-              Duration: {this.props.content.duration} {this.props.content.duration > 1 ? 'hours' : 'hour' }{"\n"}
-              Rate: ${this.props.content.rate}/hour{"\n"}
+            <Text allowFontScaling={false} style={styles.nameText}>
+              Tutor: {this.state.tutor_username}
+            </Text>
+            <Text allowFontScaling={false} style={styles.nameText}>
+              Tutee: {this.state.tutee_username}
+            </Text>
+            <Text allowFontScaling={false} style={styles.infoText}>
+              Duration: {this.props.content.duration}{' '}
+              {this.props.content.duration > 1 ? 'hours' : 'hour'}
+              {'\n'}
+              Rate: ${this.props.content.rate}/hour{'\n'}
               Total Price: ${this.props.content.totalprice}
             </Text>
           </View>
@@ -155,7 +165,9 @@ class InSessionView extends React.Component {
               onPress={this.onPressEndSession}
               style={styles.endBtn}
             >
-              <Text style={styles.endBtnText}>End Session</Text>
+              <Text allowFontScaling={false} style={styles.endBtnText}>
+                End Session
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -26,7 +26,7 @@ export default EStyleSheet.create({
     borderRadius: 25,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '$grayLighten45'
+    borderColor: '$grayLighten45',
   },
   profileImage: {
     height: 50,
@@ -36,7 +36,7 @@ export default EStyleSheet.create({
   profileTextView: {
     flex: 1,
     justifyContent: 'center',
-    marginLeft: 15
+    marginLeft: 15,
   },
   profileText: {
     color: 'black',
@@ -56,5 +56,5 @@ export default EStyleSheet.create({
   studentIconView: {
     position: 'absolute',
     right: 10,
-  }
+  },
 });

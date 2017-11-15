@@ -18,7 +18,7 @@ EStyleSheet.build({
   $baseBlue: '#69D2E7',
   $baseRed: '#D9534F',
   $baseGreen: '#5CB85C',
-  $baseYellow: '#ffc300',
+  $baseYellow: '#FFC300',
 
   // accent color set
   $grayLighten50: '#F6F6F6',

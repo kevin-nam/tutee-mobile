@@ -13,10 +13,10 @@ export default EStyleSheet.create({
     minWidth: 70,
     maxWidth: '87%',
     flexDirection: 'row',
-    backgroundColor: 'skyblue',
+    backgroundColor: '$baseBlue',
     borderRadius: 17,
     alignSelf: 'flex-end',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   notMyMessageView: {
     marginLeft: 5,
@@ -25,10 +25,10 @@ export default EStyleSheet.create({
     minWidth: 70,
     maxWidth: '87%',
     flexDirection: 'row',
-    backgroundColor: 'lightgrey',
+    backgroundColor: '$grayLighten40',
     borderRadius: 17,
     alignSelf: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   textView: {
     marginTop: 5,
@@ -39,21 +39,21 @@ export default EStyleSheet.create({
   myMessageText: {
     color: 'white',
     fontSize: 14,
-    fontFamily: 'Poppins-Regular'
+    fontFamily: 'Poppins-Regular',
   },
   notMyMessageText: {
     color: 'black',
     fontSize: 14,
-    fontFamily: 'Poppins-Regular'
+    fontFamily: 'Poppins-Regular',
   },
   systemMessageView: {
     backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   systemText: {
-    color: 'darkgrey',
+    color: '$baseGray',
     fontSize: 14,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

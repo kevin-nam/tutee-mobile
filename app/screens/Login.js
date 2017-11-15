@@ -103,7 +103,9 @@ class Login extends React.Component {
         <View style={styles.loginView}>
           <View style={styles.loginLogoView}>
             <Image source={require('../../assets/images/corgilightbulb.gif')} />
-            <Text style={styles.loginLogo}>Tutee</Text>
+            <Text allowFontScaling={false} style={styles.loginLogo}>
+              Tutee
+            </Text>
           </View>
           <View style={styles.loginButtonView}>
             <FacebookLoginButton onPress={this.handlePressFacebookLogin} />

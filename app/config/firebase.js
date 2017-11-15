@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 
-var config = {
+let config = {
   apiKey: 'AIzaSyBYbaQwELtNm4jxpEMHuws-vmlIRv1-YBA',
   authDomain: 'tutee-9b050.firebaseapp.com',
   databaseURL: 'https://tutee-9b050.firebaseio.com',
@@ -9,6 +9,6 @@ var config = {
 };
 
 firebase.initializeApp(config);
-var firebaseDbh = firebase.database();
+let firebaseDbh = firebase.database();
 
 module.exports = firebaseDbh;

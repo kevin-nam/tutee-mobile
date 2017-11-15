@@ -11,7 +11,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'white',
     width: '100%',
-    marginTop: 5,
+    marginBottom: 6,
     elevation: 4,
     alignSelf: 'center',
   },
@@ -40,7 +40,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderBottomWidth: 1,
-    borderColor: '$grayLighten50'
+    borderColor: '$grayLighten50',
   },
   title: {
     fontSize: 18,
@@ -60,6 +60,12 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
     paddingTop: 5,
+  },
+  authorSubView: {
+    marginLeft: 5,
+  },
+  descriptionText: {
+    fontFamily: 'Poppins-Light',
   },
   icon: {
     marginLeft: 5,
@@ -105,6 +111,7 @@ const styles = EStyleSheet.create({
   titleInput: {
     flex: 1,
     fontFamily: 'Poppins-Regular',
+    color: '$baseGray',
   },
   smallFooter: {
     width: '100%',
@@ -119,6 +126,8 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
+    paddingBottom: 5,
+    paddingVertical: 5,
   },
   date: {
     color: '$baseGray',
@@ -126,7 +135,7 @@ const styles = EStyleSheet.create({
     fontSize: 12,
     textAlign: 'left',
     marginTop: 5,
-    marginLeft: 10
+    marginLeft: 10,
   },
   tagSection: {
     width: '100%',
@@ -152,6 +161,7 @@ const styles = EStyleSheet.create({
     color: '$baseRed',
     fontSize: 18,
     fontFamily: 'Poppins-Medium',
+    paddingLeft: 5,
   },
   saveMessageText: {
     color: '$baseGreen',

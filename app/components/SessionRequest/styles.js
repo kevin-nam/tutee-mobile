@@ -28,7 +28,7 @@ export default EStyleSheet.create({
   },
   nameText: {
     fontSize: 24,
-    fontWeight: "600"
+    fontWeight: '600',
   },
   infoText: {
     marginTop: 4,
@@ -50,7 +50,7 @@ export default EStyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
     borderRadius: 100,
-    backgroundColor: '$baseGreen'
+    backgroundColor: '$baseGreen',
   },
   rejectBtn: {
     justifyContent: 'center',
@@ -60,7 +60,7 @@ export default EStyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
     borderRadius: 100,
-    backgroundColor: '$baseRed'
+    backgroundColor: '$baseRed',
   },
   acceptText: {
     color: 'white',
@@ -68,5 +68,4 @@ export default EStyleSheet.create({
   rejectText: {
     color: 'white',
   },
-
 });
