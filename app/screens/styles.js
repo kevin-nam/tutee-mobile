@@ -104,6 +104,7 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-SemiBoldItalic',
     fontSize: 25,
     color: '$baseGray',
+    textAlign: 'center'
   },
   /**
    * MODIFYPOSTPAGE STYLE

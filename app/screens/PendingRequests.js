@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Container } from '../components/Container';
 import { RequestCard } from '../components/RequestCard';
 import { Header } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import store from '../store/store';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from './styles';
 
 class PendingRequests extends React.Component {
   static propTypes = {
@@ -54,11 +55,14 @@ class PendingRequests extends React.Component {
               pendingConnections.push({ user: user, uid: connection.uid });
 
               this.setState({
-                loading: false,
                 pendingConnections: pendingConnections,
               });
             });
           }
+        });
+
+        this.setState({
+          loading: false,
         });
       });
   }
@@ -100,6 +104,22 @@ class PendingRequests extends React.Component {
         );
       });
 
+      let image = (
+        <Image
+          key='0'
+          style={{
+            width: '100%',
+          }}
+          resizeMode="contain"
+          source={require('../../assets/images/86.png')}
+        />
+      );
+      let errorText = (
+          <Text key='1' style={styles.searchLandingErrorText}>
+            Error 86 - No pending connection requests!
+          </Text>
+        );
+
       return (
         <Container color={false}>
           <Header
@@ -121,7 +141,7 @@ class PendingRequests extends React.Component {
             leftComponent={
               <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.goBack()}
+                  this.goBack()}
               >
                 <Icon name="chevron-left" color="white" size={20}/>
               </TouchableOpacity>
@@ -137,9 +157,7 @@ class PendingRequests extends React.Component {
           >
             {pendingCards.length > 0 ? (
               pendingCards
-            ) : (
-              <Text>No pending requests </Text>
-            )}
+            ) : ([image, errorText])}
           </ScrollView>
         </Container>
       );
