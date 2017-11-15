@@ -63,7 +63,6 @@ class Profile extends React.Component {
     if (uid && user) {
       return (
         <Container color={false}>
-          <StatusBar barStyle="light-content" />
           <View
             style={{
               flex: 1,
