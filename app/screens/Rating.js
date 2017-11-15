@@ -11,11 +11,15 @@ class Rating extends React.Component {
 
     this.state = {
       newRating: 0,
+      tutorName: '',
     };
   }
 
+  componentWillMount() {
+    this.setState({ tutorName: this.props.navigation.state.params.username });
+  }
+
   handleChangeRating = (Rating) => {
-    // console.log(newRating);
     this.setState({ newRating: Rating });
   };
 
@@ -63,7 +67,8 @@ class Rating extends React.Component {
         <View style={styles.ratingBoxView}>
           <View stlye={styles.ratingContentView}>
             <Text allowFontScaling={false} style={styles.ratingText}>
-              Congratulations on completing your tutoring session!{'\n\n'}
+              Congratulations on completing your tutoring session with
+              {' ' + this.state.tutorName}!{'\n\n'}
               Please give your tutor a rating based on their performance !
             </Text>
             <View style={styles.ratingPropView}>

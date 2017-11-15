@@ -55,6 +55,6 @@ export default EStyleSheet.create({
     fontFamily: 'Poppins-Regular',
     marginTop: 5,
     fontSize: 12,
-    color: '$baseGray',
+    color: '$baseYellow',
   },
 });

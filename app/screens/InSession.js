@@ -14,10 +14,15 @@ class InSession extends React.Component {
 
   render() {
     const content = this.props.navigation.state.params.content;
+    const username = this.props.navigation.state.params.username;
 
     return (
       <Container color={false}>
-        <InSessionView navigation={this.props.navigation} content={content} />
+        <InSessionView
+          navigation={this.props.navigation}
+          content={content}
+          username={username}
+        />
       </Container>
     );
   }
