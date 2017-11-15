@@ -96,37 +96,77 @@ const styles = EStyleSheet.create({
   /**
    * STARTASESSION STYLE
    */
+  startASessionView: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+  startASessionInfoView: {
+    marginTop: 70,
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    overflow: 'hidden'
+  },
   startSessionImage: {
     height: 150,
     width: 150,
     marginBottom: 20,
+    borderRadius: 75,
+  },
+  startASessionTuteeText: {
+    fontSize: 12,
+    fontFamily: 'Poppins-Bold',
+    alignSelf: 'center'
   },
   startSessionUsername: {
     fontSize: 18,
-    color: 'white',
+    fontFamily: 'Poppins-Light',
+    color: 'black',
     marginBottom: 10,
   },
   startSessionDurationInput: {
     width: 300,
     height: '10%',
     backgroundColor: 'white',
+    borderColor: '$baseBlue',
+    borderWidth: 1,
     marginBottom: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 15,
   },
   startSessionRateInput: {
     width: 300,
     height: '10%',
+    borderColor: '$baseBlue',
+    borderWidth: 1,
     backgroundColor: 'white',
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 15,
   },
   startSessionButtonStyle: {
     marginTop: 30,
-    borderRadius: 10,
-    backgroundColor: 'blue',
-    width: 150,
+    borderRadius: 15,
+    backgroundColor: '$baseCoral',
+    width: 175,
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  startASessionDurationRateText: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Light',
+    color: 'black'
+  },
   startSessionButtonText: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Bold',
     color: 'white',
   },
   /**

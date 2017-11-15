@@ -89,8 +89,8 @@ class ConnectionCard extends React.Component {
             </View>
             <View
               style={
-                this.props.isTutor ? styles.hidden : styles.studentIconView
-              }
+                this.props.isTutor ? styles.studentIconView : styles.hidden
+              }ii
             >
               <Icon
                 name="graduation-cap"
