@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default EStyleSheet.create({
   flexHorizontal: {
     alignItems: 'center',
-    flex: 3,
+    flex: 4,
     flexDirection: 'column',
     backgroundColor: 'white'
   },
@@ -16,9 +16,9 @@ export default EStyleSheet.create({
     height: 50,
     alignSelf: 'stretch',
     flexDirection: 'row',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
+    borderBottomWidth: 2,
+    borderColor: '$grayLighten45',
+    backgroundColor: 'white',
   },
   tab: {
     flex: 1,
@@ -28,7 +28,8 @@ export default EStyleSheet.create({
   contentView: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    alignContent: 'center',
   },
   icon: {
     fontSize: 24,
@@ -36,7 +37,7 @@ export default EStyleSheet.create({
   },
   iconSelected: {
     fontSize: 24,
-    color: 'skyblue'
+    color: '$baseBlue'
   },
   bioView: {
     marginTop: 15,
@@ -46,12 +47,9 @@ export default EStyleSheet.create({
     alignSelf: 'stretch',
   },
   postsView: {
-    marginTop: 15,
-    marginLeft: 15,
-    marginRight: 15,
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    backgroundColor: '$grayLighten50',
     flexDirection: 'column'
   },
   sessionsView: {
@@ -60,7 +58,11 @@ export default EStyleSheet.create({
     backgroundColor: 'green'
   },
   bioText: {
-    fontSize: 24,
+    fontSize: 14,
+    color: 'black'
+  },
+  noBioText: {
+    fontSize: 14,
     color: 'darkgrey'
   },
   postText: {

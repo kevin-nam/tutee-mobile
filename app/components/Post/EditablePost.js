@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { AutoExpandingTextInput } from '../TextInput';
 // import { NavigationActions } from 'react-navigation';
 
@@ -109,7 +109,7 @@ class EditablePost extends React.Component {
             editable={true}
           />
         </View>
-        <View style={styles.body}>
+        <View style={styles.fullBody}>
           <AutoExpandingTextInput
             autoGrow={true}
             autoCapitalize={'sentences'}
@@ -136,14 +136,20 @@ class EditablePost extends React.Component {
           />
         </View>
         <View style={styles.footer}>
-          <Button
-            color="red"
-            title="Cancel"
+          <TouchableOpacity
+            style={styles.actionButton}
             onPress={() => {
               navigation.goBack(null);
             }}
-          />
-          <Button color="green" title="Save" onPress={() => this.savePost()} />
+          >
+            <Text style={styles.cancelMessageText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() => this.savePost()}
+          >
+            <Text style={styles.saveMessageText}>Save</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

@@ -5,29 +5,42 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const styles = EStyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: 'white',
-    width: SCREEN_WIDTH,
-    marginVertical: 10,
-    paddingBottom: 5,
+    width: '100%',
+    marginTop: 5,
     elevation: 4,
+    alignSelf: 'center',
+  },
+  smallContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
+    width: '100%',
+    elevation: 4,
+    alignSelf: 'center',
+    marginBottom: 6,
   },
   header: {
     backgroundColor: '$baseCoral',
-    width: SCREEN_WIDTH,
-    paddingHorizontal: 10,
+    width: '100%',
+    paddingHorizontal: 5,
     paddingBottom: 10,
     paddingTop: 5,
   },
   smallHeader: {
     flexDirection: 'row',
-    width: SCREEN_WIDTH,
-    paddingHorizontal: 10,
+    width: '100%',
     paddingVertical: 10,
     alignItems: 'center',
-    backgroundColor: '$baseCoral',
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderColor: '$grayLighten50'
   },
   title: {
     fontSize: 18,
@@ -36,8 +49,9 @@ const styles = EStyleSheet.create({
     marginTop: 5,
   },
   smallTitle: {
-    paddingHorizontal: 10,
-    fontSize: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    fontSize: 14,
     flex: 1,
     fontFamily: 'Poppins-Regular',
   },
@@ -48,6 +62,14 @@ const styles = EStyleSheet.create({
     paddingTop: 5,
   },
   icon: {
+    marginLeft: 5,
+    marginRight: 5,
+    width: 50,
+    height: 50,
+  },
+  smallIcon: {
+    marginLeft: 15,
+    marginRight: 5,
     width: 50,
     height: 50,
   },
@@ -57,24 +79,43 @@ const styles = EStyleSheet.create({
     fontSize: 14,
     fontFamily: 'Poppins-Italic',
   },
-  body: {
+  smallBody: {
+    marginHorizontal: 10,
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     flex: 1,
     alignItems: 'flex-start',
-    width: SCREEN_WIDTH,
+    width: '100%',
+    minHeight: 60,
+  },
+  fullBody: {
+    marginTop: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    flex: 1,
+    alignItems: 'flex-start',
+    width: '100%',
+    minHeight: 125,
   },
   content: {
+    fontSize: 12,
     textAlign: 'left',
     fontFamily: 'Poppins-Light',
   },
   titleInput: {
     flex: 1,
+    fontFamily: 'Poppins-Regular',
+  },
+  smallFooter: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'baseline',
+    marginRight: 20,
+    marginBottom: 5,
   },
   footer: {
-    width: SCREEN_WIDTH,
-    paddingHorizontal: 10,
-    paddingBottom: 5,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
@@ -82,10 +123,14 @@ const styles = EStyleSheet.create({
   date: {
     color: '$baseGray',
     fontFamily: 'Poppins-ExtraLight',
+    fontSize: 12,
+    textAlign: 'left',
+    marginTop: 5,
+    marginLeft: 10
   },
   tagSection: {
-    width: SCREEN_WIDTH,
-    paddingHorizontal: 10,
+    width: '100%',
+    paddingHorizontal: 5,
     paddingVertical: 5,
   },
   tags: {
@@ -102,6 +147,16 @@ const styles = EStyleSheet.create({
   editMessageText: {
     color: '$baseCoral',
     fontSize: 18,
+  },
+  cancelMessageText: {
+    color: '$baseRed',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
+  },
+  saveMessageText: {
+    color: '$baseGreen',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
   },
   createPostBtnContainer: {
     marginTop: 10,
@@ -126,7 +181,7 @@ const styles = EStyleSheet.create({
   },
   ratingText: {
     fontSize: 12,
-    color: '#ffc300',
+    color: '$baseYellow',
     marginLeft: 4,
   },
   ratingView: {

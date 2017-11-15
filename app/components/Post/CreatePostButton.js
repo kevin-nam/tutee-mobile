@@ -18,7 +18,7 @@ class CreatePostButton extends React.Component {
     return (
       <TouchableOpacity
         onPress={() =>
-          this.props.navigation.navigate('ModifyPost', {
+          this.props.navigation.navigate('CreatePost', {
             uid: this.props.uid,
             edit: false,
           })}

@@ -81,12 +81,19 @@ const HomeStack = StackNavigator(
       screen: SearchLandingPage,
       navigationOptions: {
         headerTitle: 'SearchLandingPage',
+        header: () => null,
       },
     },
     Post: {
       screen: Post,
       navigationOptions: {
         headerTitle: 'Post',
+      },
+    },
+    CreatePost: {
+      screen: ModifyPost,
+      navigationOptions: {
+        headerTitle: 'CreatePost',
       },
     },
     ModifyPost: {
@@ -161,7 +168,7 @@ const Navigator = TabNavigator(
       navigationOptions: {
         tabBarIcon: () => (
           <Ionicons
-            name={`${ICON_PLATFORM}-mail`}
+            name={`${ICON_PLATFORM}-chatbubbles`}
             size={ICON_SIZE}
             color={ICON_COLOR}
           />

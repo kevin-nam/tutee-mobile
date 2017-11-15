@@ -20,27 +20,27 @@ const SmallPost = ({
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.smallContainer}>
       <TouchableHighlight onPress={onPress}>
         <View style={styles.smallHeader}>
           <TouchableHighlight onPress={onImagePress}>
             <Image
               resizeMode="cover"
-              style={styles.icon}
+              style={styles.smallIcon}
               source={userImage}
-              borderRadius={50}
+              borderRadius={25}
             />
           </TouchableHighlight>
           <Text style={styles.smallTitle}>{title}</Text>
         </View>
       </TouchableHighlight>
 
-      <View style={styles.body}>
+      <View style={styles.smallBody}>
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.content}>
           {content}
         </Text>
       </View>
-      <View style={styles.footer}>
+      <View style={styles.smallFooter}>
         <Text style={styles.date}>{moment(date).format('MMMM D, YYYY')}</Text>
       </View>
     </View>

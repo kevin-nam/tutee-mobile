@@ -92,6 +92,7 @@ const styles = EStyleSheet.create({
    * SEARCHLANDINGPAGE STYLE
    */
   searchLandingList: {
+    flex: 1,
     marginTop: 0,
     borderTopWidth: 0,
     borderBottomWidth: 0,
@@ -102,6 +103,14 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-SemiBoldItalic',
     fontSize: 25,
     color: '$baseGray',
+  },
+  /**
+   * MODIFYPOSTPAGE STYLE
+   */
+  deletePostView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
