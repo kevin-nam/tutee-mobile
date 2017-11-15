@@ -63,8 +63,10 @@ class Profile extends React.Component {
     if (uid && user) {
       return (
         <Container color={false}>
+          <StatusBar barStyle="light-content" />
           <View
             style={{
+              paddingTop: 14,
               flex: 1,
               alignSelf: 'stretch',
               flexDirection: 'column',
@@ -72,7 +74,11 @@ class Profile extends React.Component {
             }}
           >
             <ProfileHeader user={user} />
-            <ProfileBody navigation={this.props.navigation} user={user} uid={uid} />
+            <ProfileBody
+              navigation={this.props.navigation}
+              user={user}
+              uid={uid}
+            />
           </View>
         </Container>
       );
