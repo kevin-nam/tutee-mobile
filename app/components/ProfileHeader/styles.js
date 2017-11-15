@@ -9,7 +9,8 @@ export default EStyleSheet.create({
     alignItems: 'center',
     height: 140 + marginTopOffset * 2,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '$baseCoral'
   },
   profileImageView: {
     alignItems: 'center',
@@ -23,8 +24,8 @@ export default EStyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 50,
-    borderWidth: 1,
-    borderColor: '$grayLighten50'
+    borderWidth: 2,
+    borderColor: '$grayLighten40'
   },
   profileInfo: {
     marginRight: 10,
@@ -34,11 +35,10 @@ export default EStyleSheet.create({
   },
   profileText: {
     fontFamily: 'Poppins-Medium',
-    color: 'black',
+    color: 'white',
     fontSize: 22,
   },
   ratingView: {
-    marginTop: 5,
     marginRight: 10,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -46,9 +46,10 @@ export default EStyleSheet.create({
   },
   ratingText: {
     fontFamily: 'Poppins-Regular',
-    fontSize: 14,
-    color: '$baseGray',
-    marginTop: 3,
+    fontSize: 12,
+    color: '$baseYellow',
+    marginTop: 5,
+    marginLeft: 5,
   },
   notRatedYetText: {
     fontFamily: 'Poppins-Regular',
