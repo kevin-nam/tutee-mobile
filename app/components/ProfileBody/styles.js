@@ -16,9 +16,9 @@ export default EStyleSheet.create({
     height: 50,
     alignSelf: 'stretch',
     flexDirection: 'row',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
+    borderBottomWidth: 2,
+    borderColor: '$grayLighten45',
+    backgroundColor: 'white',
   },
   tab: {
     flex: 1,
@@ -37,7 +37,7 @@ export default EStyleSheet.create({
   },
   iconSelected: {
     fontSize: 24,
-    color: 'skyblue'
+    color: '$baseBlue'
   },
   bioView: {
     marginTop: 15,
@@ -49,7 +49,7 @@ export default EStyleSheet.create({
   postsView: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    backgroundColor: '$grayLighten50',
     flexDirection: 'column'
   },
   sessionsView: {

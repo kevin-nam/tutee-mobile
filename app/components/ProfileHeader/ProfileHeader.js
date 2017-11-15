@@ -21,10 +21,14 @@ const ProfileHeader = ({ user }) => {
           <View style={styles.ratingView}>
             <Rating
               readonly
-              imageSize={24}
-              showRating={false}
+              ratingImage={require('../../../assets/images/star.png')}
+              imageSize={18}
+              ratingColor='#ffc300'
+              ratingBackgroundColor='#FF6B6C'
               fractions={1}
-              type="star"
+              showRating={false}
+              ratingCount={user.rating}
+              type="custom"
               startingValue={user.rating}
               onFinishRating={() => {
               }}

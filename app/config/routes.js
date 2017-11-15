@@ -81,6 +81,7 @@ const HomeStack = StackNavigator(
       screen: SearchLandingPage,
       navigationOptions: {
         headerTitle: 'SearchLandingPage',
+        header: () => null,
       },
     },
     Post: {

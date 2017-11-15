@@ -14,8 +14,6 @@ const styles = EStyleSheet.create({
     marginTop: 5,
     elevation: 4,
     alignSelf: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: '$grayLighten50',
   },
   smallContainer: {
     flex: 1,
@@ -26,9 +24,7 @@ const styles = EStyleSheet.create({
     width: '100%',
     elevation: 4,
     alignSelf: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: '$grayLighten35',
-    marginBottom: 7,
+    marginBottom: 6,
   },
   header: {
     backgroundColor: '$baseCoral',
@@ -42,10 +38,9 @@ const styles = EStyleSheet.create({
     width: '100%',
     paddingVertical: 10,
     alignItems: 'center',
-    backgroundColor: '$baseCoral',
-    borderBottomWidth: 2,
-    borderBottomColor: '$grayLighten35',
-    borderRadius: 2,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderColor: '$grayLighten50'
   },
   title: {
     fontSize: 18,
@@ -58,7 +53,7 @@ const styles = EStyleSheet.create({
     marginRight: 10,
     fontSize: 14,
     flex: 1,
-    fontFamily: 'Poppins-Light',
+    fontFamily: 'Poppins-Regular',
   },
   author: {
     flexDirection: 'row',
@@ -73,7 +68,7 @@ const styles = EStyleSheet.create({
     height: 50,
   },
   smallIcon: {
-    marginLeft: 10,
+    marginLeft: 15,
     marginRight: 5,
     width: 50,
     height: 50,
@@ -186,7 +181,7 @@ const styles = EStyleSheet.create({
   },
   ratingText: {
     fontSize: 12,
-    color: '#ffc300',
+    color: '$baseYellow',
     marginLeft: 4,
   },
   ratingView: {
