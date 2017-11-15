@@ -7,11 +7,11 @@ import Session from '../screens/RequestSession';
 import renderer from 'react-test-renderer';
 
 const navigation = {
-  'state': {
-    'params': {
-      'content': 'content'
-    }
-  }
+  state: {
+    params: {
+      content: 'content',
+    },
+  },
 };
 
 it('renders Connections without crashing', () => {
@@ -20,7 +20,9 @@ it('renders Connections without crashing', () => {
 });
 
 it('renders Session without crashing', () => {
-  const rendered = renderer.create(<Session navigation={navigation}/>).toJSON();
+  const rendered = renderer
+    .create(<Session navigation={navigation} />)
+    .toJSON();
   expect(rendered).toBeTruthy();
 });
 
@@ -30,7 +32,9 @@ it('renders Login without crashing', () => {
 });
 
 it('renders Messaging without crashing', () => {
-  const rendered = renderer.create(<Messaging navigation={navigation}/>).toJSON();
+  const rendered = renderer
+    .create(<Messaging navigation={navigation} />)
+    .toJSON();
   expect(rendered).toBeNull();
 });
 
