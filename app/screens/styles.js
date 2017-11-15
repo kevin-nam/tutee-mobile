@@ -105,12 +105,32 @@ const styles = EStyleSheet.create({
     color: '$baseGray',
   },
   /**
-   * MODIFYPOSTPAGE STYLE
+   * MODIFYPOST STYLE
    */
   deletePostView: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  /**
+   * MULTI-SCREEN STYLE
+   */
+  customScrollView: {
+    flex: 1,
+    width: '100%',
+    marginTop: 70,
+  },
+  customHeaderOuterContainerStyle: {
+    height: 70,
+  },
+  customHeaderInnerContainerStyle: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  customHeaderCenterComponentText: {
+    color: 'white',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 14,
   },
 });
 

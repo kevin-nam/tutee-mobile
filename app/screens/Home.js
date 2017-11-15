@@ -43,7 +43,11 @@ class Home extends React.Component {
         }
       })
       .then((data) => {
-        this.setState({ recentTags: data });
+        if (!data) {
+          this.setState({ recentTags: [] });
+        } else {
+          this.setState({ recentTags: data });
+        }
       });
   };
 

@@ -7,6 +7,8 @@ import { Header } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import store from '../store/store';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import styles from './styles';
 
 class PendingRequests extends React.Component {
   static propTypes = {
@@ -103,42 +105,31 @@ class PendingRequests extends React.Component {
       return (
         <Container color={false}>
           <Header
-            outerContainerStyles={{
-              height: 70,
-            }}
-            innerContainerStyles={{
-              marginTop: 15,
-              alignItems: 'center',
-            }}
-            backgroundColor="#FF6B6C"
-            centerComponent={<Text
-              style={{
-                color: 'white',
-                fontFamily: 'Poppins-Bold',
-                fontSize: 14
-              }}>
-              Pending Connection Requests</Text>}
-            leftComponent={
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.goBack()}
+            outerContainerStyles={styles.customHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
+            centerComponent={
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
               >
-                <Icon name="chevron-left" color="white" size={20}/>
+                Pending Connection Requests
+              </Text>
+            }
+            leftComponent={
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
           />
           <ScrollView
             showsVerticalScrollIndicator={true}
-            style={{
-              flex: 1,
-              width: '100%',
-              marginTop: 70,
-            }}
+            style={styles.customScrollView}
           >
             {pendingCards.length > 0 ? (
               pendingCards
             ) : (
-              <Text>No pending requests </Text>
+              <Text allowFontScaling={false}>No pending requests </Text>
             )}
           </ScrollView>
         </Container>

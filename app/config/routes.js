@@ -71,12 +71,6 @@ const HomeStack = StackNavigator(
         header: () => null,
       },
     },
-    // Messaging: {
-    //   screen: Messaging,
-    //   navigationOptions: {
-    //     headerTitle: 'Messaging',
-    //   },
-    // },
     SearchLandingPage: {
       screen: SearchLandingPage,
       navigationOptions: {
@@ -93,13 +87,13 @@ const HomeStack = StackNavigator(
     CreatePost: {
       screen: ModifyPost,
       navigationOptions: {
-        headerTitle: 'CreatePost',
+        headerTitle: 'Create Post',
       },
     },
     ModifyPost: {
       screen: ModifyPost,
       navigationOptions: {
-        headerTitle: 'ModifyPost',
+        headerTitle: 'Edit Post',
       },
     },
     Rating: {
