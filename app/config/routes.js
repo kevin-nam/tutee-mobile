@@ -16,6 +16,7 @@ import PendingRequests from '../screens/PendingRequests';
 import StartASession from '../screens/StartASession';
 import Rating from '../screens/Rating';
 import InSession from '../screens/InSession';
+import Settings from '../screens/Settings';
 import index from '../index';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
@@ -61,6 +62,22 @@ const ConnectionStack = StackNavigator(
     headerMode: 'screen',
   }
 );
+const ProfileStack = StackNavigator({
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'Profile',
+      header: () => null,
+    },
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      headerTitle: 'Settings',
+      header: () => null,
+    },
+  },
+});
 
 const HomeStack = StackNavigator(
   {
@@ -146,7 +163,7 @@ const Navigator = TabNavigator(
       },
     },
     Profile: {
-      screen: Profile,
+      screen: ProfileStack,
       navigationOptions: {
         tabBarIcon: () => (
           <Ionicons

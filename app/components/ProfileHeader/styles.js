@@ -57,4 +57,5 @@ export default EStyleSheet.create({
     fontSize: 12,
     color: '$baseGray',
   },
+  settingsBtn: {},
 });

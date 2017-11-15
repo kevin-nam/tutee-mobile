@@ -12,7 +12,6 @@ import { Container } from '../components/Container';
 import { FullPost } from '../components/Post';
 import { Header } from 'react-native-elements';
 import styles from './styles';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 class Post extends React.Component {
   static propTypes = {
@@ -88,7 +87,7 @@ class Post extends React.Component {
           <Header
             outerContainerStyles={styles.customHeaderOuterContainerStyle}
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
-            backgroundColor={EStyleSheet.value('white')}
+            backgroundColor="white"
             centerComponent={
               <Text
                 allowFontScaling={false}
