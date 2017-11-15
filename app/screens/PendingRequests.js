@@ -3,9 +3,10 @@ import React from 'react';
 import { ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Container } from '../components/Container';
 import { RequestCard } from '../components/RequestCard';
-import { Header, Icon } from 'react-native-elements';
+import { Header } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import store from '../store/store';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class PendingRequests extends React.Component {
   static propTypes = {
@@ -102,16 +103,27 @@ class PendingRequests extends React.Component {
       return (
         <Container color={false}>
           <Header
-            statusBarProps={{
-              barStyle: 'light-content',
-              backgroundColor: 'black',
-              translucent: true,
-              height: 60,
+            outerContainerStyles={{
+              height: 70,
             }}
-            centerComponent={{ text: 'Pending Connections' }}
+            innerContainerStyles={{
+              marginTop: 15,
+              alignItems: 'center',
+            }}
+            backgroundColor="#FF6B6C"
+            centerComponent={<Text
+              style={{
+                color: 'white',
+                fontFamily: 'Poppins-Bold',
+                fontSize: 14
+              }}>
+              Pending Connection Requests</Text>}
             leftComponent={
-              <TouchableOpacity onPress={this.goBack}>
-                <Icon name="arrow-back" color="black" />
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.goBack()}
+              >
+                <Icon name="chevron-left" color="white" size={20}/>
               </TouchableOpacity>
             }
           />
@@ -120,7 +132,7 @@ class PendingRequests extends React.Component {
             style={{
               flex: 1,
               width: '100%',
-              marginTop: 80,
+              marginTop: 70,
             }}
           >
             {pendingCards.length > 0 ? (

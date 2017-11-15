@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import store from '../../store/store';
 
@@ -12,7 +13,6 @@ class RequestCard extends React.Component {
     };
   }
 
-  // TODO: refresh connections page when accepting (currently new connections not shown after approval)
   onPressAccept = () => {
     console.log('accept');
 
@@ -71,26 +71,33 @@ class RequestCard extends React.Component {
     if (this.props.profile_picture) {
       profile_picture = {uri: this.props.profile_picture}
     }
+
+    let username = this.props.uid;
+    if (this.props.user.username) {
+      username = this.props.user.username;
+    }
+
     return (
       <View style={this.state.hidden ? styles.hidden : styles.flexVertical}>
         <View style={styles.profileImageView}>
           <Image
+            borderRadius={25}
             style={styles.profileImage}
             source={profile_picture}
           />
         </View>
         <View style={styles.profileTextView}>
-          <Text style={styles.profileText}>{this.props.uid}</Text>
+          <Text style={styles.profileText}>{username}</Text>
         </View>
         <View style={styles.acceptRejectBtnView}>
           <TouchableOpacity
             onPress={this.onPressAccept}
             style={styles.acceptBtn}
           >
-            <Text style={styles.acceptText}>Accept</Text>
+            <Ionicons name="ios-checkmark-circle" color="#5CB85C" size={32}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.onPressReject}>
-            <Text style={styles.rejectText}>Reject</Text>
+            <Ionicons name="ios-close-circle" color="#D9534F" size={32}/>
           </TouchableOpacity>
         </View>
       </View>
