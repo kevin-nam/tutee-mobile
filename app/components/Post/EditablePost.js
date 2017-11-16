@@ -21,8 +21,8 @@ class EditablePost extends React.Component {
     };
   }
 
-  goBack = (screen, params) => {
-    console.log('Pressed back');
+  goToPost = (screen, params) => {
+    console.log('Pressed Save');
     // TODO: Fix this so we dont go to edit pages
     // const resetAction = NavigationActions.reset({
     //   index: 0,
@@ -58,8 +58,11 @@ class EditablePost extends React.Component {
           }
         })
         .then((data) => {
-          // console.log('update', data);
-          this.goBack('Post', { post: data });
+          this.goToPost('Post', {
+            post: data,
+            edited: true,
+            search: this.props.searchedTags,
+          });
           // console.log(data);
         });
     } else {
@@ -84,7 +87,10 @@ class EditablePost extends React.Component {
           }
         })
         .then((data) => {
-          this.props.navigation.navigate('Post', { post: data.post });
+          this.props.navigation.navigate('Post', {
+            post: data.post,
+            created: true,
+          });
           // console.log(data);
         });
     }
