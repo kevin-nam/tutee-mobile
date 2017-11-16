@@ -181,8 +181,9 @@ const styles = EStyleSheet.create({
     marginVertical: 5,
   },
   searchLandingErrorText: {
+    marginTop: '15%',
     fontFamily: 'Poppins-SemiBoldItalic',
-    fontSize: 25,
+    fontSize: 18,
     color: '$baseGray',
     textAlign: 'center',
   },
@@ -240,6 +241,7 @@ const styles = EStyleSheet.create({
    */
   pendingRequestImage: {
     marginTop: 20,
+    alignSelf: 'center',
   },
   /**
    * MESSAGING STYLE
