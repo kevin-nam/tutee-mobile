@@ -125,6 +125,7 @@ class SearchLandingPage extends React.Component {
         Error 86 - No posts found!
       </Text>
     );
+    let searchedTags = this.props.navigation.state.params.tagList;
     if (this.state.postList && this.state.postList.length > 0) {
       posts = this.state.postList.map(function(data, index) {
         return (
@@ -135,7 +136,11 @@ class SearchLandingPage extends React.Component {
             content={data.post.description}
             date={data.post.date}
             onPress={() =>
-              navigation.navigate('Post', { post: data.post, user: data.user })}
+              navigation.navigate('Post', {
+                post: data.post,
+                user: data.user,
+                search: searchedTags,
+              })}
             onImagePress={() =>
               navigation.navigate('otherProfile', { otherID: data.post.uid })}
           />
