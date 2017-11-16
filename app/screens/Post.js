@@ -144,7 +144,7 @@ class Post extends React.Component {
             }
             leftComponent={
               <TouchableOpacity onPress={() => this.goBack()}>
-                <Icon name="chevron-left" color="black" size={20} />
+                <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
           />

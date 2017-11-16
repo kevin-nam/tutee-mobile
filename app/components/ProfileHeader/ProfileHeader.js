@@ -18,7 +18,7 @@ class ProfileHeader extends React.Component {
   }
 
   render() {
-    console.log(this.props.user);
+    // console.log(this.props.user);
     return (
       <View style={styles.flexHorizontal}>
         <View style={styles.profileImageView}>
@@ -35,7 +35,7 @@ class ProfileHeader extends React.Component {
           {this.props.mine ? (
             <Icon
               name="cog"
-              size={15}
+              size={25}
               color={EStyleSheet.value('$grayLighten40')}
               onPress={() => this.props.navigation.navigate('Settings')}
               style={styles.settingsBtn}

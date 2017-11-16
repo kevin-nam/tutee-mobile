@@ -1,11 +1,11 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 
 const marginTopOffset = Platform.OS === 'ios' ? 0 : 10;
 
 export default EStyleSheet.create({
   flexHorizontal: {
-    marginTop: marginTopOffset,
+    marginTop: StatusBar.currentHeight,
     alignItems: 'center',
     height: 140 + marginTopOffset * 2,
     flexDirection: 'row',

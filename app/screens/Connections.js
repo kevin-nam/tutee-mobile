@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   RefreshControl,
+  StatusBar,
 } from 'react-native';
 import { Container } from '../components/Container';
 import { ConnectionCard } from '../components/ConnectionCard';
@@ -93,6 +94,7 @@ class Connections extends React.Component {
 
       return (
         <Container color={false}>
+          <StatusBar barStyle={'light-content'} />
           <Header
             outerContainerStyles={styles.customHeaderOuterContainerStyle}
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
@@ -114,7 +116,6 @@ class Connections extends React.Component {
               </TouchableOpacity>
             }
           />
-
           <ScrollView
             showsVerticalScrollIndicator={true}
             style={styles.customScrollView}

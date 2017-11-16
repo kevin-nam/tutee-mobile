@@ -1,6 +1,5 @@
-import { Dimensions } from 'react-native';
+import { Platform, Dimensions, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Platform } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -76,16 +75,14 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
   },
   homeBadgeView: {
-    marginVertical: 10,
     flexDirection: 'row',
-    flexWrap: 'wrap',
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
   homeBadgeContainer: {
     backgroundColor: '$grayLighten50',
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     marginVertical: 5,
   },
   homeBadgeText: {
@@ -101,7 +98,7 @@ const styles = EStyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   startASessionInfoView: {
     marginTop: 70,
@@ -110,7 +107,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   startSessionImage: {
     height: 150,
@@ -121,7 +118,7 @@ const styles = EStyleSheet.create({
   startASessionTuteeText: {
     fontSize: 12,
     fontFamily: 'Poppins-Bold',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   startSessionUsername: {
     fontSize: 18,
@@ -162,7 +159,7 @@ const styles = EStyleSheet.create({
   startASessionDurationRateText: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: 'black'
+    color: 'black',
   },
   startSessionButtonText: {
     fontSize: 14,
@@ -229,11 +226,9 @@ const styles = EStyleSheet.create({
    * PROFILE STYLE
    */
   profileView: {
-    paddingTop: Platform.OS === 'ios' ? 0 : 14,
     flex: 1,
     alignSelf: 'stretch',
     flexDirection: 'column',
-    backgroundColor: 'white',
   },
   /**
    * PENDINGREQUEST STYLE
@@ -277,16 +272,16 @@ const styles = EStyleSheet.create({
     fontSize: 16,
   },
   /**
-   * SETTINGS STYLE
+   *  SETTINGS STYLE
    */
-  settingsBtn: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 16,
-    color: '$baseGray',
+  settingsHeaderOuterContainerStyle: {
+    height: 70,
+    marginTop: StatusBar.currentHeight,
   },
-  settingsBtnContainer: {
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+  settingsScrollView: {
+    flex: 1,
+    width: '100%',
+    marginTop: 70 + StatusBar.currentHeight,
   },
 });
 

@@ -6,7 +6,7 @@ import {
   View,
   Image,
   AsyncStorage,
-  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { CreatePostButton } from '../components/Post';
@@ -33,7 +33,7 @@ class Home extends React.Component {
 
   // Runs before render
   componentWillMount() {
-    this.getRecentTags(6);
+    this.getRecentTags(9);
     this.setWelcomeMessage();
     this.tempFunc();
   }
@@ -100,21 +100,23 @@ class Home extends React.Component {
 
     let tags =
       this.state.recentTags.length > 0 ? (
-        this.state.recentTags.map(function(tag, index) {
-          return (
-            <Badge
-              key={index}
-              containerStyle={styles.homeBadgeContainer}
-              textStyle={styles.homeBadgeText}
-              value={'#' + tag}
-              onPress={() => {
-                navigation.navigate('SearchLandingPage', {
-                  tagList: tag,
-                });
-              }}
-            />
-          );
-        })
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {this.state.recentTags.map(function(tag, index) {
+            return (
+              <Badge
+                key={index}
+                containerStyle={styles.homeBadgeContainer}
+                textStyle={styles.homeBadgeText}
+                value={'#' + tag}
+                onPress={() => {
+                  navigation.navigate('SearchLandingPage', {
+                    tagList: tag,
+                  });
+                }}
+              />
+            );
+          })}
+        </ScrollView>
       ) : (
         <Text allowFontScaling={false} style={styles.homeNoTagPhrase}>
           {'What?! No #Tags?? \n\n ΣΣ(ﾟДﾟ;)'}
@@ -134,13 +136,6 @@ class Home extends React.Component {
           <Text allowFontScaling={false} style={styles.homeCatchPhrase}>
             Let's get learning!
           </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Rating');
-            }}
-          >
-            <Text>Rating Page</Text>
-          </TouchableOpacity>
           <View style={styles.homeBadgeSectionView}>
             <Text allowFontScaling={false} style={styles.homeTagPhrase}>
               Some of the most recent #Tags
