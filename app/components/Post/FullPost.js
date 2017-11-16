@@ -56,7 +56,7 @@ class FullPost extends React.Component {
         .then((data) => {
           this.setState({ loading: false });
 
-          if (data && data.connections && Object.keys(data.connections).length > 0) {
+          if (data && data.connections) {
             // Connection doesn't exist
             if (!data.connections[posterUid]) {
               console.log('connection does not exist');
