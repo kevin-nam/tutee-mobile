@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import * as sessionActions from '../../actions/session-actions';
+import { Ionicons } from '@expo/vector-icons';
 
 class SessionRequest extends React.Component {
   constructor(props) {
@@ -112,22 +113,32 @@ class SessionRequest extends React.Component {
   };
 
   render() {
+
+
+
     if (!this.state.loading) {
       const profile_picture = this.state.profile_picture
         ? { uri: this.state.profile_picture }
         : require('../MessagingHeader/default-user.jpg');
 
+      const duration = this.props.content.duration;
+      const rate = this.props.content.duration;
+      const totalprice = this.props.content.totalprice;
+
       return (
         <View style={styles.flexVertical}>
+          <Text style={styles.yourTutorText} allowFontScaling={false}>
+            YOUR TUTOR:
+          </Text>
+          <Text allowFontScaling={false} style={styles.nameText}>
+            {this.state.username}
+          </Text>
           <View style={styles.imageView}>
             <Image style={styles.image} source={profile_picture} />
           </View>
           <View style={styles.infoView}>
-            <Text allowFontScaling={false} style={styles.nameText}>
-              {this.state.username}
-            </Text>
             <Text allowFontScaling={false} style={styles.infoText}>
-              is sending you a session request for 1 hour at a rate of $10/hour!
+              is sending you a session request for {duration} {duration > 1 ? 'hour' : 'hours'} at a rate of ${rate}/hour for a total of ${totalprice}!
             </Text>
           </View>
           <View style={styles.acceptRejectView}>
@@ -135,17 +146,21 @@ class SessionRequest extends React.Component {
               onPress={this.onPressAccept}
               style={styles.acceptBtn}
             >
-              <Text allowFontScaling={false} style={styles.acceptText}>
-                Accept
-              </Text>
+              <Ionicons
+                name="ios-checkmark"
+                color='white'
+                size={36}
+              />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={this.onPressReject}
               style={styles.rejectBtn}
             >
-              <Text allowFontScaling={false} style={styles.rejectText}>
-                Reject
-              </Text>
+              <Ionicons
+                name="ios-close"
+                color='white'
+                size={36}
+              />
             </TouchableOpacity>
           </View>
         </View>

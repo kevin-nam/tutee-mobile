@@ -148,17 +148,17 @@ class InSessionView extends React.Component {
           </View>
           <View style={styles.infoView}>
             <Text allowFontScaling={false} style={styles.nameText}>
-              Tutor: {this.state.tutor_username}
+              <Text allowFontScaling={false} style={styles.tutorTuteeText}>Tutor:</Text> {this.state.tutor_username}
             </Text>
             <Text allowFontScaling={false} style={styles.nameText}>
-              Tutee: {this.state.tutee_username}
+              <Text allowFontScaling={false} style={styles.tutorTuteeText}>Tutee:</Text> {this.state.tutee_username}
             </Text>
             <Text allowFontScaling={false} style={styles.infoText}>
-              Duration: {this.props.content.duration}{' '}
+              <Text allowFontScaling={false} style={styles.tutorTuteeText}>Duration:</Text> {this.props.content.duration}{' '}
               {this.props.content.duration > 1 ? 'hours' : 'hour'}
               {'\n'}
-              Rate: ${this.props.content.rate}/hour{'\n'}
-              Total Price: ${this.props.content.totalprice}
+              <Text allowFontScaling={false} style={styles.tutorTuteeText}>Rate:</Text> ${this.props.content.rate}/hour{'\n'}
+              <Text allowFontScaling={false} style={styles.tutorTuteeText}>Total Price:</Text> ${this.props.content.totalprice}
             </Text>
           </View>
           <View style={styles.endBtnView}>

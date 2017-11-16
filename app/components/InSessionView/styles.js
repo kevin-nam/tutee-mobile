@@ -9,50 +9,57 @@ export default EStyleSheet.create({
   },
   flexVertical: {
     alignItems: 'center',
+    justifyContent: 'center',
     height: '100%',
     width: '100%',
     flexDirection: 'column',
     backgroundColor: '$baseCoral',
   },
   titleView: {
-    marginTop: '15%',
+    marginBottom: 40,
   },
   titleText: {
-    fontSize: 28,
+    fontSize: 18,
+    fontFamily: 'Poppins-Bold',
+    color: 'white'
   },
   imageView: {
     flexDirection: 'row',
     width: '100%',
-    marginTop: '25%',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   image: {
+    marginHorizontal: 15,
     borderRadius: 75,
     borderWidth: 1,
     borderColor: '$baseGray',
-    marginLeft: 15,
-    marginRight: 15,
     width: 150,
     height: 150,
   },
   infoView: {
-    marginTop: '15%',
-    alignItems: 'flex-start',
+    marginTop: 15,
+    alignItems: 'center',
     width: '70%',
   },
+  tutorTuteeText: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 12,
+    color: 'white'
+  },
   nameText: {
+    fontFamily: 'Poppins-Regular',
     fontSize: 18,
-    fontWeight: '600',
+    color: 'white'
   },
   infoText: {
-    marginTop: 4,
+    fontFamily: 'Poppins-Light',
+    marginTop: 10,
     fontSize: 14,
+    color: 'white'
   },
   endBtnView: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '25%',
+    marginTop: 50,
     flexDirection: 'row',
     width: '65%',
     justifyContent: 'center',
@@ -61,15 +68,14 @@ export default EStyleSheet.create({
   endBtn: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 200,
-    height: 75,
-    borderWidth: 2,
-    borderColor: 'white',
+    width: 160,
+    height: 65,
     borderRadius: 20,
     backgroundColor: '$baseBlue',
   },
   endBtnText: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
+    fontFamily: 'Poppins-Regular',
   },
 });
