@@ -141,6 +141,7 @@ class FullPost extends React.Component {
     }
     let chooseButton = this.state.isMine ? (
       <TouchableOpacity
+        activeOpacity={1}
         style={styles.actionButton}
         onPress={() => {
           this.props.navigation.navigate('ModifyPost', {

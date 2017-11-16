@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   RefreshControl,
   StatusBar,
+  Image,
 } from 'react-native';
 import { Container } from '../components/Container';
 import { ConnectionCard } from '../components/ConnectionCard';
@@ -46,20 +47,27 @@ class Connections extends React.Component {
       .then((data) => {
         const connections = [];
 
-        Object.values(data.connections).forEach(function(connection) {
-          if (!connection.isPending) {
-            connections.push({
-              uid: connection.uid,
-              isTutor: connection.isTutor,
-            });
-          }
-        });
-
-        this.setState({
-          loading: false,
-          connections: connections,
-          refreshing: false,
-        });
+        if (data.connections) {
+          Object.values(data.connections).forEach(function(connection) {
+            if (!connection.isPending) {
+              connections.push({
+                uid: connection.uid,
+                isTutor: connection.isTutor,
+              });
+            }
+          });
+          this.setState({
+            loading: false,
+            connections: connections,
+            refreshing: false,
+          });
+        } else {
+          this.setState({
+            loading: false,
+            connections: connections,
+            refreshing: false,
+          });
+        }
       });
   };
 
@@ -92,9 +100,27 @@ class Connections extends React.Component {
         );
       });
 
+      let errorText = (
+        <Text
+          key="0"
+          allowFontScaling={false}
+          style={styles.searchLandingErrorText}
+        >
+          You currently have no connections!
+        </Text>
+      );
+
+      let image = (
+        <Image
+          style={styles.pendingRequestImage}
+          key="1"
+          source={require('../../assets/images/corgimomo.png')}
+        />
+      );
+
       return (
         <Container color={false}>
-          <StatusBar barStyle={'light-content'} />
+          <StatusBar barStyle="light-content" />
           <Header
             outerContainerStyles={styles.customHeaderOuterContainerStyle}
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
@@ -126,7 +152,9 @@ class Connections extends React.Component {
               />
             }
           >
-            {connectionCards}
+            {this.state.connections.length > 0
+              ? connectionCards
+              : [errorText, image]}
           </ScrollView>
         </Container>
       );
