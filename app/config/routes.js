@@ -124,6 +124,7 @@ const HomeStack = StackNavigator(
       screen: Profile,
       navigationOptions: {
         headerTitle: 'Profile',
+        header: () => null,
       },
     },
     RequestSession: {

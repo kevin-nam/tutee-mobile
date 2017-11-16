@@ -10,6 +10,7 @@ class ProfileHeader extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
     user: PropTypes.object,
+    mine: PropTypes.bool,
   };
 
   constructor(props) {
@@ -31,13 +32,15 @@ class ProfileHeader extends React.Component {
           <Text allowFontScaling={false} style={styles.profileText}>
             {this.props.user.username}
           </Text>
-          <Icon
-            name="cog"
-            size={15}
-            color={EStyleSheet.value('$grayLighten40')}
-            onPress={this.props.navigation.navigate('Settings')}
-            style={styles.settingsBtn}
-          />
+          {this.props.mine ? (
+            <Icon
+              name="cog"
+              size={15}
+              color={EStyleSheet.value('$grayLighten40')}
+              onPress={() => this.props.navigation.navigate('Settings')}
+              style={styles.settingsBtn}
+            />
+          ) : null}
           {this.props.user.rating !== -1 ? (
             <View style={styles.ratingView}>
               <Rating

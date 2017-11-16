@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
+  AsyncStorage,
+  TouchableOpacity,
+} from 'react-native';
 import { Container } from '../components/Container';
+import { Header } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import NavigationActions from 'react-navigation';
 
 class Settings extends React.Component {
   static propTypes = {
@@ -13,6 +23,15 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  logout = () => {
+    const actionToDispatch = NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Login' })],
+      key: null,
+    });
+    this.props.navigation.dispatch(actionToDispatch);
+  };
 
   render() {
     return (
@@ -25,7 +44,7 @@ class Settings extends React.Component {
           centerComponent={
             <Text
               allowFontScaling={false}
-              style={styles.customHeaderCenterComponentTextBlack}
+              style={styles.customHeaderCenterComponentText}
             >
               Settings
             </Text>
@@ -43,7 +62,19 @@ class Settings extends React.Component {
           <ScrollView
             style={styles.searchLandingView}
             showsVerticalScrollIndicator={false}
-          />
+          >
+            <TouchableOpacity
+              style={styles.settingsBtnContainer}
+              onPress={async () => {
+                // await AsyncStorage.clear();
+                this.logout();
+              }}
+            >
+              <Text allowFontScaling={false} style={styles.settingsBtn}>
+                Logout
+              </Text>
+            </TouchableOpacity>
+          </ScrollView>
         </KeyboardAvoidingView>
       </Container>
     );

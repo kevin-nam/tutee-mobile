@@ -204,10 +204,17 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
   },
-  customHeaderCenterComponentTextBlack: {
-    color: 'black',
-    fontFamily: 'Poppins-Bold',
+  /**
+   * SETTINGS STYLE
+   */
+  settingsBtn: {
+    fontFamily: 'Poppins-Medium',
     fontSize: 16,
+    color: '$baseGray',
+  },
+  settingsBtnContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
 });
 
