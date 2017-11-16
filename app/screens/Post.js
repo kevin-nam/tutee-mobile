@@ -137,7 +137,7 @@ class Post extends React.Component {
             centerComponent={
               <Text
                 allowFontScaling={false}
-                style={styles.customHeaderCenterComponentText}
+                style={styles.customHeaderCenterComponentTextWhite}
               >
                 Post
               </Text>

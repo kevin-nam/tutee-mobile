@@ -56,7 +56,7 @@ class FullPost extends React.Component {
         .then((data) => {
           this.setState({ loading: false });
 
-          if (data && Object.keys(data.connections).length > 0) {
+          if (data && data.connections && Object.keys(data.connections).length > 0) {
             // Connection doesn't exist
             if (!data.connections[posterUid]) {
               console.log('connection does not exist');
@@ -208,12 +208,11 @@ class FullPost extends React.Component {
               </View>
             </View>
           </View>
-
-          <View style={styles.fullBody}>
+          <ScrollView style={styles.fullBody}>
             <Text allowFontScaling={false} style={styles.descriptionText}>
               {this.props.post.description}
             </Text>
-          </View>
+          </ScrollView>
           <View style={styles.footer}>
             <Text allowFontScaling={false} style={styles.date}>
               {moment(this.props.post.date).format('MMMM D, YYYY')}

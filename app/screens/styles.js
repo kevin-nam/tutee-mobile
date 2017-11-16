@@ -273,6 +273,11 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
   },
+  customHeaderCenterComponentTextWhite: {
+    color: 'white',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+  },
   /**
    *  SETTINGS STYLE
    */
@@ -284,7 +289,7 @@ const styles = EStyleSheet.create({
     flex: 1,
     width: '100%',
     marginTop: 70 + StatusBar.currentHeight,
-  },
+  }
 });
 
 export default styles;
