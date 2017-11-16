@@ -53,6 +53,7 @@ const ConnectionStack = StackNavigator(
       screen: StartASession,
       navigationOptions: {
         headerTitle: 'Create a new session',
+        header: () => null,
       },
     },
   },

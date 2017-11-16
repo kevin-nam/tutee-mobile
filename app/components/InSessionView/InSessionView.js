@@ -117,7 +117,8 @@ class InSessionView extends React.Component {
       this.props.navigation.dispatch(resetAction);
     } else {
       this.props.navigation.navigate('Rating', {
-        uid: this.props.tid,
+        uid: this.props.content.tid,
+        username: this.props.username,
         currentSum: this.state.currentSum,
         numOfRatings: this.state.numOfRatings,
       });

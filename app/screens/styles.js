@@ -1,5 +1,9 @@
+import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Platform } from 'react-native';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const styles = EStyleSheet.create({
   /**
@@ -92,37 +96,77 @@ const styles = EStyleSheet.create({
   /**
    * STARTASESSION STYLE
    */
+  startASessionView: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+  startASessionInfoView: {
+    marginTop: 70,
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    overflow: 'hidden'
+  },
   startSessionImage: {
     height: 150,
     width: 150,
     marginBottom: 20,
+    borderRadius: 75,
+  },
+  startASessionTuteeText: {
+    fontSize: 12,
+    fontFamily: 'Poppins-Bold',
+    alignSelf: 'center'
   },
   startSessionUsername: {
     fontSize: 18,
-    color: 'white',
+    fontFamily: 'Poppins-Light',
+    color: 'black',
     marginBottom: 10,
   },
   startSessionDurationInput: {
     width: 300,
     height: '10%',
     backgroundColor: 'white',
+    borderColor: '$baseBlue',
+    borderWidth: 1,
     marginBottom: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 15,
   },
   startSessionRateInput: {
     width: 300,
     height: '10%',
+    borderColor: '$baseBlue',
+    borderWidth: 1,
     backgroundColor: 'white',
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 15,
   },
   startSessionButtonStyle: {
     marginTop: 30,
-    borderRadius: 10,
-    backgroundColor: 'blue',
-    width: 150,
+    borderRadius: 15,
+    backgroundColor: '$baseCoral',
+    width: 175,
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  startASessionDurationRateText: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Light',
+    color: 'black'
+  },
   startSessionButtonText: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Bold',
     color: 'white',
   },
   /**
@@ -150,6 +194,34 @@ const styles = EStyleSheet.create({
    */
   deletePostView: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  /**
+   * RATINGPAGE STYLE
+   */
+  ratingBoxView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: SCREEN_WIDTH * 0.85,
+    height: SCREEN_HEIGHT * 0.7,
+    borderRadius: 20,
+    backgroundColor: 'white',
+  },
+  ratingContentView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ratingText: {
+    textAlign: 'center',
+    fontFamily: 'Poppins-Regular',
+    marginBottom: 50,
+    fontSize: 15,
+  },
+  ratingPropView: {
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },

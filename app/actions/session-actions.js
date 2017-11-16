@@ -13,13 +13,14 @@ export const showSessionRequest = (content) => {
   return nav;
 };
 
-export const showInSession = (content) => {
+export const showInSession = (content, username) => {
   const nav = NavigationActions.navigate({
     routeName: 'Home',
     action: NavigationActions.navigate({
       routeName: 'InSession',
       params: {
         content: content,
+        username: username,
       },
     }),
   });
