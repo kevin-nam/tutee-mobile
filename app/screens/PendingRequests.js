@@ -49,18 +49,21 @@ class PendingRequests extends React.Component {
       })
       .then((data) => {
         const pendingConnections = [];
-        Object.values(data.connections).forEach((connection) => {
-          if (connection.isPending && !connection.isRequesting) {
-            // Get Profile Data for each pending connection
-            this.getProfileData(connection.uid, (user) => {
-              pendingConnections.push({ user: user, uid: connection.uid });
 
-              this.setState({
-                pendingConnections: pendingConnections,
+        if (data.connections) {
+          Object.values(data.connections).forEach((connection) => {
+            if (connection.isPending && !connection.isRequesting) {
+              // Get Profile Data for each pending connection
+              this.getProfileData(connection.uid, (user) => {
+                pendingConnections.push({user: user, uid: connection.uid});
+
+                this.setState({
+                  pendingConnections: pendingConnections,
+                });
               });
-            });
-          }
-        });
+            }
+          });
+        }
 
         this.setState({
           loading: false,
