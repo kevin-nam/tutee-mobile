@@ -134,13 +134,6 @@ class Home extends React.Component {
           <Text allowFontScaling={false} style={styles.homeCatchPhrase}>
             Let's get learning!
           </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Rating');
-            }}
-          >
-            <Text>Rating Page</Text>
-          </TouchableOpacity>
           <View style={styles.homeBadgeSectionView}>
             <Text allowFontScaling={false} style={styles.homeTagPhrase}>
               Some of the most recent #Tags
