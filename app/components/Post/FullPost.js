@@ -146,6 +146,7 @@ class FullPost extends React.Component {
           this.props.navigation.navigate('ModifyPost', {
             edit: true,
             post: this.props.post,
+            search: this.props.searchedTags,
           });
         }}
       >

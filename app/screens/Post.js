@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container } from '../components/Container';
 import { FullPost } from '../components/Post';
 import { Header } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -24,6 +25,9 @@ class Post extends React.Component {
 
     this.state = {
       loading: true,
+      created: false,
+      edited: false,
+      searchedTags: '',
       user: {
         username: '',
         profile_picture: '',
@@ -39,6 +43,32 @@ class Post extends React.Component {
       },
     };
   }
+
+  goBack = () => {
+    if (this.state.created == true) {
+      // console.log('Pressed back from a created post');
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Home' })],
+      });
+      this.props.navigation.dispatch(resetAction);
+    } else if (this.state.edited == true) {
+      // console.log('Pressed back from an edited post');
+      const resetAction = NavigationActions.reset({
+        index: 1,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Home' }),
+          NavigationActions.navigate({
+            routeName: 'SearchLandingPage',
+            params: { tagList: this.state.searchedTags },
+          }),
+        ],
+      });
+      this.props.navigation.dispatch(resetAction);
+    } else {
+      this.props.navigation.goBack();
+    }
+  };
 
   getFullPostData = async () => {
     if (
@@ -76,6 +106,19 @@ class Post extends React.Component {
     }
   };
 
+  componentWillMount() {
+    this.setState({ searchedTags: this.props.navigation.state.params.search });
+    if (typeof this.props.navigation.state.params.edited !== 'undefined') {
+      // console.log('edited is true');
+      this.setState({ edited: true });
+    } else if (
+      typeof this.props.navigation.state.params.created !== 'undefined'
+    ) {
+      // console.log('created is true');
+      this.setState({ created: true });
+    }
+  }
+
   componentDidMount() {
     this.getFullPostData();
   }
@@ -98,7 +141,7 @@ class Post extends React.Component {
               </Text>
             }
             leftComponent={
-              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <TouchableOpacity onPress={() => this.goBack()}>
                 <Icon name="chevron-left" color="black" size={20} />
               </TouchableOpacity>
             }
@@ -116,6 +159,7 @@ class Post extends React.Component {
                 user={this.state.user}
                 navigation={this.props.navigation}
                 edit={this.state.edit}
+                searchedTags={this.props.navigation.state.params.search}
                 onImagePress={() =>
                   this.props.navigation.navigate('otherProfile', {
                     otherID: this.state.post.uid,

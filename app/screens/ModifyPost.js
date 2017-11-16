@@ -52,6 +52,7 @@ class ModifyPost extends React.Component {
     const backAction = NavigationActions.back({
       key: 'SearchLandringPage',
     });
+    let search = this.props.navigation.state.params.search;
     let deletePost = this.state.edit ? (
       <DeletePostWarning
         pid={this.state.post.pid}
@@ -68,6 +69,7 @@ class ModifyPost extends React.Component {
               post={this.state.post}
               edit={this.state.edit}
               navigation={this.props.navigation}
+              searchedTags={search}
             />
             <View style={styles.deletePostView}>{deletePost}</View>
           </ScrollView>
