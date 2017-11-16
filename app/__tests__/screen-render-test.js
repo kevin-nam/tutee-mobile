@@ -39,6 +39,6 @@ it('renders Messaging without crashing', () => {
 });
 
 it('renders Post without crashing', () => {
-  const rendered = renderer.create(<Post />).toJSON();
+  const rendered = renderer.create(<Post navigation={navigation} />).toJSON();
   expect(rendered).toBeNull();
 });
