@@ -2,7 +2,6 @@ import React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
-
 import Home from '../screens/Home';
 import Connections from '../screens/Connections';
 import Login from '../screens/Login';
@@ -16,6 +15,8 @@ import PendingRequests from '../screens/PendingRequests';
 import StartASession from '../screens/StartASession';
 import Rating from '../screens/Rating';
 import InSession from '../screens/InSession';
+import Settings from '../screens/Settings';
+import EditAccount from '../screens/EditAccount';
 import index from '../index';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
@@ -62,6 +63,29 @@ const ConnectionStack = StackNavigator(
     headerMode: 'screen',
   }
 );
+const ProfileStack = StackNavigator({
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      headerTitle: 'Profile',
+      header: () => null,
+    },
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      headerTitle: 'Settings',
+      header: () => null,
+    },
+  },
+  EditAccount: {
+    screen: EditAccount,
+    navigationOptions: {
+      headerTitle: 'Edit Account Info',
+      header: () => null,
+    },
+  },
+});
 
 const HomeStack = StackNavigator(
   {
@@ -108,6 +132,7 @@ const HomeStack = StackNavigator(
       screen: Profile,
       navigationOptions: {
         headerTitle: 'Profile',
+        header: () => null,
       },
     },
     RequestSession: {
@@ -147,7 +172,7 @@ const Navigator = TabNavigator(
       },
     },
     Profile: {
-      screen: Profile,
+      screen: ProfileStack,
       navigationOptions: {
         tabBarIcon: () => (
           <Ionicons

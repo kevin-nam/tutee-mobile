@@ -133,18 +133,18 @@ class Post extends React.Component {
           <Header
             outerContainerStyles={styles.customHeaderOuterContainerStyle}
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
-            backgroundColor={EStyleSheet.value('white')}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
             centerComponent={
               <Text
                 allowFontScaling={false}
-                style={styles.customHeaderCenterComponentTextBlack}
+                style={styles.customHeaderCenterComponentText}
               >
                 Post
               </Text>
             }
             leftComponent={
               <TouchableOpacity onPress={() => this.goBack()}>
-                <Icon name="chevron-left" color="black" size={20} />
+                <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
           />

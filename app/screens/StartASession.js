@@ -9,9 +9,9 @@ import {
   Image,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
-import {Header} from 'react-native-elements';
+import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import store from '../store/store';
 import styles from './styles';
@@ -34,7 +34,7 @@ class StartASession extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({loading: false});
+    this.setState({ loading: false });
   }
 
   onPressRequest = () => {
@@ -63,7 +63,7 @@ class StartASession extends React.Component {
         method: 'POST',
         body: JSON.stringify(message),
         headers: headers,
-      }).then(function (response) {
+      }).then(function(response) {
         if (response.ok) {
           console.log('Successfully sent a session request');
         } else {
@@ -71,14 +71,14 @@ class StartASession extends React.Component {
         }
         sendMessage(
           myUsername +
-          ' sent a session request: $' +
-          rate +
-          '/hr' +
-          ', ' +
-          duration +
-          ' hours.' +
-          ' Total: $' +
-          rate * duration,
+            ' sent a session request: $' +
+            rate +
+            '/hr' +
+            ', ' +
+            duration +
+            ' hours.' +
+            ' Total: $' +
+            rate * duration,
           myUid,
           toUid
         );
@@ -109,7 +109,7 @@ class StartASession extends React.Component {
         method: 'POST',
         body: JSON.stringify(message),
         headers: headers,
-      }).then(function (response) {
+      }).then(function(response) {
         if (response.ok) {
           console.log('Successfully sent a message');
         } else {
@@ -132,7 +132,7 @@ class StartASession extends React.Component {
         method: 'POST',
         body: JSON.stringify(message),
         headers: headers,
-      }).then(function (response) {
+      }).then(function(response) {
         if (response.ok) {
           console.log('Successfully sent a message');
         } else {
@@ -167,59 +167,82 @@ class StartASession extends React.Component {
                 </Text>
               }
               leftComponent={
-                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                  <Icon name="chevron-left" color="white" size={20}/>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.goBack()}
+                >
+                  <Icon name="chevron-left" color="white" size={20} />
                 </TouchableOpacity>
               }
             />
-              <KeyboardAvoidingView
-                behavior='padding'
-                keyboardVerticalOffset={keyboardVerticalOffset}
-                style={styles.startASessionInfoView}
-              >
-                <View>
-                <Text style={styles.startASessionTuteeText} allowFontScaling={false}>YOU ARE REQUESTING TO TUTOR:</Text>
-                <Text allowFontScaling={false} style={styles.startSessionUsername}>
+            <KeyboardAvoidingView
+              behavior="padding"
+              keyboardVerticalOffset={keyboardVerticalOffset}
+              style={styles.startASessionInfoView}
+            >
+              <View>
+                <Text
+                  style={styles.startASessionTuteeText}
+                  allowFontScaling={false}
+                >
+                  YOU ARE REQUESTING TO TUTOR:
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  style={styles.startSessionUsername}
+                >
                   {this.props.navigation.state.params.username}
                 </Text>
-                </View>
-                <Image source={profile_picture} style={styles.startSessionImage}/>
-                <View>
-                  <Text style={styles.startASessionDurationRateText} allowFontScaling={false}>Duration (in hours)</Text>
-                </View>
-                <TextInput
-                  onChangeText={(duration) => {
-                    this.setState({duration: duration});
-                  }}
-                  maxLength={3}
-                  keyboardType="numeric"
-                  placeholder="2"
-                  style={styles.startSessionDurationInput}
-                />
-                <View>
-                  <Text style={styles.startASessionDurationRateText} allowFontScaling={false}>Rate (per hour)</Text>
-                </View>
-                <TextInput
-                  onChangeText={(rate) => {
-                    this.setState({rate: rate});
-                  }}
-                  maxLength={5}
-                  keyboardType="numeric"
-                  placeholder="15"
-                  style={styles.startSessionRateInput}
-                />
-                <TouchableOpacity
-                  onPress={this.onPressRequest}
-                  style={styles.startSessionButtonStyle}
+              </View>
+              <Image
+                source={profile_picture}
+                style={styles.startSessionImage}
+              />
+              <View>
+                <Text
+                  style={styles.startASessionDurationRateText}
+                  allowFontScaling={false}
                 >
-                  <Text
-                    allowFontScaling={false}
-                    style={styles.startSessionButtonText}
-                  >
-                    Request a session
-                  </Text>
-                </TouchableOpacity>
-              </KeyboardAvoidingView>
+                  Duration (in hours)
+                </Text>
+              </View>
+              <TextInput
+                onChangeText={(duration) => {
+                  this.setState({ duration: duration });
+                }}
+                maxLength={3}
+                keyboardType="numeric"
+                placeholder="2"
+                style={styles.startSessionDurationInput}
+              />
+              <View>
+                <Text
+                  style={styles.startASessionDurationRateText}
+                  allowFontScaling={false}
+                >
+                  Rate (per hour)
+                </Text>
+              </View>
+              <TextInput
+                onChangeText={(rate) => {
+                  this.setState({ rate: rate });
+                }}
+                maxLength={5}
+                keyboardType="numeric"
+                placeholder="15"
+                style={styles.startSessionRateInput}
+              />
+              <TouchableOpacity
+                onPress={this.onPressRequest}
+                style={styles.startSessionButtonStyle}
+              >
+                <Text
+                  allowFontScaling={false}
+                  style={styles.startSessionButtonText}
+                >
+                  Request a session
+                </Text>
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
           </View>
         </TouchableWithoutFeedback>
       );
