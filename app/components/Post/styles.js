@@ -27,7 +27,7 @@ const styles = EStyleSheet.create({
     marginBottom: 6,
   },
   header: {
-    backgroundColor: '$baseCoral',
+    backgroundColor: 'white',
     width: '100%',
     paddingHorizontal: 5,
     paddingBottom: 10,

@@ -133,11 +133,11 @@ class Post extends React.Component {
           <Header
             outerContainerStyles={styles.customHeaderOuterContainerStyle}
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
-            backgroundColor={EStyleSheet.value('white')}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
             centerComponent={
               <Text
                 allowFontScaling={false}
-                style={styles.customHeaderCenterComponentTextBlack}
+                style={styles.customHeaderCenterComponentTextWhite}
               >
                 Post
               </Text>

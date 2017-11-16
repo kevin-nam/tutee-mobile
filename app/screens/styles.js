@@ -276,8 +276,8 @@ const styles = EStyleSheet.create({
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
   },
-  customHeaderCenterComponentTextBlack: {
-    color: 'black',
+  customHeaderCenterComponentTextWhite: {
+    color: 'white',
     fontFamily: 'Poppins-Bold',
     fontSize: 16,
   },
