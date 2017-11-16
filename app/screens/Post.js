@@ -51,6 +51,7 @@ class Post extends React.Component {
         index: 0,
         actions: [NavigationActions.navigate({ routeName: 'Home' })],
       });
+      this.setState({ created: false });
       this.props.navigation.dispatch(resetAction);
     } else if (this.state.edited == true) {
       // console.log('Pressed back from an edited post');
@@ -64,6 +65,7 @@ class Post extends React.Component {
           }),
         ],
       });
+      this.setState({ edited: false });
       this.props.navigation.dispatch(resetAction);
     } else {
       this.props.navigation.goBack();
