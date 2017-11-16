@@ -1,9 +1,14 @@
 {
   "expo": {
     "name": "Tutee",
+    "icon": "./assets/images/corgimomo.png",
+    "version": "0.0.4",
     "sdkVersion": "21.0.0",
     "orientation": "portrait",
     "privacy": "public",
+    "android": {
+      "package": "com.tuteeStudios.tutee"
+    },
     "packagerOpts": {
       "nonPersistent": true
     }
