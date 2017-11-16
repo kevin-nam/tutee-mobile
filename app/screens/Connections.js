@@ -5,7 +5,8 @@ import {
   Text,
   TouchableOpacity,
   RefreshControl,
-  Image
+  StatusBar,
+  Image,
 } from 'react-native';
 import { Container } from '../components/Container';
 import { ConnectionCard } from '../components/ConnectionCard';
@@ -47,7 +48,7 @@ class Connections extends React.Component {
         const connections = [];
 
         if (data.connections) {
-          Object.values(data.connections).forEach(function (connection) {
+          Object.values(data.connections).forEach(function(connection) {
             if (!connection.isPending) {
               connections.push({
                 uid: connection.uid,
@@ -65,7 +66,7 @@ class Connections extends React.Component {
             loading: false,
             connections: connections,
             refreshing: false,
-          })
+          });
         }
       });
   };
@@ -105,7 +106,7 @@ class Connections extends React.Component {
           allowFontScaling={false}
           style={styles.searchLandingErrorText}
         >
-            You currently have no connections!
+          You currently have no connections!
         </Text>
       );
 
@@ -119,6 +120,7 @@ class Connections extends React.Component {
 
       return (
         <Container color={false}>
+          <StatusBar barStyle="light-content" />
           <Header
             outerContainerStyles={styles.customHeaderOuterContainerStyle}
             innerContainerStyles={styles.customHeaderInnerContainerStyle}
@@ -140,7 +142,6 @@ class Connections extends React.Component {
               </TouchableOpacity>
             }
           />
-
           <ScrollView
             showsVerticalScrollIndicator={true}
             style={styles.customScrollView}
@@ -151,7 +152,9 @@ class Connections extends React.Component {
               />
             }
           >
-            { this.state.connections.length > 0 ? connectionCards : [errorText, image]}
+            {this.state.connections.length > 0
+              ? connectionCards
+              : [errorText, image]}
           </ScrollView>
         </Container>
       );

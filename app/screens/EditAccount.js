@@ -1,0 +1,61 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import { Container } from '../components/Container';
+import { Header } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from './styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
+class EditAccount extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Container color={false}>
+        <StatusBar barStyle="light-content" />
+        <Header
+          outerContainerStyles={styles.settingsHeaderOuterContainerStyle}
+          innerContainerStyles={styles.customHeaderInnerContainerStyle}
+          backgroundColor={EStyleSheet.value('$baseCoral')}
+          centerComponent={
+            <Text
+              allowFontScaling={false}
+              style={styles.customHeaderCenterComponentText}
+            >
+              Edit Account Info
+            </Text>
+          }
+          leftComponent={
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <Icon name="chevron-left" color="white" size={20} />
+            </TouchableOpacity>
+          }
+        />
+        <KeyboardAvoidingView
+          style={styles.settingsScrollView}
+          behavior="padding"
+        >
+          <ScrollView
+            style={styles.searchLandingView}
+            showsVerticalScrollIndicator={false}
+          />
+        </KeyboardAvoidingView>
+      </Container>
+    );
+  }
+}
+
+export default EditAccount;

@@ -19,6 +19,7 @@ class Profile extends React.Component {
         bio: '',
       },
       uid: '',
+      mine: false,
     };
   }
 
@@ -36,6 +37,7 @@ class Profile extends React.Component {
       uid = this.props.navigation.state.params.otherID;
     } else {
       uid = await AsyncStorage.getItem('@MySuperStore:USER_ID_KEY');
+      this.setState({ mine: true });
     }
 
     fetch('http://138.197.159.56:3232/user/getUser/' + (await uid), {
@@ -66,7 +68,11 @@ class Profile extends React.Component {
         <Container color={false}>
           <StatusBar barStyle="light-content" />
           <View style={styles.profileView}>
-            <ProfileHeader user={user} />
+            <ProfileHeader
+              user={user}
+              mine={this.state.mine}
+              navigation={this.props.navigation}
+            />
             <ProfileBody
               navigation={this.props.navigation}
               user={user}
