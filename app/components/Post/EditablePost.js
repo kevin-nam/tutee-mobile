@@ -23,78 +23,86 @@ class EditablePost extends React.Component {
 
   goToPost = (screen, params) => {
     console.log('Pressed Save');
-    // TODO: Fix this so we dont go to edit pages
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [NavigationActions.navigate({ routeName: screen, params })],
-    // });
-    // this.props.navigation.dispatch(resetAction);
     this.props.navigation.navigate(screen, params);
   };
 
   savePost = async () => {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-    });
-    if (this.props.edit) {
-      fetch('http://138.197.159.56:3232/post/update/', {
-        method: 'POST',
-        body: JSON.stringify({
-          pid: this.props.post.pid,
-          uid: this.props.post.uid,
-          title: this.state.titleText,
-          description: this.state.descriptionText,
-          tagString: this.state.tagText,
-          type: 'tutor',
-        }),
-        headers: headers,
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log('success');
-            return response.json();
-          } else {
-            console.log('Error when updating post');
-          }
-        })
-        .then((data) => {
-          this.goToPost('Post', {
-            post: data,
-            edited: true,
-            search: this.props.searchedTags,
-          });
-          // console.log(data);
-        });
+    if (
+      typeof this.state.titleText == 'undefined' ||
+      typeof this.state.descriptionText == 'undefined' ||
+      typeof this.state.tagText == 'undefined'
+    ) {
+      alert('Please make sure that every field has something written in it!');
+    } else if (
+      this.state.titleText.length == 0 ||
+      this.state.descriptionText.length == 0 ||
+      this.state.tagText.length == 0
+    ) {
+      alert('Please make sure that every field has something written in it!');
     } else {
-      fetch('http://138.197.159.56:3232/post/create/', {
-        method: 'POST',
-        body: JSON.stringify({
-          uid: this.props.post.uid,
-          title: this.state.titleText,
-          description: this.state.descriptionText,
-          tagString: this.state.tagText,
-          type: 'tutor',
-        }),
-        headers: headers,
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log('success');
-            // console.log(response);
-            return response.json();
-          } else {
-            console.log('Error when creating post');
-          }
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+      });
+      if (this.props.edit) {
+        fetch('http://138.197.159.56:3232/post/update/', {
+          method: 'POST',
+          body: JSON.stringify({
+            pid: this.props.post.pid,
+            uid: this.props.post.uid,
+            title: this.state.titleText,
+            description: this.state.descriptionText,
+            tagString: this.state.tagText,
+            type: 'tutor',
+          }),
+          headers: headers,
         })
-        .then((data) => {
-          this.props.navigation.navigate('Post', {
-            post: data.post,
-            created: true,
+          .then((response) => {
+            if (response.ok) {
+              console.log('success');
+              return response.json();
+            } else {
+              console.log('Error when updating post');
+            }
+          })
+          .then((data) => {
+            this.goToPost('Post', {
+              post: data,
+              edited: true,
+              search: this.props.searchedTags,
+            });
+            // console.log(data);
           });
-          // console.log(data);
-        });
+      } else {
+        fetch('http://138.197.159.56:3232/post/create/', {
+          method: 'POST',
+          body: JSON.stringify({
+            uid: this.props.post.uid,
+            title: this.state.titleText,
+            description: this.state.descriptionText,
+            tagString: this.state.tagText,
+            type: 'tutor',
+          }),
+          headers: headers,
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log('success');
+              // console.log(response);
+              return response.json();
+            } else {
+              console.log('Error when creating post');
+            }
+          })
+          .then((data) => {
+            this.props.navigation.navigate('Post', {
+              post: data.post,
+              created: true,
+            });
+            // console.log(data);
+          });
+      }
+      // this.props.navigation.navigate('Post', {});
     }
-    // this.props.navigation.navigate('Post', {});
   };
 
   render() {
