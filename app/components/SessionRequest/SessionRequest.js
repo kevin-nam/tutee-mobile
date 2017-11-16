@@ -138,7 +138,7 @@ class SessionRequest extends React.Component {
           </View>
           <View style={styles.infoView}>
             <Text allowFontScaling={false} style={styles.infoText}>
-              is sending you a session request for {duration} {duration > 1 ? 'hour' : 'hours'} at a rate of ${rate}/hour for a total of ${totalprice}!
+              is sending you a session request for {duration} {duration > 1 ? 'hours' : 'hour'} at a rate of ${rate}/hour for a total of ${totalprice}!
             </Text>
           </View>
           <View style={styles.acceptRejectView}>
