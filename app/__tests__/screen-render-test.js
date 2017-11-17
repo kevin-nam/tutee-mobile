@@ -14,10 +14,10 @@ const navigation = {
   },
 };
 
-it('renders Connections without crashing', () => {
-  const rendered = renderer.create(<Connections />).toJSON();
-  expect(rendered).toBeNull();
-});
+// it('renders Connections without crashing', () => {
+//   const rendered = renderer.create(<Connections />).toJSON();
+//   expect(rendered).toBeNull();
+// });
 
 it('renders Session without crashing', () => {
   const rendered = renderer
