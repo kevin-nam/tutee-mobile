@@ -114,12 +114,14 @@ const HomeStack = StackNavigator(
       screen: ModifyPost,
       navigationOptions: {
         headerTitle: 'Create Post',
+        header: () => null,
       },
     },
     ModifyPost: {
       screen: ModifyPost,
       navigationOptions: {
         headerTitle: 'Edit Post',
+        header: () => null,
       },
     },
     Rating: {

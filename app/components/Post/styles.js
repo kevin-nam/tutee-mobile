@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const styles = EStyleSheet.create({
   container: {
@@ -11,8 +12,18 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'white',
     width: '100%',
-    minHeight: '100%',
-    marginBottom: 6,
+    height: '100%',
+    elevation: 4,
+    alignSelf: 'center',
+  },
+  modifyContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
+    maxHeight: '100%',
+    width: '100%',
     elevation: 4,
     alignSelf: 'center',
   },
@@ -97,6 +108,14 @@ const styles = EStyleSheet.create({
     width: '100%',
     minHeight: 60,
   },
+  editFullBody: {
+    minHeight: 40,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    width: '100%',
+    borderBottomWidth: 2,
+    borderColor: '$grayLighten50',
+  },
   fullBody: {
     marginTop: 5,
     paddingVertical: 10,
@@ -115,7 +134,10 @@ const styles = EStyleSheet.create({
   titleInput: {
     flex: 1,
     fontFamily: 'Poppins-Regular',
-    color: '$baseGray',
+    fontSize: 14,
+    color: 'black',
+    height: '100%',
+    width: '100%',
   },
   smallFooter: {
     width: '100%',
@@ -210,6 +232,30 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  modifyHeader: {
+    height: 40,
+    width: '100%',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderBottomWidth: 2,
+    borderColor: '$grayLighten50',
+  },
+  editTagSection: {
+    height: 40,
+    width: '100%',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderBottomWidth: 2,
+    borderColor: '$grayLighten50',
+  },
+  editFooter: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    height: 40,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 });
 
 export default styles;
