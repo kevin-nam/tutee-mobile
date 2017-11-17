@@ -6,12 +6,14 @@ import { ProfileHeader } from '../components/ProfileHeader';
 import { ProfileBody } from '../components/ProfileBody';
 import { AsyncStorage } from 'react-native';
 import styles from './styles';
+import { connect } from 'react-redux';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      loading: true,
       user: {
         username: '',
         profile_picture: '',
@@ -20,6 +22,7 @@ class Profile extends React.Component {
       },
       uid: '',
       mine: false,
+      currentRoute: '',
     };
   }
 
@@ -27,8 +30,16 @@ class Profile extends React.Component {
     navigation: PropTypes.object,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getProfileData();
+  }
+
+  // Listens to current route and re-renders if necessary
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentRoute === 'Profile') {
+      this.getProfileData();
+      this.setState(this.state);
+    }
   }
 
   getProfileData = async () => {
@@ -45,16 +56,14 @@ class Profile extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Successfully got profile for ' + uid);
+          //console.log('Successfully got profile for ' + uid);
           return response.json();
         } else {
           console.log('Error when getting profile data for ' + uid);
         }
       })
       .then((data) => {
-        this.setState({ user: data });
-        this.setState({ uid: uid });
-        console.log('Got user profile data', data);
+        this.setState({ user: data, uid: uid, loading: false });
       });
   };
 
@@ -63,7 +72,7 @@ class Profile extends React.Component {
     const uid = this.state.uid;
 
     // Need to check if uid and user are ok
-    if (uid && user) {
+    if (uid && user && !this.state.loading) {
       return (
         <Container color={false}>
           <StatusBar barStyle="light-content" />
@@ -87,4 +96,9 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+// Get current route
+const mapStateToProps = state => ({
+  currentRoute: state.user.currentRoute,
+});
+
+export default connect(mapStateToProps)(Profile);
