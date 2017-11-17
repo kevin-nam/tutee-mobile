@@ -195,6 +195,12 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  hiddenPostView: {
+    opacity: 0,
+    display: 'none',
+    height: 0,
+    width: 0,
+  },
   /**
    * RATINGPAGE STYLE
    */

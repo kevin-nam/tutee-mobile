@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { AutoExpandingTextInput } from '../TextInput';
-// import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
@@ -108,11 +107,10 @@ class EditablePost extends React.Component {
   render() {
     const navigation = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
+      <View style={styles.modifyContainer}>
+        <View style={styles.modifyHeader}>
           <TextInput
             autoCapitalize={'sentences'}
-            autoFocus={true}
             placeholder="Title"
             selectTextOnFocus={this.props.edit}
             style={styles.titleInput}
@@ -121,9 +119,10 @@ class EditablePost extends React.Component {
             }}
             defaultValue={this.props.post.title}
             editable={true}
+            multiline={true}
           />
         </View>
-        <View style={styles.fullBody}>
+        <View style={styles.editFullBody}>
           <AutoExpandingTextInput
             autoGrow={true}
             autoCapitalize={'sentences'}
@@ -137,7 +136,7 @@ class EditablePost extends React.Component {
             }}
           />
         </View>
-        <View style={styles.tagSection}>
+        <View style={styles.editTagSection}>
           <TextInput
             autoCapitalize={'sentences'}
             placeholder="#Tags"
@@ -149,7 +148,7 @@ class EditablePost extends React.Component {
             defaultValue={this.props.post.tagString}
           />
         </View>
-        <View style={styles.footer}>
+        <View style={styles.editFooter}>
           <TouchableOpacity
             style={styles.actionButton}
             onPress={() => {
@@ -165,7 +164,7 @@ class EditablePost extends React.Component {
             onPress={() => this.savePost()}
           >
             <Text allowFontScaling={false} style={styles.saveMessageText}>
-              Save
+              {this.props.edit ? 'Save' : 'Create'}
             </Text>
           </TouchableOpacity>
         </View>
