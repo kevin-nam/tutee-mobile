@@ -8,9 +8,8 @@ const styles = EStyleSheet.create({
     width: 0.9 * SCREEN_WIDTH,
     paddingRight: 20,
     paddingVertical: 5,
-    minHeight: '100%',
     fontSize: 14,
-    fontFamily: 'Poppins-Regular'
+    fontFamily: 'Poppins-Regular',
   },
 });
 
