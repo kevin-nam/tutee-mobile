@@ -176,6 +176,16 @@ class App extends React.Component {
       <Provider store={store}>
         {this.state.isFontLoaded ? (
           <Layout
+            onNavigationStateChange={(prevState, currentState) => {
+              const getCurrentRouteName = (navigationState) => {
+                if (!navigationState) return null;
+                const route = navigationState.routes[navigationState.index];
+                if (route.routes) return getCurrentRouteName(route);
+                return route.routeName;
+              };
+              const actions = bindActionCreators(actionCreators, store.dispatch);
+              actions.setCurrentRoute(getCurrentRouteName(currentState));
+            }}
             ref={(app) => {
               this.app = app;
             }}

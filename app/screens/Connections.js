@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import store from '../store/store';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { connect } from 'react-redux';
 
 class Connections extends React.Component {
   static propTypes = {
@@ -29,6 +30,13 @@ class Connections extends React.Component {
       connections: [],
       refreshing: false,
     };
+  }
+
+  // Listens to current route and re-renders if necessary
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentRoute === 'Connections') {
+      this.fetchData();
+    }
   }
 
   fetchData = () => {
@@ -164,4 +172,9 @@ class Connections extends React.Component {
   }
 }
 
-export default Connections;
+// Get current route
+const mapStateToProps = state => ({
+  currentRoute: state.user.currentRoute,
+});
+
+export default connect(mapStateToProps)(Connections);
