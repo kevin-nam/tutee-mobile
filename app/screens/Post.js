@@ -95,8 +95,8 @@ class Post extends React.Component {
             post: this.props.navigation.state.params.post,
             loading: false,
           });
-          console.log('Got user data', data);
-          console.log('got state post', this.state);
+          //console.log('Got user data', data);
+          //console.log('got state post', this.state);
         });
     } else {
       console.log('already have user and post data');
