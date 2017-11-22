@@ -58,8 +58,9 @@ export default EStyleSheet.create({
     backgroundColor: '$baseGreen',
   },
   bioText: {
-    fontSize: 14,
-    color: 'black',
+    fontSize: 16,
+    color: '$baseGray',
+    fontFamily: 'Poppins-Medium',
   },
   noBioText: {
     fontSize: 14,

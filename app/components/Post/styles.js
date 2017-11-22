@@ -255,7 +255,7 @@ const styles = EStyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  }
+  },
 });
 
 export default styles;

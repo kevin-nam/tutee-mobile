@@ -1,13 +1,11 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Platform, StatusBar } from 'react-native';
 
-const marginTopOffset = Platform.OS === 'ios' ? 0 : 10;
-
 export default EStyleSheet.create({
   flexHorizontal: {
     marginTop: StatusBar.currentHeight,
     alignItems: 'center',
-    height: 140 + marginTopOffset * 2,
+    height: 140,
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor: '$baseCoral',
@@ -37,6 +35,7 @@ export default EStyleSheet.create({
     fontFamily: 'Poppins-Medium',
     color: 'white',
     fontSize: 22,
+    paddingRight: '5%',
   },
   ratingView: {
     marginRight: 10,

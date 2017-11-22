@@ -108,7 +108,11 @@ class Home extends React.Component {
 
     let tags =
       this.state.recentTags.length > 0 ? (
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.homeBadgeScrollView}
+        >
           {this.state.recentTags.map(function(tag, index) {
             return (
               <Badge
@@ -163,7 +167,7 @@ class Home extends React.Component {
 }
 
 // Get current route
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentRoute: state.user.currentRoute,
 });
 

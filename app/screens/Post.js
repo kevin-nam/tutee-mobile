@@ -152,17 +152,17 @@ class Post extends React.Component {
             style={styles.customScrollView}
             behavior="padding"
           >
-              <FullPost
-                post={this.state.post}
-                user={this.state.user}
-                navigation={this.props.navigation}
-                edit={this.state.edit}
-                searchedTags={this.props.navigation.state.params.search}
-                onImagePress={() =>
-                  this.props.navigation.navigate('otherProfile', {
-                    otherID: this.state.post.uid,
-                  })}
-              />
+            <FullPost
+              post={this.state.post}
+              user={this.state.user}
+              navigation={this.props.navigation}
+              edit={this.state.edit}
+              searchedTags={this.props.navigation.state.params.search}
+              onImagePress={() =>
+                this.props.navigation.navigate('otherProfile', {
+                  otherID: this.state.post.uid,
+                })}
+            />
           </KeyboardAvoidingView>
         </Container>
       );

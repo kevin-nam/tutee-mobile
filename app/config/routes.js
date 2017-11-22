@@ -17,6 +17,7 @@ import Rating from '../screens/Rating';
 import InSession from '../screens/InSession';
 import Settings from '../screens/Settings';
 import EditAccount from '../screens/EditAccount';
+import SessionReceipts from '../screens/SessionReceipts';
 import index from '../index';
 
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
@@ -82,6 +83,13 @@ const ProfileStack = StackNavigator({
     screen: EditAccount,
     navigationOptions: {
       headerTitle: 'Edit Account Info',
+      header: () => null,
+    },
+  },
+  SessionReceipts: {
+    screen: SessionReceipts,
+    navigationOptions: {
+      headerTitle: 'Session Receipts',
       header: () => null,
     },
   },
