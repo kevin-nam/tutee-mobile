@@ -119,7 +119,7 @@ class Home extends React.Component {
         </ScrollView>
       ) : (
         <Text allowFontScaling={false} style={styles.homeNoTagPhrase}>
-          {'What?! No #Tags?? \n\n ΣΣ(ﾟДﾟ;)'}
+          {'What?! No #Tags?? ΣΣ(ﾟДﾟ;)'}
         </Text>
       );
 
