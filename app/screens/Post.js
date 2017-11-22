@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   KeyboardAvoidingView,
-  ScrollView,
+  BackHandler,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container } from '../components/Container';
@@ -42,9 +42,11 @@ class Post extends React.Component {
         date: '',
       },
     };
+    BackHandler.addEventListener('hardwareBackPress', this.goBack());
   }
 
   goBack = () => {
+    console.log('going back');
     if (this.state.created == true) {
       // console.log('Pressed back from a created post');
       const resetAction = NavigationActions.reset({
@@ -152,17 +154,17 @@ class Post extends React.Component {
             style={styles.customScrollView}
             behavior="padding"
           >
-              <FullPost
-                post={this.state.post}
-                user={this.state.user}
-                navigation={this.props.navigation}
-                edit={this.state.edit}
-                searchedTags={this.props.navigation.state.params.search}
-                onImagePress={() =>
-                  this.props.navigation.navigate('otherProfile', {
-                    otherID: this.state.post.uid,
-                  })}
-              />
+            <FullPost
+              post={this.state.post}
+              user={this.state.user}
+              navigation={this.props.navigation}
+              edit={this.state.edit}
+              searchedTags={this.props.navigation.state.params.search}
+              onImagePress={() =>
+                this.props.navigation.navigate('otherProfile', {
+                  otherID: this.state.post.uid,
+                })}
+            />
           </KeyboardAvoidingView>
         </Container>
       );
