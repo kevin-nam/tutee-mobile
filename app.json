@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Tutee",
-    "icon": "./assets/images/corgimomo.png",
+    "icon": "./assets/images/corgi-logo.png",
     "version": "0.0.4",
     "sdkVersion": "21.0.0",
     "orientation": "portrait",

@@ -86,7 +86,16 @@ class App extends React.Component {
 
     // Listen for local notifications and do stuff
     Notifications.addListener((notification) => {
-      console.log('notification received', notification);
+      console.log(notification);
+      if (notification.origin === 'selected') {
+        if (notification.data.type === 'NEW_CONNECTION_REQUEST') {
+          this.app.dispatch(sessonActions.navigateToPendingRequest());
+        } else if (notification.data.type === 'NEW_MESSAGE') {
+          this.app.dispatch(sessonActions.navigateToConnection());
+        } else if (notification.data.type === 'ACCEPTED_CONNECTION_REQUEST') {
+          this.app.dispatch(sessonActions.navigateToConnection());
+        }
+      }
     });
 
     // listen for new notifications from firebase
@@ -100,8 +109,10 @@ class App extends React.Component {
       const notification = {
         title: 'Push Notification',
         body: e.val().msg,
+        data: e.val(),
         android: {
           sound: true,
+          icon: '../assets/images/corgi-logo.png'
         },
         ios: {
           sound: true,
@@ -122,7 +133,7 @@ class App extends React.Component {
         headers: headers,
       }).then(function(response) {
         if (response.ok) {
-          console.log('Successfully acknowledged notification', e);
+          //console.log('Successfully acknowledged notification', e);
         } else {
           console.log('Error acknowledging notification', e);
         }
