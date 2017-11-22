@@ -68,8 +68,8 @@ class RequestCard extends React.Component {
 
   render() {
     let profile_picture = require('../MessagingHeader/default-user.jpg');
-    if (this.props.profile_picture) {
-      profile_picture = { uri: this.props.profile_picture };
+    if (this.props.user) {
+      profile_picture = { uri: this.props.user.profile_picture };
     }
 
     let username = this.props.uid;
