@@ -8,6 +8,9 @@
     "privacy": "public",
     "android": {
       "package": "com.tuteeStudios.tutee"
+    },
+    "packagerOpts": {
+      "nonPersistent": true
     }
   }
 }
