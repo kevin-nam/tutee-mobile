@@ -122,7 +122,7 @@ class SessionRequest extends React.Component {
         : require('../MessagingHeader/default-user.jpg');
 
       const duration = this.props.content.duration;
-      const rate = this.props.content.duration;
+      const rate = this.props.content.rate;
       const totalprice = this.props.content.totalprice;
 
       return (

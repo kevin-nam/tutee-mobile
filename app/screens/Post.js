@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   KeyboardAvoidingView,
-  ScrollView,
+  BackHandler,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container } from '../components/Container';
@@ -45,6 +45,7 @@ class Post extends React.Component {
   }
 
   goBack = () => {
+    console.log('going back');
     if (this.state.created == true) {
       // console.log('Pressed back from a created post');
       const resetAction = NavigationActions.reset({
@@ -95,8 +96,8 @@ class Post extends React.Component {
             post: this.props.navigation.state.params.post,
             loading: false,
           });
-          console.log('Got user data', data);
-          console.log('got state post', this.state);
+          // console.log('Got user data', data);
+          // console.log('got state post', this.state);
         });
     } else {
       console.log('already have user and post data');
@@ -123,6 +124,15 @@ class Post extends React.Component {
 
   componentDidMount() {
     this.getFullPostData();
+    this.backListener = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log('going back');
+      this.goBack();
+      return true;
+    });
+  }
+
+  componentWillUnmount() {
+    this.backListener.remove();
   }
 
   render() {

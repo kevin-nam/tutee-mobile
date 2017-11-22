@@ -71,4 +71,8 @@ export default EStyleSheet.create({
     color: '$baseGray',
     marginBottom: 5,
   },
+  noPostsImage: {
+    marginTop: 20,
+    alignSelf: 'center',
+  },
 });

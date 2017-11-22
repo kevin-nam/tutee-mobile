@@ -256,6 +256,13 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  touchableImageBig: {
+    height: 50,
+    borderRadius: 25,
+  },
+  touchableImageSmall: {
+    borderRadius: 35,
+  },
 });
 
 export default styles;

@@ -23,13 +23,15 @@ const SmallPost = ({
     <View style={styles.smallContainer}>
       <TouchableHighlight onPress={onPress}>
         <View style={styles.smallHeader}>
-          <TouchableHighlight onPress={onImagePress}>
-            <Image
-              resizeMode="cover"
-              style={styles.smallIcon}
-              source={userImage}
-              borderRadius={25}
-            />
+          <TouchableHighlight style={styles.touchableImageSmall} onPress={onImagePress}>
+            <View style={{ backgroundColor: 'white' }}>
+              <Image
+                resizeMode="cover"
+                style={styles.smallIcon}
+                source={userImage}
+                borderRadius={25}
+              />
+            </View>
           </TouchableHighlight>
           <Text allowFontScaling={false} style={styles.smallTitle}>
             {title}
@@ -52,7 +54,7 @@ const SmallPost = ({
           {moment(date).format('MMMM D, YYYY')}
         </Text>
       </View>
-    </View>
+    </View >
   );
 };
 
