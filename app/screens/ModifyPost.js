@@ -7,7 +7,7 @@ import {
   Text,
   TouchableOpacity,
   Platform,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationActions } from 'react-navigation';
@@ -58,7 +58,7 @@ class ModifyPost extends React.Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.props.navigation.state.params.edit) {
       this.keyboardDidShowListener.remove();
       this.keyboardDidHideListener.remove();
@@ -66,11 +66,11 @@ class ModifyPost extends React.Component {
   }
 
   _keyboardDidShow = () => {
-    this.setState({showDelete: false});
+    this.setState({ showDelete: false });
   };
 
   _keyboardDidHide = () => {
-    this.setState({showDelete: true});
+    this.setState({ showDelete: true });
   };
 
 
@@ -111,13 +111,13 @@ class ModifyPost extends React.Component {
           style={styles.customScrollView}
           keyboardVerticalOffset={keyboardVerticalOffset}
           behavior="padding">
-            <EditablePost
-              post={this.state.post}
-              edit={this.state.edit}
-              navigation={this.props.navigation}
-              searchedTags={search}
-            />
-            <View style={this.state.showDelete ? styles.deletePostView : styles.hiddenPostView}>{deletePost}</View>
+          <EditablePost
+            post={this.state.post}
+            edit={this.state.edit}
+            navigation={this.props.navigation}
+            searchedTags={search}
+          />
+          <View style={this.state.showDelete ? styles.deletePostView : styles.hiddenPostView}>{deletePost}</View>
         </KeyboardAvoidingView>
       </Container>
     );
