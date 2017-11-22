@@ -8,6 +8,8 @@ const styles = EStyleSheet.create({
     width: 0.9 * SCREEN_WIDTH,
     paddingRight: 20,
     paddingVertical: 5,
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
   },
 });
 

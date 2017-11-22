@@ -14,6 +14,7 @@ import { Container } from '../components/Container';
 import { HomeSearchBar } from '../components/SearchBar';
 import store from '../store/store';
 import styles from './styles';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
   static propTypes = {
@@ -36,6 +37,13 @@ class Home extends React.Component {
     this.getRecentTags(9);
     this.setWelcomeMessage();
     this.tempFunc();
+  }
+
+  // Listens to current route and re-renders if necessary
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentRoute === 'Home') {
+      this.getRecentTags(9);
+    }
   }
 
   getRecentTags = (num) => {
@@ -153,4 +161,10 @@ class Home extends React.Component {
     );
   }
 }
-export default Home;
+
+// Get current route
+const mapStateToProps = state => ({
+  currentRoute: state.user.currentRoute,
+});
+
+export default connect(mapStateToProps)(Home);

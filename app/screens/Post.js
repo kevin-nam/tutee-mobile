@@ -152,10 +152,6 @@ class Post extends React.Component {
             style={styles.customScrollView}
             behavior="padding"
           >
-            <ScrollView
-              style={styles.searchLandingView}
-              showsVerticalScrollIndicator={false}
-            >
               <FullPost
                 post={this.state.post}
                 user={this.state.user}
@@ -167,7 +163,6 @@ class Post extends React.Component {
                     otherID: this.state.post.uid,
                   })}
               />
-            </ScrollView>
           </KeyboardAvoidingView>
         </Container>
       );

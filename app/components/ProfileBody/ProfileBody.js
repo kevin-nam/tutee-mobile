@@ -9,8 +9,9 @@ class ProfileBody extends React.Component {
     super(props);
     this.state = {
       type: 'bio',
-      content: this.showBio(),
+      content: this.showBio(this.props.user.bio),
       postLists: [],
+      bio: this.props.user.bio
     };
   }
 
@@ -18,8 +19,20 @@ class ProfileBody extends React.Component {
     this.getUserPostData();
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    const content = this.showBio(nextProps.user.bio);
+
+    this.setState({
+      type: 'bio',
+      content: content,
+      bio: this.props.user.bio
+    });
+
+    this.getUserPostData();
+  }
+
   getUserPostData = async () => {
-    console.log('getting User Post data for ' + this.props.uid);
     fetch('http://138.197.159.56:3232/post/get/list/user/' + this.props.uid, {
       method: 'GET',
     })
@@ -36,23 +49,20 @@ class ProfileBody extends React.Component {
   };
 
   handlePress = (type) => {
-    this.setState({ type: type });
-    if (type == 'bio') {
-      this.setState({ content: this.showBio() });
-    } else if (type == 'post') {
-      this.setState({ content: this.showPosts() });
-    } else {
-      this.setState({ content: this.showSessions() });
+    if (type === 'bio') {
+      const bio = this.state.bio;
+      this.setState({ type: type, content: this.showBio(bio) });
+    } else if (type === 'post') {
+      this.setState({ type: type, content: this.showPosts() });
     }
   };
 
-  showBio = () => {
-    const bio = this.props.user.bio;
+  showBio = (bio) => {
     if (bio) {
       return (
         <View style={styles.bioView}>
           <Text allowFontScaling={false} style={styles.bioText}>
-            {this.props.user.bio}
+            {bio}
           </Text>
         </View>
       );
@@ -71,7 +81,6 @@ class ProfileBody extends React.Component {
     const navigation = this.props.navigation;
 
     const posts = this.state.postLists.map(function(data, index) {
-      console.log(data);
       return (
         <SmallPost
           key={index}
@@ -87,14 +96,6 @@ class ProfileBody extends React.Component {
     return <View style={styles.postsView}>{posts}</View>;
   };
 
-  showSessions = () => {
-    return (
-      <View style={styles.sessionsView}>
-        <Text allowFontScaling={false}>SESSIONS</Text>
-      </View>
-    );
-  };
-
   render() {
     return (
       <View style={styles.flexHorizontal}>
@@ -108,7 +109,7 @@ class ProfileBody extends React.Component {
             <Icon
               name="id-card"
               style={
-                this.state.type == 'bio' ? styles.iconSelected : styles.icon
+                this.state.type === 'bio' ? styles.iconSelected : styles.icon
               }
             />
           </TouchableOpacity>
@@ -121,7 +122,7 @@ class ProfileBody extends React.Component {
             <Icon
               name="list-ul"
               style={
-                this.state.type == 'post' ? styles.iconSelected : styles.icon
+                this.state.type === 'post' ? styles.iconSelected : styles.icon
               }
             />
           </TouchableOpacity>
