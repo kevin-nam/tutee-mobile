@@ -111,7 +111,7 @@ class FullPost extends React.Component {
     Alert.alert(
       'Confirm Request?',
       'Click "Request" to request a connection with ' +
-        this.props.user.username,
+      this.props.user.username,
       [
         {
           text: 'Cancel',
@@ -141,7 +141,6 @@ class FullPost extends React.Component {
     }
     let chooseButton = this.state.isMine ? (
       <TouchableOpacity
-        activeOpacity={1}
         style={styles.actionButton}
         onPress={() => {
           this.props.navigation.navigate('ModifyPost', {
@@ -177,13 +176,15 @@ class FullPost extends React.Component {
               {this.props.post.title}
             </Text>
             <View style={styles.author}>
-              <TouchableHighlight onPress={this.props.onImagePress}>
-                <Image
-                  resizeMode="cover"
-                  style={styles.icon}
-                  source={profile_picture}
-                  borderRadius={25}
-                />
+              <TouchableHighlight style={styles.touchableImageBig} onPress={this.props.onImagePress}>
+                <View style={{ backgroundColor: 'white' }}>
+                  <Image
+                    resizeMode="cover"
+                    style={styles.icon}
+                    source={profile_picture}
+                    borderRadius={25}
+                  />
+                </View>
               </TouchableHighlight>
               <View style={styles.authorSubView}>
                 <Text allowFontScaling={false} style={styles.user}>
@@ -202,7 +203,7 @@ class FullPost extends React.Component {
                   </View>
                 ) : (
                   <Text allowFontScaling={false} style={styles.ratingText}>
-                    New Tutor!
+                      New Tutor!
                   </Text>
                 )}
               </View>
