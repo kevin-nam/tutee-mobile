@@ -42,7 +42,6 @@ class Post extends React.Component {
         date: '',
       },
     };
-    BackHandler.addEventListener('hardwareBackPress', this.goBack());
   }
 
   goBack = () => {
@@ -97,8 +96,8 @@ class Post extends React.Component {
             post: this.props.navigation.state.params.post,
             loading: false,
           });
-          //console.log('Got user data', data);
-          //console.log('got state post', this.state);
+          // console.log('Got user data', data);
+          // console.log('got state post', this.state);
         });
     } else {
       console.log('already have user and post data');
@@ -125,6 +124,15 @@ class Post extends React.Component {
 
   componentDidMount() {
     this.getFullPostData();
+    this.backListener = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log('going back');
+      this.goBack();
+      return true;
+    });
+  }
+
+  componentWillUnmount() {
+    this.backListener.remove();
   }
 
   render() {
