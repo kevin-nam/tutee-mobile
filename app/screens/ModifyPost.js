@@ -47,8 +47,8 @@ class ModifyPost extends React.Component {
     if (this.props.navigation.state.params.edit) {
       this.setState({ edit: this.props.navigation.state.params.edit });
       this.setState({ post: this.props.navigation.state.params.post });
-      this.keyboardDidShowListener = Keyboard.addListener('keyboardWillShow', this._keyboardDidShow);
-      this.keyboardDidHideListener = Keyboard.addListener('keyboardWillHide', this._keyboardDidHide);
+      this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+      this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
     } else {
       this.setState({
         post: {
