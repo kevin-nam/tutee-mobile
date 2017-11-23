@@ -13,7 +13,7 @@ import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import NavigationActions from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { BasicButton } from '../components/SettingsComponents';
 
 class Settings extends React.Component {
@@ -26,12 +26,14 @@ class Settings extends React.Component {
   }
 
   logout = () => {
-    const actionToDispatch = NavigationActions.reset({
+    const rootNavigation = this.props.screenProps.rootNav;
+
+    const resetAction = NavigationActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'Login' })],
-      key: null,
     });
-    this.props.navigation.dispatch(actionToDispatch);
+
+    rootNavigation.dispatch(resetAction);
   };
 
   render() {
@@ -77,9 +79,8 @@ class Settings extends React.Component {
             />
             <BasicButton
               text="Logout"
-              disabled={true}
-              onPress={async () => {
-                // await AsyncStorage.clear();
+              onPress={() => {
+                AsyncStorage.clear();
                 this.logout();
               }}
             />
