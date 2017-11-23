@@ -33,6 +33,10 @@ const styles = EStyleSheet.create({
   /**
    * HOME STYLE
    */
+  homeBadgeScrollView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   homeMainView: {
     width: '100%',
     height: '78%',
@@ -295,7 +299,20 @@ const styles = EStyleSheet.create({
     flex: 1,
     width: '100%',
     marginTop: 70 + StatusBar.currentHeight,
-  }
+  },
+  /**
+   *  EDITACCOUNT STYLE
+   */
+  editAccountSaveButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  editAccountSaveButtonText: {
+    color: '$baseGreen',
+    fontSize: 18,
+    fontFamily: 'Poppins-Medium',
+  },
 });
 
 export default styles;

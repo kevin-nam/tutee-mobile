@@ -37,7 +37,10 @@ class ProfileHeader extends React.Component {
               name="cog"
               size={25}
               color={EStyleSheet.value('$grayLighten40')}
-              onPress={() => this.props.navigation.navigate('Settings')}
+              onPress={() =>
+                this.props.navigation.navigate('Settings', {
+                  user: this.props.user,
+                })}
               style={styles.settingsBtn}
             />
           ) : null}

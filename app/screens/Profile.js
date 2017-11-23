@@ -56,7 +56,7 @@ class Profile extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          //console.log('Successfully got profile for ' + uid);
+          // console.log('Successfully got profile for ' + uid);
           return response.json();
         } else {
           console.log('Error when getting profile data for ' + uid);
@@ -97,7 +97,7 @@ class Profile extends React.Component {
 }
 
 // Get current route
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentRoute: state.user.currentRoute,
 });
 
