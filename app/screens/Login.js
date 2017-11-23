@@ -102,7 +102,7 @@ class Login extends React.Component {
         <StatusBar />
         <View style={styles.loginView}>
           <View style={styles.loginLogoView}>
-            <Image source={require('../../assets/images/corgilightbulb.gif')} />
+            <Image style={{height: 300}} resizeMode="contain" source={require('../../assets/images/corgi-logo.png')} />
             <Text allowFontScaling={false} style={styles.loginLogo}>
               Tutee
             </Text>

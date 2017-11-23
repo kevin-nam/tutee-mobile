@@ -245,7 +245,7 @@ export const createRootNavigator = (isSignedIn = false) => {
         },
       },
       Home: {
-        screen: Navigator,
+        screen: ({navigation}) => <Navigator screenProps={{rootNav: navigation}}/>,
         navigationOption: {
           header: () => null,
         },
