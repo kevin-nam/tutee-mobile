@@ -326,6 +326,19 @@ const styles = EStyleSheet.create({
     fontSize: 18,
     fontFamily: 'Poppins-Medium',
   },
+  /**
+   *  SESSIONRECEIPTS STYLE
+   */
+  receiptNoSessionText: {
+    marginTop: 10,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 16,
+    marginVertical: 10,
+  },
+  receiptContentView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
