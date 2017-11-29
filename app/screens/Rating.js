@@ -10,7 +10,7 @@ class Rating extends React.Component {
     super(props);
 
     this.state = {
-      newRating: 0,
+      newRating: 3,
       tutorName: '',
     };
   }
