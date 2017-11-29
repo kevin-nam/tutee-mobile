@@ -2,12 +2,15 @@
   "expo": {
     "name": "Tutee",
     "icon": "./assets/images/corgi-logo.png",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "sdkVersion": "21.0.0",
     "orientation": "portrait",
     "privacy": "public",
     "android": {
       "package": "com.tuteeStudios.tutee"
+    },
+    "ios": {
+      "bundleIdentifier": "com.tuteeStudios.tutee"
     },
     "packagerOpts": {
       "nonPersistent": true
