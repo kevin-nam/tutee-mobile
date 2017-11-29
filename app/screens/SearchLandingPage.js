@@ -71,7 +71,7 @@ class SearchLandingPage extends React.Component {
           let i = 0;
           data.forEach((post) => {
             this.getProfileData(post.uid, (userData) => {
-              //console.log(userData);
+              // console.log(userData);
               postList.push({ user: userData, post: post });
 
               // If last profile to get

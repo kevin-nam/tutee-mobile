@@ -31,33 +31,23 @@ export default EStyleSheet.create({
   profileImage: {
     height: 50,
     width: 50,
+    borderRadius: 25,
   },
   profileTextView: {
     justifyContent: 'center',
     height: 70,
   },
   profileText: {
-    color: 'black',
+    color: '$baseGray',
     fontSize: 18,
-    fontWeight: '600',
+    fontFamily: 'Poppins-Bold',
   },
   sessionInfoText: {
-    color: 'black',
+    color: '$baseGray',
     fontSize: 18,
-    fontWeight: '400',
+    fontFamily: 'Poppins-Medium',
   },
-  acceptRejectBtnView: {
-    flexDirection: 'row',
-    marginRight: 25,
-    justifyContent: 'center',
-  },
-  acceptBtn: {
-    marginRight: 15,
-  },
-  acceptText: {
-    color: '$baseGreen',
-  },
-  rejectText: {
-    color: '$baseRed',
+  badgeContainer: {
+    backgroundColor: '$baseCoral',
   },
 });
