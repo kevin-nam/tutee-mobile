@@ -40,7 +40,7 @@ class SearchLandingPage extends React.Component {
   getPostListData = () => {
     console.log(
       'Getting this on the search landing page: ' +
-        this.props.navigation.state.params.tagList
+      this.props.navigation.state.params.tagList
     );
 
     const headers = new Headers({
@@ -167,6 +167,7 @@ class SearchLandingPage extends React.Component {
               leftComponent={
                 <TouchableOpacity
                   onPress={() => this.props.navigation.goBack()}
+                  hitSlop={{ bottom: 10, left: 50, right: 50 }}
                 >
                   <Icon name="chevron-left" color="white" size={20} />
                 </TouchableOpacity>

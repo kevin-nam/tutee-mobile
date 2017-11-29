@@ -21,6 +21,7 @@ const MessagingHeader = ({
             dbref.off();
             navigation.goBack();
           }}
+          hitSlop={{ bottom: 10, left: 50, right: 30 }}
         >
           <Icon name="arrow-back" color="black" />
         </TouchableOpacity>
