@@ -54,9 +54,9 @@ class ProfileHeader extends React.Component {
                 ratingBackgroundColor={EStyleSheet.value('$baseCoral')}
                 fractions={1}
                 showRating={false}
-                ratingCount={this.props.user.rating}
+                ratingCount={Math.ceil(this.props.user.rating)}
                 type="custom"
-                startingValue={this.props.user.rating}
+                startingValue={Math.ceil(this.props.user.rating)}
                 onFinishRating={() => {}}
               />
               <Text allowFontScaling={false} style={styles.ratingText}>
