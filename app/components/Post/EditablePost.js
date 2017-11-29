@@ -139,7 +139,7 @@ class EditablePost extends React.Component {
         <View style={styles.editTagSection}>
           <TextInput
             autoCapitalize={'sentences'}
-            placeholder="#Tags"
+            placeholder="#Tag1 #Tag2 #Tag3"
             selectTextOnFocus={this.props.edit}
             style={styles.titleInput}
             onChangeText={(text) => {
