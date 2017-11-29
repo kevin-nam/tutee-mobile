@@ -10,29 +10,28 @@ class SessionCard extends React.Component {
   }
 
   static propTypes = {
-    navigation: PropTypes.object,
     user: PropTypes.object,
     session: PropTypes.object,
   };
 
   render() {
-    this.props.profile_picture = this.props.profile_picture
-      ? this.props.profile_picture
-      : require('../MessagingHeader/default-user.jpg');
+    this.props.user.profile_picture.length = this.props.user.profile_picture
+      ? this.props.user.profile_picture
+      : '../MessagingHeader/default-user.jpg';
 
     return (
       <View style={styles.flexVertical}>
         <View style={styles.profileImageView}>
           <Image
             style={styles.profileImage}
-            source={this.props.user.profile_picture}
+            source={{ uri: this.props.user.profile_picture }}
           />
         </View>
         <View style={styles.profileTextView}>
           <Text allowFontScaling={false} style={styles.profileText}>
             {this.props.user.username}
           </Text>
-          <View>
+          <View style={styles.profileTextSubView}>
             <Text allowFontScaling={false} style={styles.sessionInfoText}>
               {this.props.session.duration}{' '}
               {this.props.session.duration > 1 ? 'hours' : 'hour'}
@@ -42,8 +41,8 @@ class SessionCard extends React.Component {
             </Text>
           </View>
           <Badge
-            value={this.props.session.totalprice}
-            textStyle="white"
+            value={'$' + this.props.session.totalprice}
+            textStyle={styles.badgeText}
             containerStyle={styles.badgeContainer}
           />
         </View>

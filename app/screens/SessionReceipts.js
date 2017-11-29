@@ -25,18 +25,15 @@ class SessionReceipts extends React.Component {
     super(props);
 
     this.state = {
-      sessions: {},
-      user: {},
+      sessions: [],
+      loading: true,
     };
   }
 
-  async componentDidMount() {
-    await this.getSessionData();
-  }
+  componentDidMount() {
+    const uid = store.getState().user.uid;
 
-  getSessionData = async () => {
-    const uid = await store.getState().user.uid;
-    fetch('http://138.197.159.56:3232/session/get/' + (await uid), {
+    fetch('http://138.197.159.56:3232/session/get/' + uid, {
       method: 'GET',
     })
       .then((response) => {
@@ -48,100 +45,107 @@ class SessionReceipts extends React.Component {
         }
       })
       .then((data) => {
+        const sessions = [];
         if (data) {
-          this.setState({
-            sessions: data,
-          });
-        } else {
-          this.setState({
-            sessions: {},
+          Object.values(data).forEach((obj, index) => {
+            const myUid = store.getState().user.uid;
+            let uid = obj.uid;
+            if (myUid == obj.uid) {
+              uid = obj.tid;
+            }
+            this.getUserData(uid, (user) => {
+              if (user) {
+                sessions.push(
+                  <SessionCard key={index} user={user} session={obj} />
+                );
+                this.setState({
+                  sessions: sessions,
+                });
+              }
+            });
           });
         }
       });
-  };
+    this.setState({
+      loading: false,
+    });
+  }
 
-  getUserData = async (user) => {
-    fetch('http://138.197.159.56:3232/user/getUser/' + (await user.uid), {
+  getUserData = (uid, callback) => {
+    fetch('http://138.197.159.56:3232/user/getUser/' + uid, {
       method: 'GET',
     })
       .then((response) => {
         if (response.ok) {
+          console.log('response', response);
           return response.json();
         } else {
-          console.log('Error when getting profile data for ' + user.uid);
+          console.log('Error when getting profile data for ' + uid);
         }
       })
       .then((data) => {
-        this.setState({ user: data });
+        if (data) {
+          console.log('data', data);
+          callback(data);
+        } else {
+          callback(null);
+        }
       });
   };
 
   render() {
-    const myUid = store.getState().user.uid;
-    let list = [];
-    if (this.state.sessions) {
-      for (let session in this.state.sessions) {
-        if (!this.state.sessions.hasOwnProperty(session)) continue;
-        let uid = session.uid;
-        if (myUid == session.uid) {
-          uid = session.tid;
-        }
-        this.getUserData(uid);
-        list.push(
-          <SessionCard
-            key={list.length}
-            user={this.state.user}
-            session={session}
+    console.log(this.state.sessions);
+    console.log(this.state.list);
+    if (!this.state.loading) {
+      return (
+        <Container color={false}>
+          <StatusBar barStyle="light-content" />
+          <Header
+            outerContainerStyles={styles.settingsHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value('$baseCoral')}
+            centerComponent={
+              <Text
+                allowFontScaling={false}
+                style={styles.customHeaderCenterComponentText}
+              >
+                Session Receipts
+              </Text>
+            }
+            leftComponent={
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack()}
+                hitSlop={{ bottom: 10, left: 50, right: 50 }}
+              >
+                <Icon name="chevron-left" color="white" size={20} />
+              </TouchableOpacity>
+            }
           />
-        );
-      }
-    }
-
-    return (
-      <Container color={false}>
-        <StatusBar barStyle="light-content" />
-        <Header
-          outerContainerStyles={styles.settingsHeaderOuterContainerStyle}
-          innerContainerStyles={styles.customHeaderInnerContainerStyle}
-          backgroundColor={EStyleSheet.value('$baseCoral')}
-          centerComponent={
-            <Text
-              allowFontScaling={false}
-              style={styles.customHeaderCenterComponentText}
-            >
-              Session Receipts
-            </Text>
-          }
-          leftComponent={
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()} hitSlop={{ bottom: 10, left: 50, right: 50 }}>
-              <Icon name="chevron-left" color="white" size={20} />
-            </TouchableOpacity>
-          }
-        />
-        <KeyboardAvoidingView
-          style={styles.settingsScrollView}
-          behavior="padding"
-        >
-          <ScrollView
-            style={styles.searchLandingView}
-            showsVerticalScrollIndicator={false}
+          <KeyboardAvoidingView
+            style={styles.settingsScrollView}
+            behavior="padding"
           >
-            <View style={styles.receiptContentView}>
-              {list.length ? (
-                list
-              ) : (
-                <Text
-                  style={styles.receiptNoSessionText}
-                  allowFontScaling={false}
-                >
-                  Looks like you haven't had any Sessions yet!
-                </Text>
-              )}
-            </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </Container>
-    );
+            <ScrollView
+              style={styles.searchLandingView}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.receiptContentView}>
+                {this.state.sessions.length ? (
+                  this.state.sessions
+                ) : (
+                  <Text
+                    style={styles.receiptNoSessionText}
+                    allowFontScaling={false}
+                  >
+                    Looks like you haven't had any Sessions yet!
+                  </Text>
+                )}
+              </View>
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </Container>
+      );
+    } else return null;
   }
 }
 
