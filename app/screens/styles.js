@@ -241,6 +241,12 @@ const styles = EStyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'column',
   },
+  otherProfileView: {
+    marginTop: 22,
+    flex: 1,
+    alignSelf: 'stretch',
+    flexDirection: 'column',
+  },
   /**
    * PENDINGREQUEST STYLE
    */
@@ -276,6 +282,13 @@ const styles = EStyleSheet.create({
   },
   customHeaderInnerContainerStyle: {
     marginTop: 15,
+    alignItems: 'center',
+  },
+  customSmallHeaderOuterContainerStyle: {
+    height: 50,
+  },
+  customSmallHeaderInnerContainerStyle: {
+    marginTop: 5,
     alignItems: 'center',
   },
   customHeaderCenterComponentText: {
