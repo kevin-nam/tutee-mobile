@@ -20,6 +20,10 @@ import EditAccount from '../screens/EditAccount';
 import SessionReceipts from '../screens/SessionReceipts';
 import index from '../index';
 
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actions';
+import store from '../store/store';
+
 const ICON_PLATFORM = Platform.OS === 'ios' ? 'ios' : 'md';
 const ICON_SIZE = 25;
 const ICON_COLOR = 'white';
@@ -239,7 +243,19 @@ export const createRootNavigator = (isSignedIn = false) => {
         },
       },
       Home: {
-        screen: ({navigation}) => <Navigator screenProps={{rootNav: navigation}}/>,
+        screen: ({navigation}) =>
+          <Navigator
+            onNavigationStateChange={(prevState, currentState) => {
+              const getCurrentRouteName = (navigationState) => {
+                if (!navigationState) return null;
+                const route = navigationState.routes[navigationState.index];
+                if (route.routes) return getCurrentRouteName(route);
+                return route.routeName;
+              };
+              const actions = bindActionCreators(actionCreators, store.dispatch);
+              actions.setCurrentRoute(getCurrentRouteName(currentState));
+            }}
+            screenProps={{rootNav: navigation}}/>,
         navigationOption: {
           header: () => null,
         },

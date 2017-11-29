@@ -3,10 +3,13 @@ import React from 'react';
 import { StatusBar, View } from 'react-native';
 import { Container } from '../components/Container';
 import { ProfileHeader } from '../components/ProfileHeader';
+import { Header } from 'react-native-elements';
 import { ProfileBody } from '../components/ProfileBody';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { connect } from 'react-redux';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -76,7 +79,20 @@ class Profile extends React.Component {
       return (
         <Container color={false}>
           <StatusBar barStyle="light-content" />
-          <View style={styles.profileView}>
+          {!this.state.mine ? (<Header
+            outerContainerStyles={styles.customSmallHeaderOuterContainerStyle}
+            innerContainerStyles={styles.customSmallHeaderInnerContainerStyle}
+            backgroundColor={EStyleSheet.value("$baseCoral")}
+            leftComponent={
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack()}
+                hitSlop={{ top: 0, bottom: 10, left: 50, right: 50 }}
+              >
+                <Icon name="chevron-left" color="white" size={20} />
+              </TouchableOpacity>
+            }
+          />) : null}
+          <View style={this.state.mine ? styles.profileView : styles.otherProfileView}>
             <ProfileHeader
               user={user}
               mine={this.state.mine}
