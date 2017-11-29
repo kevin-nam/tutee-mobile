@@ -132,12 +132,6 @@ const HomeStack = StackNavigator(
         header: () => null,
       },
     },
-    Rating: {
-      screen: Rating,
-      navigationOption: {
-        headerTitle: 'Rating',
-      },
-    },
     otherProfile: {
       screen: Profile,
       navigationOptions: {
@@ -247,6 +241,27 @@ export const createRootNavigator = (isSignedIn = false) => {
       Home: {
         screen: ({navigation}) => <Navigator screenProps={{rootNav: navigation}}/>,
         navigationOption: {
+          header: () => null,
+        },
+      },
+      RequestSession: {
+        screen: RequestSession,
+        navigationOptions: {
+          headerTitle: 'Session Request',
+          header: () => null,
+        },
+      },
+      InSession: {
+        screen: InSession,
+        navigationOptions: {
+          headerTitle: 'In Session',
+          header: () => null,
+        },
+      },
+      Rating: {
+        screen: Rating,
+        navigationOption: {
+          headerTitle: 'Rating',
           header: () => null,
         },
       },
