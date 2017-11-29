@@ -102,7 +102,7 @@ class ModifyPost extends React.Component {
             </Text>
           }
           leftComponent={
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()} hitSlop={{ bottom: 10, left: 50, right: 50 }}>
               <Icon name="chevron-left" color="white" size={20} />
             </TouchableOpacity>
           }

@@ -55,7 +55,7 @@ class PendingRequests extends React.Component {
             if (connection.isPending && !connection.isRequesting) {
               // Get Profile Data for each pending connection
               this.getProfileData(connection.uid, (user) => {
-                pendingConnections.push({user: user, uid: connection.uid});
+                pendingConnections.push({ user: user, uid: connection.uid });
 
                 this.setState({
                   pendingConnections: pendingConnections,
@@ -143,7 +143,7 @@ class PendingRequests extends React.Component {
               </Text>
             }
             leftComponent={
-              <TouchableOpacity onPress={() => this.goBack()}>
+              <TouchableOpacity onPress={() => this.goBack()} hitSlop={{ bottom: 10, left: 50, right: 30 }}>
                 <Icon name="chevron-left" color="white" size={20} />
               </TouchableOpacity>
             }
